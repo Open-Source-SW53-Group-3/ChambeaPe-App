@@ -27,6 +27,7 @@ export class RegisterComponent {
   constructor() {}
 
   onSubmit() {
+    console.log(this.formData);
     this.isRegistering = true;
 
     setTimeout(() => {
