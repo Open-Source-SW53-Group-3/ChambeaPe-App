@@ -1,13 +1,13 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-import { User } from '../models/user';
+import { EmployerPost } from '../models/employer-post';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-  base_Url = "http://localhost:3000/users";
+export class EmployerPostService {
+  base_Url = "https://65110b963ce5d181df5da5df.mockapi.io/api/chambeape/post";
 
   constructor( private http: HttpClient) { }
 
@@ -30,20 +30,20 @@ export class LoginService {
     return throwError(()=>new Error('Something bad happened; please try again later.'));
   }
 
-  postUser(item: any): Observable<User> {
+  createPost(item: any): Observable<EmployerPost> {
     return this.http
-      .post<User>(this.base_Url, JSON.stringify(item), this.httpOptions)
+      .post<EmployerPost>(this.base_Url, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getUserList(): Observable<User> {
+  getPostList(): Observable<EmployerPost> {
     return this.http
-      .get<User>(this.base_Url)
+      .get<EmployerPost>(this.base_Url)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getUser(id: string): Observable<User> {
+  getPostById(id: string): Observable<EmployerPost> {
     return this.http
-    .get<User>(this.base_Url + '/' + id).pipe(retry(2),catchError(this.handleError));
+    .get<EmployerPost>(this.base_Url + '/' + id).pipe(retry(2),catchError(this.handleError));
   }
 }
