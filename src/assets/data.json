@@ -7,5 +7,34 @@
       "email": "diegocastrosoto01@gmail.com",
       "profilePic": "https://lh3.googleusercontent.com/a/ACg8ocIVaKxDw3DHUbkMIaKh-rJTt5h1XRQmhfGNhvwbpfSC=s96-c"
     }
+  ],
+  "post": [
+    {
+      "id": 1,
+      "postTitle": "Se busca pintor para habitacion",
+      "postDescription": "Busco pintor profesional para renovar mi casa. Se requiere experiencia en pintura de interiores y exteriores, con atención a los detalles y acabados de calidad. Ofrezco un pago justo por un trabajo bien hecho. Por favor, proporciona tu experiencia y presupuesto. ¡Espero trabajar contigo para darle un nuevo aspecto a mi hogar!",
+      "postSubtitle": "Área aproximada: 50m2",
+      "postImgUrl": "https://media.discordapp.net/attachments/1088250517282640072/1155388621252206683/opera_pk4xe8BQSo.png?width=982&height=897",
+      "workers": [
+        {
+          "image": "https://media.discordapp.net/attachments/1145421916413366426/1147346503522861096/Alejandro.png?width=311&height=310",
+          "status": "Disponible",
+          "name": "Carlos Pérez",
+          "description": "Pintor experimentado con más de 10 años de experiencia en el rubro. Ofrezco servicios de pintura interior y exterior, alisado de paredes, empapelado y barnizado."
+        },
+        {
+          "image": "https://media.discordapp.net/attachments/1145421916413366426/1147346503803883590/Valentina.png?width=310&height=310",
+          "status": "No disponible",
+          "name": "María González",
+          "description": "Electricista profesional con certificación SEC. Realizo instalaciones eléctricas domiciliarias e industriales, reparaciones de cortocircuitos, cambios de enchufes y lámparas, y mantenimiento preventivo."
+        },
+        {
+          "image": "https://media.discordapp.net/attachments/1145421916413366426/1147346504340738169/Sofia.png?width=310&height=310",
+          "status": "Disponible",
+          "name": "José Rodríguez",
+          "description": "Carpintero especializado en muebles a medida. Fabrico y reparo todo tipo de muebles de madera, melamina, aglomerado y MDF. También hago trabajos de lijado, pintura y barniz."
+        }
+      ]
+    }
   ]
 }

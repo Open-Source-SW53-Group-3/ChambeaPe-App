@@ -1,0 +1,62 @@
+.container-champ {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto;
+    width: 100%;
+    gap: 2rem;
+
+}
+
+.example-card {
+    max-width: 30rem;
+}
+
+@media (max-width: 920px) {
+    .example-card {
+        max-width: 25rem;
+    }
+}
+@media (max-width: 760px) {
+    .example-card {
+        max-width: 20rem;
+    }
+}
+@media (max-width: 480px) {
+    .example-card {
+        max-width: 7rem;
+    }
+}
+
+.post-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+.post-container img {
+    width: 200px;
+    object-fit: contain;
+}
+
+.post-container p{
+    margin-left: 40rem;
+    margin-right: 40rem;
+    text-align: justify;
+}
+
+.title{
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 20px; 
+}
+
+.workers-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
