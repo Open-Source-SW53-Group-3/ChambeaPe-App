@@ -1,0 +1,78 @@
+<div class="register">
+    <div class="header-form">
+        <img src="" alt="">
+        <h2>Formulario de Registro</h2>
+    </div>
+    <form class="form-register" (ngSubmit)="onSubmit()" *ngIf="!isRegistering">
+        <div class="fullname">
+            <mat-form-field>
+                <input matInput [(ngModel)]="formData.name" name="name" [placeholder]="'Name'">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Apellido</mat-label>
+                <input matInput [(ngModel)]="formData.lastName" name="lastName" [placeholder]="'Last Name'">
+            </mat-form-field>
+        </div>
+        <div class="birthday">
+            <mat-form-field>
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="formData.birthday" name="birthday">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="content-document">
+            <mat-form-field>
+                <mat-label>Identification</mat-label>
+                <mat-select [(ngModel)]="formData.identificationType" name="identificationType">
+                    <mat-option value="dni">DNI</mat-option>
+                    <mat-option value="passport">Passport</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Numero</mat-label>
+                <input matInput type="number" [(ngModel)]="formData.identificationNumber" name="identificationNumber"
+                    [placeholder]="'Number'">
+            </mat-form-field>
+        </div>
+        <div class="full-line">
+            <mat-form-field>
+                <mat-label>Numero</mat-label>
+                <input matInput type="tel" [(ngModel)]="formData.phoneNumber" name="phoneNumber"
+                    [placeholder]="'Phone Number'">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Correo</mat-label>
+                <input matInput type="email" [(ngModel)]="formData.email" name="email" [placeholder]="'Email'">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" [(ngModel)]="formData.password" name="password"
+                    [placeholder]="'Password'">
+            </mat-form-field>
+        </div>
+        <div class="gender">
+            <h4>Gender</h4>
+            <mat-radio-group [(ngModel)]="formData.gender" name="gender">
+                <mat-radio-button value="female">Female</mat-radio-button>
+                <mat-radio-button value="male">Male</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="role-account">
+            <h4>Kind of account</h4>
+            <mat-radio-group [(ngModel)]="formData.role" name="role">
+                <mat-radio-button value="isCandidate">Candidate</mat-radio-button>
+                <mat-radio-button value="isEmployer">Employer</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <button mat-raised-button type="submit">Registrarse</button>
+        <!-- <mat-spinner *ngIf="isRegistering"></mat-spinner>
+        <div *ngIf="registrationSuccess" class="success-message">
+            ¡Registro exitoso! Te has registrado correctamente.
+        </div>
+        <div *ngIf="registrationError" class="error-message">
+            Hubo un error durante el registro. Por favor, inténtalo de nuevo más tarde.
+        </div> -->
+    </form>
+</div>

@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .form-register{
+        padding: 1.2em;
+        display: flex;
+        flex-direction: column;
+
+        box-shadow: 0px 0px 10px rgba(241, 185, 101, 0.5);
+        .fullname{
+            display: flex;
+            flex-direction: column;
+        }
+        
+    }
+}
