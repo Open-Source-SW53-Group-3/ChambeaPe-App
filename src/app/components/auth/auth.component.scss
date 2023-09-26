@@ -1,0 +1,99 @@
+/*Forgot-Password*/
+.forgotP-section{
+    width: 100%;
+    height: 100%;
+    height: 50rem;
+    margin-top: 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-fp{
+    width: 45%;
+    height: 80%;
+    margin: 8rem 0 0 0; /*Cuales son los datos: margin:*/
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #999;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.titles{
+    width: 100%;
+    margin: 50px 0px 15px 0px;
+
+}
+
+.titles h1{
+    font-size: 45px;
+    font-weight: bold;
+    margin: 20px;
+}
+.titles p{
+    font-size: 23px;
+    margin: 30px 0px 0px 15px;
+}
+
+.email-phone-form{
+    height: 100%;
+}
+.em-ph-full-width{
+    margin-top: 15px;
+    width: 100%;
+    height: 80%;
+}
+
+.email-phone-form input{
+    margin-top: 2px;
+    font-size: 20px;
+}
+
+.input-fp{
+    margin: 30px 0px 10px 0px;
+    padding: 10px 5px;
+    width: 90%;
+    height: 20%;
+}
+
+.container-buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 35%;
+}
+
+.container-buttons button{
+    margin: 10px 0px;
+    padding: 10px;
+    width: 75%;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    height: 35%;
+}
+
+.container-buttons :nth-child(1){
+    background-color: #f1a636;
+    color: white;
+}
+
+.container-buttons :nth-child(2){
+    box-shadow: 0px 0px 10px #999;
+    background-color: #ffffff;
+    color: #f1a636;
+    border: 1px solid #f1a636;
+}
+
+.container-buttons button:hover{
+    cursor: pointer;
+    background-color: rgb(59, 59, 59);
+    animation: 0.5s ease-out 0s 1 slideInFromLeft;
+}

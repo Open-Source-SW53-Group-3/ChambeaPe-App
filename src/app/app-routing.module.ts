@@ -4,10 +4,13 @@ import { LoginComponent } from './components/login/login.component';
 import { EmployerPostComponent } from './components/employer-post/employer-post.component';
 import { RegisterComponent } from './components/register/register.component';
 import { JobPostComponent } from './components/job-post/job-post.component';
+import { AuthComponent } from './components/auth/auth.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'post/:id', component: EmployerPostComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'auth', component: AuthComponent},
   { path: 'login', component: LoginComponent },
   { path: 'job/post', component: JobPostComponent }
 
