@@ -18,9 +18,14 @@
             </button>
         </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" class="button" style="color: #fff;">Ingresa</button>
+    <button mat-raised-button color="primary" class="button" style="color: #fff;" (click)="home()">Ingresa</button>
     <div>
         <div id="googleLoginButton" class="googleButton"></div>
     </div>
-
+    <div class="forgot-password">
+        <a color="primary" class="button-forgot" (click)="auth()">¿Olvidaste tu contraseña?</a>
+    </div>
+    <div class="register-container">
+        <p>¿No tienes una cuenta? <a  (click)="home()">Registrate</a></p>
+    </div>
 </div>

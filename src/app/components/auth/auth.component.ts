@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { MatStepper } from '@angular/material/stepper';
 import { FormBuilder, Validators, FormControl} from '@angular/forms';
 
@@ -20,7 +20,7 @@ export class AuthComponent {
   isLinear = false;
   email = 'juansito@gmail.com';
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private router:Router) {
     this.emailFormControl.valueChanges.subscribe((newValue) => {
       // Actualizar la variable email cuando se produzcan cambios
       this.email = this.emailFormControl.value ?? 'juansito@gmail.com';
@@ -100,5 +100,9 @@ export class AuthComponent {
         });
       }
     }
+  }
+
+  home(){
+    this.router.navigateByUrl('/home');
   }
 }

@@ -13,8 +13,10 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent},
   { path: 'login', component: LoginComponent },
   { path: 'job/post', component: JobPostComponent },
-  {path:  'worker', redirectTo: '/worker/1', pathMatch: 'full'},
-  {path:  'worker/:id', component: WorkerProfileComponent},
+  { path: 'worker', redirectTo: '/worker/1', pathMatch: 'full'},
+  { path: 'worker/:id', component: WorkerProfileComponent},
+  //Cambiar al HOME
+  { path: 'home', component: JobPostComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full'}  
   // { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];

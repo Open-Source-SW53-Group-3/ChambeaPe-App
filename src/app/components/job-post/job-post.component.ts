@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-job-post',
   templateUrl: './job-post.component.html',
@@ -34,7 +34,7 @@ export class JobPostComponent {
   isLinear = false;
   selectedFile: File | null = null;
 
-  constructor(private _formBuilder: FormBuilder,  private _snackBar: MatSnackBar) {
+  constructor(private _formBuilder: FormBuilder,  private _snackBar: MatSnackBar, private router:Router) {
     this.firstFormGroup = this._formBuilder.group({
       title: ['', Validators.required], 
       area: ['', Validators.required], 
@@ -127,5 +127,7 @@ export class JobPostComponent {
         duration: 3000,
       });
     }
+
+    // this.router.navigateByUrl('/profile');
   }
 }

@@ -6,6 +6,9 @@ img {
     width: 3rem;
     height: auto;
 }
+img:hover {
+    cursor: pointer;
+}
 
 .navbar-toggler:focus {
     text-decoration: none;

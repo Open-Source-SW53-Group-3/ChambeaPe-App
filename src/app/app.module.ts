@@ -28,7 +28,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     EmployerPostComponent,
     RegisterComponent,
     JobPostComponent,
-    WorkerProfileComponent
+    WorkerProfileComponent,
     AuthComponent
   ],
   imports: [
