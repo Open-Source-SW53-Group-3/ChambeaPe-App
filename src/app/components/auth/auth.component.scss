@@ -1,0 +1,515 @@
+/*Forgot-Password*/
+.forgotP-section{
+    width: 100%;
+    height: 100%;
+    height: 50rem;
+    margin-top: -3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-fp{
+    width: 45%;
+    height: 80%;
+    margin: 8rem 0 0 0; /*Cuales son los datos: margin:*/
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #999;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.titles{
+    width: 100%;
+    margin: 50px 0px 15px 0px;
+
+}
+
+.titles h1{
+    font-size: 45px;
+    font-weight: bold;
+    margin: 20px;
+}
+.titles p{
+    font-size: 23px;
+    margin: 30px 0px 0px 15px;
+}
+
+.email-phone-form{
+    height: 100%;
+}
+.em-ph-full-width{
+    margin-top: 15px;
+    width: 100%;
+    height: 80%;
+}
+
+.email-phone-form input{
+    margin-top: 2px;
+    font-size: 20px;
+}
+
+.input-fp{
+    margin: 30px 0px 10px 0px;
+    padding: 10px 5px;
+    width: 90%;
+    height: 20%;
+}
+
+.container-buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 35%;
+}
+
+.container-buttons button{
+    margin: 10px 0px;
+    padding: 10px;
+    width: 75%;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    height: 35%;
+}
+
+.container-buttons :nth-child(1){
+    background-color: #f1a636;
+    color: white;
+}
+
+.container-buttons :nth-child(2){
+    box-shadow: 0px 0px 10px #999;
+    background-color: #ffffff;
+    color: #f1a636;
+    border: 1px solid #f1a636;
+}
+
+.container-buttons button:hover{
+    cursor: pointer;
+    background-color: rgb(59, 59, 59);
+    animation: 0.5s ease-out 0s 1 slideInFromLeft;
+}
+
+/*Verification-Code*/
+.link-button {
+    background: none;
+    border: none;
+    padding: 0px;
+    margin-left: 10px;
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgb(143, 143, 187);
+  }
+  
+  .link-button:focus {
+    outline: none; 
+  } 
+  
+  .link-button:hover{
+    color: blue;
+  }
+
+.vCode-section2{
+    margin-top: 3rem;
+    width: 100%;
+    height: 45rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.vCode-container2 {
+    width: 40%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px #999;
+}
+
+.title-container2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    height: 25%;
+    margin-left: 120px;
+    margin-top: 55px;
+    gap: 10px;
+}
+
+.title-container2 .description{
+    width: 80%;
+}
+
+.description a{
+    margin-left: 15px;
+}
+
+.title-container2 h1{
+    font-size: 45px;
+    gap: 15px;
+    line-height: 1.0;
+}
+
+.title-container2 p, a{
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.code-container2{
+    margin-top: 40px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
+}
+
+.code-container2 a{
+    margin-top: 20px;
+    margin-bottom: -5px;
+    margin-left: -20px;
+}
+
+.code-box2{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+.code-box2 mat-form-field{
+    margin-top: 25px;
+    width: 80%;
+    height: 140%;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.code-box2 input{
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+
+.container-buttons2{
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center ;
+    height: 15%;
+    margin-top: 15px;
+}
+
+.extra-information2{
+    width: 85%;
+    height: 10%;
+}
+
+.extra-information2 p{
+    font-size: 20px;
+    line-height: 1;
+    margin-left: 15px;
+}
+
+.extra-information2 a{
+    font-size: 20px;
+    line-height: 1;
+    margin-left: 15px;
+}
+
+.container-buttons2 button{
+    margin: 10px 0px;
+    padding: 10px;
+    width: 50%;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    height: 60%;
+    background-color: #f1a636;
+}
+
+.container-buttons2 button:hover{
+    cursor: pointer;
+    background-color: rgb(43, 46, 34);
+    animation: 0.3s ease-out 0s 1 slideInFromLeft;
+}
+
+
+/*Change-Password*/
+
+.vCode-section3{
+    margin-top: 1rem;
+    width: 100%;
+    height: 50rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.vCode-container3{
+    width: 45%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px #999;
+}
+
+.title-container3{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    height: 25%;
+    margin-top: 40px;
+    margin-left: 60px;
+    gap: 10px;
+}
+
+.title-container3 h1{
+    font-size: 45px;
+}
+
+.title-container3 p, a{
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.password-container3 {
+    margin-top: 15px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 30%;
+}
+
+.first-password-container3, .second-password-container3{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55%;
+}
+
+.password-container3 mat-form-field{
+    margin-top: 20px;
+    width: 70%;
+    height: 100%;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.password-container3 input{
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.password-container3 button{
+    margin-top: 5px;
+    margin-right: 8px;
+    width: 50px;
+}
+
+.check-container3{
+    margin-left: 20px;
+    margin-top: 15px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.check-container3 .custom-checkbox3{
+    width: 5%;
+    height: 40px;
+    transform: scale(1.5);
+}
+
+.check-container3 p{
+    margin-top: 20px;
+    width: 70%;
+    padding: 10px;
+    font-size: 20px;
+}  
+
+.container-buttons3{
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 14%;
+}
+
+.container-buttons3 button{
+    margin: 10px 0px;
+    padding: 10px;
+    width: 50%;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    height: 80%;
+    background-color: #f1a636;
+}
+
+.container-buttons3 button:hover{
+    cursor: pointer;
+    background-color: rgb(56, 58, 50);
+    animation: 0.5s ease-out 0s 1 slideInFromLeft;
+}
+
+/*Password-Changed*/
+
+.vCode-section4 {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15px;
+   }
+   
+   .vCode-container4 {
+       width: 50%;
+       height: 90%;
+       border-radius: 15px;
+       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   .title-container4 {
+       width: 100%;
+       height: 5%;
+       margin-top: 40px;
+   }
+   
+   .title-container4 h1{
+       margin-left: 60px;
+       text-align: left;
+       font-size: 40px;
+       font-weight: bold;
+       
+   }
+   
+   .imagen-container4{
+       width: 100%;
+       height: 50%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+   }
+   .imagen-container4 img {
+       width: 35%;
+       height: auto;
+   }
+   
+   .button-container4{
+       width: 100%;
+       height: 15%;
+   }
+   
+   .lastInfo-container4{
+       width: 100%;
+       height: 20%;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+   
+   }
+   
+   .last-box4{
+       width: 60%;
+       height: 100%;
+       display: flex;
+       justify-content: center;
+       align-items: left;
+       flex-direction: column;
+       gap: 0px;
+       padding: 20px;
+       background-color: #f9f2dd;
+       padding-left: 28px;
+       border-radius: 5px;
+   }
+   
+   .last-box4 a{
+       margin-bottom: -10px;
+       margin-top: 35px;
+   }
+   
+   .last-box4 .text-des4{
+       font-size: 16px;
+       margin-bottom: 20px;
+       line-height: 1.8;
+   }
+   
+   .container-buttons4{
+       margin-bottom: 15px;
+       width: 100%;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       height: 14%;
+   }
+   
+   .text-container4{
+       width: 100%;
+       height: 20%;
+       display: flex;
+       align-items: center;
+   }
+   
+   .text-container4 p{
+       margin-top: 10px;
+       margin-right: 10px;
+       font-size: 21px;
+       font-weight: bold;
+   }
+   
+   .container-buttons4 button{
+       margin: 10px 0px;
+       padding: 10px;
+       width: 50%;
+       border-radius: 15px;
+       border: none;
+       font-weight: bold;
+       font-size: 20px;
+       color: #ffffff;
+       height: 80%;
+       background-color: #f1a636;
+   }
+   
+   .container-buttons4 button:hover{
+       cursor: pointer;
+       background-color: #2e2e2d;
+       animation: 0.5s ease-out 0s 1 slideInFromLeft;
+   }

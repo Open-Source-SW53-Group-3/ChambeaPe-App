@@ -13,6 +13,11 @@ import { EmployerPostComponent } from './components/employer-post/employer-post.
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { JobPostComponent } from './components/job-post/job-post.component';
+
+import { AuthComponent } from './components/auth/auth.component';
+
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +26,8 @@ import { JobPostComponent } from './components/job-post/job-post.component';
     LoginComponent,
     EmployerPostComponent,
     RegisterComponent,
-    JobPostComponent
+    JobPostComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +36,12 @@ import { JobPostComponent } from './components/job-post/job-post.component';
     MaterialModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: {displayDefaultIndicatorType: false},
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
