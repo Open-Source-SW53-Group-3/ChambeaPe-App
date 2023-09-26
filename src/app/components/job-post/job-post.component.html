@@ -1,0 +1,104 @@
+
+<mat-stepper [linear]="isLinear" #stepper>
+    <!-- Paso 1 -->
+    <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Detalle de la publicación</ng-template>
+        <form [formGroup]="firstFormGroup">
+            <mat-form-field class="example-full-width">
+                <mat-label for="title">Título</mat-label>
+                <input type="text" matInput placeholder="Paseador de Perros" formControlName="title">
+                <!-- Asociamos el campo 'title' del formulario con la propiedad 'title' en el componente -->
+            </mat-form-field>
+            <!-- Resto de los controles del formulario -->
+            <mat-form-field>
+                <mat-label>Área</mat-label>
+                <mat-select formControlName="area">
+                    <mat-option value="otros">Otros</mat-option>
+                    <mat-option value="salud">Salud</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Descripción</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+            <mat-form-field floatLabel="always">
+                <mat-label>Monto</mat-label>
+                <input matInput type="number" class="example-right-align" placeholder="0" formControlName="amount">
+                <span matTextPrefix>$&nbsp;</span>
+                <span matTextSuffix>.00</span>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Seleccionar archivo</mat-label>
+                <input matInput readonly type="text" id="fakeFileInput" (click)="hiddenInput.click()">
+                <input hidden type="file" accept=".png" #hiddenInput (change)="GetFileOnLoad($event)">
+                <mat-icon matSuffix>folder_open</mat-icon>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+    <!-- Paso 2 -->
+    <mat-step [stepControl]="secondFormGroup" label="Ubicación del Trabajo">
+        <form [formGroup]="secondFormGroup">
+            <mat-form-field>
+                <mat-label for="address">Dirección</mat-label>
+                <input matInput formControlName="address" placeholder="Av Brasil 123">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Departamento</mat-label>
+                <mat-select formControlName="department">
+                    <mat-option value="lima">Lima</mat-option>
+                    <mat-option value="cusco">Cusco</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Distrito</mat-label>
+                <mat-select formControlName="district">
+                    <mat-option value="rimac">Rímac</mat-option>
+                    <mat-option value="miraflores">Miraflores</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label for="references">Referencias</mat-label>
+                <input matInput formControlName="references" placeholder="Altura de Plaza Vea Alcazar">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Espacio</mat-label>
+                <mat-select formControlName="space">
+                    <mat-option value="casa">Casa</mat-option>
+                    <mat-option value="departamento">Departamento</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!-- Resto de los controles del formulario -->
+            <div>
+                <button mat-button matStepperPrevious>Atrás</button>
+                <button mat-button matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- Paso 3 -->
+    <mat-step>
+        <ng-template matStepLabel>Configuración de la Publicación</ng-template>
+        <div class="premium" [formGroup]="premiumGroup">
+            <mat-label for="isPremium">Destacar Premium</mat-label>
+            <mat-slide-toggle formControlName="isPremium">Activado</mat-slide-toggle>
+            <!-- Asociamos el campo 'isPremium' del formulario con la propiedad 'isPremium' en el componente -->
+        </div>
+        <div class="settings" [formGroup]="settingGroup">
+            <mat-label for="isTownChambeador">Aceptar solo chambeadores de mi ciudad</mat-label>
+            <mat-slide-toggle formControlName="isTownChambeador"></mat-slide-toggle>
+            <!-- Asociamos el campo 'isTownChambeador' del formulario con la propiedad 'isTownChambeador' en el componente -->
+        </div>
+        <div class="notifications" [formGroup]="notificationGroup">
+            <mat-label for="isMessages">Notificarme sobre nuevos mensajes</mat-label>
+            <mat-slide-toggle formControlName="isMessages"></mat-slide-toggle>
+        </div>
+        <div>
+            <button mat-button (click)="enviarDatos()">Publicar</button>
+        </div>
+    </mat-step>
+</mat-stepper>
