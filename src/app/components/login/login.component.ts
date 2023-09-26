@@ -83,4 +83,11 @@ export class LoginComponent implements AfterViewInit {
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
+
+  home(){
+    this.router.navigateByUrl('/home');
+  }
+  auth(){
+    this.router.navigateByUrl('/auth');
+  }
 }
