@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { EmployerPostComponent } from './components/employer-post/employer-post.component'
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
+import { JobPostComponent } from './components/job-post/job-post.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RegisterComponent } from './components/register/register.component';
     FooterComponent,
     LoginComponent,
     EmployerPostComponent,
-    RegisterComponent
+    RegisterComponent,
+    JobPostComponent
   ],
   imports: [
     BrowserModule,
