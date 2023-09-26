@@ -1,11 +1,31 @@
 .wrapper {
+    height: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    min-height: calc(100vh - 6rem);
+
+    img {
+        width: 15%;
+        object-fit: cover;
+        margin-bottom: 2rem;
+    }
 }
 
 .email-field{
     width: 15.5rem;
+}
+.button {
+    width: 15.5rem;
+    height: 2.5rem;
+    border-radius: 0.2rem;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }

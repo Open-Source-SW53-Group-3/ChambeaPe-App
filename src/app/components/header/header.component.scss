@@ -19,11 +19,9 @@ button {
 }
 
 .color {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: #fff !important;
     font-size: 1.2rem;
+    text-align: center;
 }
 
 .color svg {
