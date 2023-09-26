@@ -42,7 +42,32 @@ export class AuthComponent {
     }
   }
 
-
-
+ /*Verification-code*/
   
+ showEmail(){
+  let firstElement = this.email.split("@")[0];
+  let rest = this.email.split("@")[1];
+  let characters = firstElement.split(""); 
+
+  for(let i = 1; i < firstElement.length; i++){
+    characters[i] = "*";
+  }
+
+  firstElement = characters.join(""); 
+
+  let email= firstElement + "@" + rest;
+  return email;
+}
+
+  validarStep_Two() {
+    // Realiza aquí tu lógica de validación, por ejemplo:
+    if (this.codeFormControl.valid) {
+      //Avanzar al siguiente paso solo si el campo de correo electrónico es válido
+      this.stepper.next();
+    }
+  }
+
+
+
+
 }

@@ -43,4 +43,51 @@
         </form>
     </mat-step>
 
+    <!-- Verification Code -->
+    <mat-step label="Ingresar codigo de Verificación" state= "code">
+        <form>
+
+            <div class="vCode-section2">
+                <div class="vCode-container2">
+
+                    <div class="title-container2">
+                        <h1>Te hemos enviado un código <br> por email</h1>
+
+                        <div class="description2">
+                            <p>Introduce el código de verificación de 6 dígitos que te hemos enviado a
+                                {{showEmail()}}.<a (click)="previousStep()" class="link-button">Cambiar</a></p>
+                        </div>
+                    </div>
+
+                    <div class="code-container2">
+                        <div class="code-box2">
+                            <mat-form-field>
+                                <mat-label>Código de 6 dígitos</mat-label>
+                                <input matInput [formControl]="codeFormControl">
+                                <mat-error *ngIf="codeFormControl.hasError('required')">
+                                    Este campo es obligatorio.
+                                </mat-error>
+                                <mat-error *ngIf="codeFormControl.hasError('pattern')">
+                                    El código debe consistir en exactamente 6 dígitos numéricos.
+                                 </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <a href="https://www.google.com">Reenviar código</a>
+                    </div>
+
+                    <div class="container-buttons2">
+                        <button (click)="validarStep_Two()">Enviar</button>
+                    </div>
+
+                    <div class="extra-information2">
+                        <p>Si no ves el email en tu buzón, mira en la carpeta de spam</p>
+                        <a href="https://www.google.com">¿No puedes acceder a este email?</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </mat-step>
+
 </mat-stepper>
