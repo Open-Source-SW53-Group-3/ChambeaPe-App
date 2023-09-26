@@ -28,6 +28,12 @@ export class EmployerPostComponent {
       }
     ]
   };
+
+  editMode:boolean=false;
+
+  toggleEditMode(){
+    this.editMode = !this.editMode;
+  }
   
   id:any;
   
@@ -48,6 +54,34 @@ export class EmployerPostComponent {
 
   viewProfile(workerId:any){
     this.router.navigate(['/worker/'+ workerId], { queryParams: { postId:this.id } });
+  }
+
+  editPost(){
+    this.postService.editPost(this.id, this.post).subscribe(
+      {
+        next: data => {
+          console.log('Post updated: '+data);
+          this.getPost()
+        },
+        error: error => {
+          console.log('An error has occurred', error);
+        }
+      }
+    );
+  }
+
+  deletePost(){
+    this.postService.deletePost(this.id).subscribe(
+      {
+        next: data => {
+          console.log('Post deleted: '+data);
+          this.router.navigate(['/employer']);
+        },
+        error: error => {
+          console.log('An error has occurred', error);
+        }
+      }
+    );
   }
 
   deleteWorker(workerId:any){

@@ -1,16 +1,42 @@
 <div class="container-post">
     <h2 class="title"> Post de Trabajo </h2>
     <mat-card class="post-card">
-        <div class="row">
+        <div class="row" *ngIf="!editMode; else editForm">
             <mat-card-title class="title">{{post.postTitle}}</mat-card-title>
             <mat-card-subtitle>{{post.postSubtitle}}</mat-card-subtitle>
             <p style="margin: 0;">{{post.postDescription}}</p>
         </div>
+        <ng-template #editForm>
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Título</mat-label>
+                    <input matInput [(ngModel)]="post.postTitle">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Subtítulo</mat-label>
+                    <input matInput [(ngModel)]="post.postSubtitle">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <textarea matInput [(ngModel)]="post.postDescription"></textarea>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>URL de la imagen</mat-label>
+                    <input matInput [(ngModel)]="post.postImgUrl">
+                </mat-form-field>
+            </div>
+        </ng-template>
         <img [src]=post.postImgUrl alt="{{post.postTitle}}">
-        <div class="button">
-            <a routerLink="" color="primary" mat-raised-button>Editar</a>
-            <a routerLink="" mat-raised-button>Eliminar</a>
+        <div class="button" *ngIf="!editMode; else editButtons">
+            <a color="primary" mat-raised-button (click)="toggleEditMode()">Editar</a>
+            <a  mat-raised-button (click)="deletePost()">Eliminar</a>
         </div>
+        <ng-template #editButtons>
+            <div class="button">
+                <a color="primary" mat-raised-button (click)="editPost(); toggleEditMode()">Guardar</a>
+                <a mat-raised-button (click)="toggleEditMode()">Cancelar</a>
+            </div>
+        </ng-template>
     </mat-card>
 </div>
 
