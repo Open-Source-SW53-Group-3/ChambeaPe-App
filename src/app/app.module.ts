@@ -18,6 +18,8 @@ import { WorkerProfileComponent } from './components/worker-profile/worker-profi
 import { AuthComponent } from './components/auth/auth.component';
 
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,16 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     RegisterComponent,
     JobPostComponent,
     WorkerProfileComponent,
-    AuthComponent
+    AuthComponent,
+    EmployerMypostsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {

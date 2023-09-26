@@ -6,9 +6,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { JobPostComponent } from './components/job-post/job-post.component';
 import { WorkerProfileComponent } from './components/worker-profile/worker-profile.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
 
 const routes: Routes = [
-  { path: 'post/:id', component: EmployerPostComponent },
+  {path:'posts', component: EmployerMypostsComponent},
+  { path: 'posts/:id', component: EmployerPostComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'auth', component: AuthComponent},
   { path: 'login', component: LoginComponent },
