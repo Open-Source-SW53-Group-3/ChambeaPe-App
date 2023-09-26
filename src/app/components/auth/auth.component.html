@@ -1,7 +1,7 @@
 <mat-stepper [linear]="true" #stepper>
     <!-- Forgot-Password -->
-    <mat-step label="Escribe tu correo" state= "email">
-        <form >
+    <mat-step label="Escribe tu correo" state="email">
+        <form>
             <div class="forgotP-section">
                 <div class="container-fp">
                     <div class="titles">
@@ -44,7 +44,7 @@
     </mat-step>
 
     <!-- Verification Code -->
-    <mat-step label="Ingresar codigo de Verificación" state= "code">
+    <mat-step label="Ingresar codigo de Verificación" state="code">
         <form>
 
             <div class="vCode-section2">
@@ -69,7 +69,7 @@
                                 </mat-error>
                                 <mat-error *ngIf="codeFormControl.hasError('pattern')">
                                     El código debe consistir en exactamente 6 dígitos numéricos.
-                                 </mat-error>
+                                </mat-error>
                             </mat-form-field>
                         </div>
                         <a href="https://www.google.com">Reenviar código</a>
@@ -86,6 +86,109 @@
                 </div>
             </div>
 
+
+        </form>
+    </mat-step>
+
+    <!-- Change Password -->
+    <mat-step label="Crea una nueva contraseña" state="lock">
+        <form>
+
+            <div class="vCode-section3">
+                <div class="vCode-container3">
+
+                    <div class="title-container3">
+                        <h1>Escoge otra contraseña</h1>
+                        <p>Para proteger tu cuebta elige una contraseña segura que no hayas usado antes
+                            y que tenga al menos 8 caracteres.
+                        </p>
+                        <a href="https://www.google.com"> ¿Cómo debe ser una contraseña segura?</a>
+                    </div>
+
+                    <div class="password-container3">
+                        <div class="first-password-container3">
+                            <mat-form-field>
+                                <mat-label>Nueva contraseña</mat-label>
+                                <input [formControl]="passwordFormControl" matInput [type]="hide ? 'password' : 'text'">
+                                <button mat-icon-button matSuffix (click)="hide = !hide"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="passwordFormControl.hasError('required')">
+                                    Este campo es obligatorio.
+                                </mat-error>
+                                <mat-error *ngIf="passwordFormControl.hasError('passwordMismatch')">
+                                    Las contraseñas no coinciden.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="second-password-container3">
+                            <mat-form-field>
+                                <mat-label>Vuelve a escribir tu contraseña</mat-label>
+                                <input [formControl]="passwordConfirmationFormControl" matInput [type]="'password'">
+                                <mat-error *ngIf="passwordConfirmationFormControl.hasError('required')">
+                                    Este campo es obligatorio.
+                                </mat-error>
+                                <mat-error *ngIf="passwordConfirmationFormControl.hasError('passwordMismatch')">
+                                    Las contraseñas no coinciden.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="check-container3">
+                        <mat-checkbox [color]="task.color" class="custom-checkbox3"></mat-checkbox>
+                        <p>Solicitar que todos los dispositivos inicien sesión con la nueva contraseña</p>
+                    </div>
+
+                    <div class="container-buttons3">
+                        <button (click)="validarStep_Three()">Restablecer la contraseña</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+    </mat-step>
+
+    <!-- Password Changed -->
+
+    <mat-step label="Finalizado" state="done_all">
+        <form>
+            <div class="vCode-section4">
+                <div class="vCode-container4">
+
+                    <div class="title-container4">
+                        <h1>Se ha cambiado tu contraseña</h1>
+                    </div>
+
+                    <div class="imagen-container4">
+                        <img src="https://cdn.discordapp.com/attachments/1145583761182965852/1155361028826222602/space-rocket-ship-cute-illustration-in-cartoon-flat-style-business-startup-idea-space-flight-spaceship-shuttle-ufo-ship-print-for-children-books-clothes-bedroom-decor-stickers-textile-vector.png"
+                            alt="image-password-changed">
+                    </div>
+
+                    <div class="container-buttons4">
+                        <button>Ir al inicio</button>
+                    </div>
+
+                    <div class="lastInfo-container4">
+                        <div class="last-box4">
+                            <a href="www.google.com">
+
+                                <div class="text-container4">
+                                    <p>Activar el proceso de verificación en dos pasos</p>
+                                    <mat-icon>open_in_new</mat-icon>
+                                </div>
+
+                            </a>
+                            <p class="text-des4">La verificación en dos pasos es un nivel añadido de seguridad, ya que
+                                solicita un código cada vez que incias sesión en un nuevo dispositivo.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
         </form>
     </mat-step>
