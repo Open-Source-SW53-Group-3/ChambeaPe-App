@@ -1,0 +1,18 @@
+<div class="container-post">
+    <br>
+    <h1>Mis anuncios</h1>
+    <div class="post-card" *ngFor="let post of posts">
+        <mat-card class="post-card">
+            <img mat-card-image [src]=post.postImgUrl alt="Post Image">
+                <mat-card-title style="font-size: 1.2rem;">{{post.postTitle}}</mat-card-title>
+                <mat-card-subtitle>{{post.postSubtitle}}</mat-card-subtitle>
+            
+                <p style="margin: 0;">
+                    {{post.postDescription}}
+                </p>
+            <mat-card-actions>
+                <button mat-raised-button (click)="viewPost(post.id)" color="primary" style="color: #fff;">Ver Publicación</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
