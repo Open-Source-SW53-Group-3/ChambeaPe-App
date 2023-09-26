@@ -52,7 +52,7 @@ export class EmployerPostComponent {
       next: this.post = data;
       error:{
         console.log('An error has occurred');
-        // this.toastr.error('Ocurrió un error al cargar los posts. Por favor, inténtalo de nuevo más tarde.');
+        // this.toastr.error('Ocurrió un error al cargar los posts. Por favor, inténtalo de nuevo más tarde');
       }
     });
   }
