@@ -4,10 +4,10 @@ import { LoginComponent } from './components/login/login.component';
 import { EmployerPostComponent } from './components/employer-post/employer-post.component';
 import { RegisterComponent } from './components/register/register.component';
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'post/:id', component: EmployerPostComponent },
   { path: 'register', component: RegisterComponent },
-  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   // { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 @NgModule({
