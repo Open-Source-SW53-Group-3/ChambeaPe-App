@@ -1,0 +1,46 @@
+<mat-stepper [linear]="true" #stepper>
+    <!-- Forgot-Password -->
+    <mat-step label="Escribe tu correo" state= "email">
+        <form >
+            <div class="forgotP-section">
+                <div class="container-fp">
+                    <div class="titles">
+                        <h1>¿Has olvidado tu contraseña?</h1>
+                        <p>Restablecer la contraseña en dos pasos rápidos</p>
+                    </div>
+
+                    <div class="input-fp">
+                        <form class="email-phone-form">
+                            <mat-form-field class="em-ph-full-width">
+                                <mat-label>Email o teléfono</mat-label>
+                                <input type="email" matInput [formControl]="emailFormControl"
+                                    placeholder="Ex. pat@example.com">
+                                <mat-error
+                                    *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                    Porfavor ingrese un email valido
+                                </mat-error>
+                                <mat-error *ngIf="emailFormControl.hasError('required')">
+                                    <svg aria-hidden="true" class="stUf5b qpSchb" fill="currentColor" focusable="false"
+                                        width="16px" height="16px" viewBox="0 0 24 24"
+                                        xmlns="https://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+                                        </path>
+                                    </svg>
+                                    Ingresa una dirección de <strong>Correo</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </form>
+                    </div>
+
+                    <div class="container-buttons">
+                        <button (click)="validarStep_One()">Restablecer la
+                            contraseña</button>
+                        <button>Volver</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-step>
+
+</mat-stepper>
