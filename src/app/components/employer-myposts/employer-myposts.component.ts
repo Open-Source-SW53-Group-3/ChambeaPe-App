@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EmployerPost } from 'src/app/models/employer-post';
 import { EmployerPostService } from 'src/app/services/employer-post.service';
 
@@ -11,7 +12,7 @@ import { EmployerPostService } from 'src/app/services/employer-post.service';
 export class EmployerMypostsComponent {
   posts:any=[];
 
-  constructor(private employerPostService:EmployerPostService, private router:Router) { }
+  constructor(private employerPostService:EmployerPostService, private router:Router, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.getPosts();
@@ -26,6 +27,7 @@ export class EmployerMypostsComponent {
         },
         error: (error) => {
           console.error('There was an error:', error);
+          this.toastr.error('Ocurrió un error al cargar los posts. Por favor, inténtalo de nuevo más tarde');
         },
       }
     );
