@@ -13,7 +13,6 @@ import { EmployerPostComponent } from './components/employer-post/employer-post.
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { JobPostComponent } from './components/job-post/job-post.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,4 +33,5 @@ import { JobPostComponent } from './components/job-post/job-post.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}
