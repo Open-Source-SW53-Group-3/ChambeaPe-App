@@ -21,6 +21,9 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import {FormBuilder, Validators, FormsModule} from '@angular/forms';
+import {NgIf} from '@angular/common';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -44,7 +47,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatStepperModule,
     MatSlideToggleModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule,
+    NgIf,
   ]
 })
 export class MaterialModule { }

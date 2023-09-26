@@ -34,7 +34,7 @@
                 <mat-icon matSuffix>folder_open</mat-icon>
             </mat-form-field>
             <div>
-                <button mat-button matStepperNext>Siguiente</button>
+                <button mat-raised-button color="primary" class="button" matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
@@ -73,9 +73,9 @@
                 </mat-select>
             </mat-form-field>
             <!-- Resto de los controles del formulario -->
-            <div>
-                <button mat-button matStepperPrevious>Atrás</button>
-                <button mat-button matStepperNext>Siguiente</button>
+            <div class="button-container">
+                <button mat-raised-button color="primary" class="button" matStepperPrevious>Atrás</button>
+                <button mat-raised-button color="primary" class="button" matStepperNext>Siguiente</button>
             </div>
         </form>
     </mat-step>
@@ -83,22 +83,24 @@
     <!-- Paso 3 -->
     <mat-step>
         <ng-template matStepLabel>Configuración de la Publicación</ng-template>
-        <div class="premium" [formGroup]="premiumGroup">
-            <mat-label for="isPremium">Destacar Premium</mat-label>
-            <mat-slide-toggle formControlName="isPremium">Activado</mat-slide-toggle>
-            <!-- Asociamos el campo 'isPremium' del formulario con la propiedad 'isPremium' en el componente -->
-        </div>
-        <div class="settings" [formGroup]="settingGroup">
-            <mat-label for="isTownChambeador">Aceptar solo chambeadores de mi ciudad</mat-label>
-            <mat-slide-toggle formControlName="isTownChambeador"></mat-slide-toggle>
-            <!-- Asociamos el campo 'isTownChambeador' del formulario con la propiedad 'isTownChambeador' en el componente -->
-        </div>
-        <div class="notifications" [formGroup]="notificationGroup">
-            <mat-label for="isMessages">Notificarme sobre nuevos mensajes</mat-label>
-            <mat-slide-toggle formControlName="isMessages"></mat-slide-toggle>
-        </div>
-        <div>
-            <button mat-button (click)="enviarDatos()">Publicar</button>
+        <div class="publication ">
+            <div class="premium center" [formGroup]="premiumGroup">
+                <mat-label for="isPremium">Destacar Premium</mat-label>
+                <mat-slide-toggle formControlName="isPremium"></mat-slide-toggle>
+                <!-- Asociamos el campo 'isPremium' del formulario con la propiedad 'isPremium' en el componente -->
+            </div>
+            <div class="settings center" [formGroup]="settingGroup">
+                <mat-label for="isTownChambeador">Aceptar solo chambeadores de mi ciudad</mat-label>
+                <mat-slide-toggle formControlName="isTownChambeador"></mat-slide-toggle>
+                <!-- Asociamos el campo 'isTownChambeador' del formulario con la propiedad 'isTownChambeador' en el componente -->
+            </div>
+            <div class="notifications center" [formGroup]="notificationGroup">
+                <mat-label for="isMessages">Notificarme sobre nuevos mensajes</mat-label>
+                <mat-slide-toggle formControlName="isMessages"></mat-slide-toggle>
+            </div>
+            <div>
+                <button mat-raised-button color="primary" class="button" (click)="enviarDatos()">Publicar</button>
+            </div>
         </div>
     </mat-step>
 </mat-stepper>
