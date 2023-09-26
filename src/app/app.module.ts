@@ -13,6 +13,7 @@ import { EmployerPostComponent } from './components/employer-post/employer-post.
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { JobPostComponent } from './components/job-post/job-post.component';
+import { WorkerProfileComponent } from './components/worker-profile/worker-profile.component';
 
 import { AuthComponent } from './components/auth/auth.component';
 
@@ -27,6 +28,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     EmployerPostComponent,
     RegisterComponent,
     JobPostComponent,
+    WorkerProfileComponent
     AuthComponent
   ],
   imports: [
