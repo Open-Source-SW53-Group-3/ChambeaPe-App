@@ -13,6 +13,7 @@ import { EmployerPostComponent } from './components/employer-post/employer-post.
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { JobPostComponent } from './components/job-post/job-post.component';
+import { WorkerProfileComponent } from './components/worker-profile/worker-profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { JobPostComponent } from './components/job-post/job-post.component';
     LoginComponent,
     EmployerPostComponent,
     RegisterComponent,
-    JobPostComponent
+    JobPostComponent,
+    WorkerProfileComponent
   ],
   imports: [
     BrowserModule,

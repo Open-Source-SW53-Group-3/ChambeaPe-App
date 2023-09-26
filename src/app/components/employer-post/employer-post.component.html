@@ -26,8 +26,9 @@
                     {{worker.description}}
                 </p>
             <mat-card-actions>
-                <button mat-raised-button color="primary" style="color: #fff;">Ver Perfil</button>
+                <button mat-raised-button (click)="viewProfile(worker.id)" color="primary" style="color: #fff;">Ver Perfil</button>
                 <button mat-raised-button >Chatear</button>
+                <button (click)="deleteWorker(worker.id)" mat-raised-button >Eliminar</button>
             </mat-card-actions>
         </mat-card>
     </div>

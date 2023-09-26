@@ -2,13 +2,12 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  base_Url = "http://localhost:3000/users";
-
   constructor( private http: HttpClient) { }
 
   httpOptions = {
@@ -32,18 +31,18 @@ export class LoginService {
 
   postUser(item: any): Observable<User> {
     return this.http
-      .post<User>(this.base_Url, JSON.stringify(item), this.httpOptions)
+      .post<User>(environment.baseUrl+'/user', JSON.stringify(item), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getUserList(): Observable<User> {
     return this.http
-      .get<User>(this.base_Url)
+      .get<User>(environment.baseUrl+'/user')
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getUser(id: string): Observable<User> {
     return this.http
-    .get<User>(this.base_Url + '/' + id).pipe(retry(2),catchError(this.handleError));
+    .get<User>(environment.baseUrl+'/user' + '/' + id).pipe(retry(2),catchError(this.handleError));
   }
 }

@@ -2,12 +2,12 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { EmployerPost } from '../models/employer-post';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployerPostService {
-  base_Url = "https://65110b963ce5d181df5da5df.mockapi.io/api/chambeape/post";
 
   constructor( private http: HttpClient) { }
 
@@ -32,18 +32,18 @@ export class EmployerPostService {
 
   createPost(item: any): Observable<EmployerPost> {
     return this.http
-      .post<EmployerPost>(this.base_Url, this.httpOptions)
+      .post<EmployerPost>(environment.baseUrl+'/post', this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getPostList(): Observable<EmployerPost> {
     return this.http
-      .get<EmployerPost>(this.base_Url)
+      .get<EmployerPost>(environment.baseUrl+'/post')
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getPostById(id: string): Observable<EmployerPost> {
     return this.http
-    .get<EmployerPost>(this.base_Url + '/' + id).pipe(retry(2),catchError(this.handleError));
+    .get<EmployerPost>(environment.baseUrl+'/post' + '/' + id).pipe(retry(2),catchError(this.handleError));
   }
 }

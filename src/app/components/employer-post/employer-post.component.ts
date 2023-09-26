@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { EmployerPost } from 'src/app/models/employer-post';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployerPostService } from 'src/app/services/employer-post.service';
+import { WorkerProfileService } from 'src/app/services/worker-profile.service';
 
 @Component({
   selector: 'app-employer-post',
@@ -30,11 +31,11 @@ export class EmployerPostComponent {
   
   id:any;
   
-  constructor(private postService:EmployerPostService, private route:ActivatedRoute) {}
+  constructor(private postService:EmployerPostService, private workerService:WorkerProfileService,private route:ActivatedRoute, private router:Router) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
+    console.log('Post ID: '+this.id);
     this.getPost();
   }
 
@@ -43,5 +44,23 @@ export class EmployerPostComponent {
       next: this.post = data;
       error: console.log('An error has occurred');
     });
+  }
+
+  viewProfile(workerId:any){
+    this.router.navigate(['/worker/'+ workerId], { queryParams: { postId:this.id } });
+  }
+
+  deleteWorker(workerId:any){
+    this.workerService.deleteWorker(workerId, this.id).subscribe(
+      {
+        next: data => {
+          console.log('Worker profile deleted: '+data);
+          this.getPost()
+        },
+        error: error => {
+          console.log('An error has occurred', error);
+        }
+      }
+    );
   }
 }
