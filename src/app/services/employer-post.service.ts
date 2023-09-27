@@ -32,7 +32,7 @@ export class EmployerPostService {
 
   createPost(item: any): Observable<EmployerPost> {
     return this.http
-      .post<EmployerPost>(environment.baseUrl+'/post', this.httpOptions)
+      .post<EmployerPost>(environment.baseUrl+'/post', item, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
