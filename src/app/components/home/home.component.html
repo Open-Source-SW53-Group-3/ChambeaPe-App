@@ -1,0 +1,76 @@
+<div class="area-container">
+    <div class="home-container">
+        <div class="search-container">
+            <form class="profile-form">
+                <mat-form-field class="profile-full-width">
+                    <input type="tel" matInput placeholder="Search" name="search" [(ngModel)]="search">
+                    <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+                </mat-form-field>
+            </form>
+
+            <div class="searches-container">
+                <h3>Últimas Búsquedas</h3>
+                <a href="www.youtube.com">Editar</a>
+            </div>
+        </div>
+
+        <div class="chambeador-profile">
+            <mat-card class="profile-card">
+                <mat-card-header class="card-header">
+                    <mat-card-title class="card-state">{{ workers[workerSelect].status ? 'Disponible' : 'No disponible' }}</mat-card-title>
+                    <mat-icon>radio_button_checked</mat-icon>
+                </mat-card-header>
+                <mat-card-content class="card-content">
+                    <div class="user-img">
+                        <img [src]=workers[workerSelect].image alt="">
+                    </div>
+
+                    <div class="user-description">
+                        <div class="user-information">
+                            <span>{{workers[workerSelect].name}}</span>
+                            <p>{{workers[workerSelect].description}}</p>
+                        </div>
+
+                        <div class="container-buttons">
+                            <button (click)="viewProfile()"> Ver Perfil</button>
+                            <button > Chatear </button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>        
+    
+        <div class="line-spacer">
+            <div class="line"></div>
+        </div>
+
+        <div class="top-empleadores-container" [ngClass]="marginBottomClassEmployer">
+            <div class="title-container">
+                <h1>Top Empleadores</h1>
+            </div>
+
+            <div class="empleadores-cards">
+                <mat-grid-list cols="3" rowHeight="400px" colWidth="400px">
+                    <mat-grid-tile *ngFor="let employer of employers">
+                        <img [src]="employer.image" alt="" class="employer-image">
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </div>
+    
+        <div class="top-chambeadores-container">
+            <div class="title-container">
+                <h1>Top Chambeadores</h1>
+            </div>
+
+            <div class="chambeadores-cards" [ngClass]="marginBottomClassWorker">
+                <mat-grid-list cols="3" rowHeight="400px" colWidth="400px">
+                  <mat-grid-tile *ngFor="let worker of workers">
+                    <img [src]="worker.image" alt="Worker Image" class="worker-image">
+                  </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </div>
+
+    </div>
+</div>
