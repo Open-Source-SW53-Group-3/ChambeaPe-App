@@ -63,7 +63,7 @@ export class LoginComponent implements AfterViewInit {
           this.loginService.postUser(user).subscribe(
             {
               next: (res: any) => {
-                console.log("User created successfully:", res);
+                console.log("Usuario creado satisfactoriamente:", res);
                 this.cookie.set('userId', user.id);
                 this.router.navigateByUrl('/profile');
               },
@@ -84,10 +84,13 @@ export class LoginComponent implements AfterViewInit {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  home(){
-    this.router.navigateByUrl('/home');
+  register(){
+    this.router.navigateByUrl('/register');
   }
   auth(){
     this.router.navigateByUrl('/auth');
+  }
+  home(){
+    this.router.navigateByUrl('/home');
   }
 }

@@ -19,10 +19,7 @@ const routes: Routes = [
   { path: 'job/post', component: JobPostComponent },
   { path: 'worker', redirectTo: '/worker/1', pathMatch: 'full'},
   { path: 'worker/:id', component: WorkerProfileComponent},
-  //Cambiar al HOME
-  { path: 'home', component: JobPostComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full'}  
-  // { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
