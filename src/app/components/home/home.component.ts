@@ -82,4 +82,9 @@ export class HomeComponent {
   get marginBottomClassEmployer() {
     return this.shouldApplyMarginBottomEmployer() ? 'with-margin-bottom' : '';
   }
+
+  home(){
+    this.router.navigate(['/home']);
+  }
+
 }

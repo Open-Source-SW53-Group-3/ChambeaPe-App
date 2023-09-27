@@ -4,13 +4,13 @@
             <form class="profile-form">
                 <mat-form-field class="profile-full-width">
                     <input type="tel" matInput placeholder="Search" name="search" [(ngModel)]="search">
-                    <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+                    <button matSuffix mat-button aria-label="Ingresa tu búsqueda"><mat-icon>search</mat-icon></button>
                 </mat-form-field>
             </form>
 
             <div class="searches-container">
-                <h3>Últimas Búsquedas</h3>
-                <a href="www.youtube.com">Editar</a>
+                <h3 aria-label="Últimas Búsquedas">Últimas Búsquedas</h3>
+                <a (click)="home()">Editar</a>
             </div>
         </div>
 
@@ -32,8 +32,8 @@
                         </div>
 
                         <div class="container-buttons">
-                            <button (click)="viewProfile()"> Ver Perfil</button>
-                            <button > Chatear </button>
+                            <button (click)="viewProfile()" aria-label="Entra al perfil de chambeador"> Ver Perfil</button>
+                            <button aria-label="Chambea con el chambeador" > Chatear </button>
                         </div>
                     </div>
                 </mat-card-content>
@@ -46,7 +46,7 @@
 
         <div class="top-empleadores-container" [ngClass]="marginBottomClassEmployer">
             <div class="title-container">
-                <h1>Top Empleadores</h1>
+                <h1 aria-label="Top Empleadores" >Top Empleadores</h1>
             </div>
 
             <div class="empleadores-cards">
@@ -60,14 +60,14 @@
     
         <div class="top-chambeadores-container">
             <div class="title-container">
-                <h1>Top Chambeadores</h1>
+                <h1 aria-label="Top Chambeadores">Top Chambeadores</h1>
             </div>
 
             <div class="chambeadores-cards" [ngClass]="marginBottomClassWorker">
                 <mat-grid-list cols="3" rowHeight="400px" colWidth="400px">
-                  <mat-grid-tile *ngFor="let worker of workers">
-                    <img [src]="worker.image" alt="Worker Image" class="worker-image">
-                  </mat-grid-tile>
+                    <mat-grid-tile *ngFor="let worker of workers">
+                        <img [src]="worker.image" alt="Worker Image" class="worker-image">
+                    </mat-grid-tile>
                 </mat-grid-list>
             </div>
         </div>
