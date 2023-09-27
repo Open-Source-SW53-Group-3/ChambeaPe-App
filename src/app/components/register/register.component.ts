@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -24,10 +24,14 @@ export class RegisterComponent {
   registrationSuccess: boolean = false;
   registrationError: boolean = false;
 
-  constructor() {}
+  constructor( private router:Router) {}
 
   onSubmit() {
     console.log(this.formData);
     this.isRegistering = true;
+  }
+
+  home(){
+    this.router.navigateByUrl('/home');
   }
 }

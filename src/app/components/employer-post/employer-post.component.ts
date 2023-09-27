@@ -66,7 +66,7 @@ export class EmployerPostComponent {
       {
         next: data => {
           console.log('Post updated: '+data);
-          this.toastr.success('Post edited successfully.');
+          this.toastr.success('Publicación editada exitosamente.');
           this.getPost()
         },
         error: error => {

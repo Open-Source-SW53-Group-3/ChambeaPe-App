@@ -13,5 +13,11 @@ export class HeaderComponent {
   }
   home(){
     this.router.navigateByUrl('/home');
+  };
+  login(){
+    this.router.navigateByUrl('/login');
+  };
+  mypost(){
+    this.router.navigateByUrl('/posts');
   }
 }

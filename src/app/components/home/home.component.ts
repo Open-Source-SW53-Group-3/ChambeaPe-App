@@ -84,7 +84,6 @@ export class HomeComponent {
   }
 
   home(){
-    this.router.navigate(['/home']);
-  }
-
+    this.router.navigateByUrl('/home');
+  };
 }
