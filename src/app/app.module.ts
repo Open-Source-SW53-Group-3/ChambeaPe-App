@@ -14,12 +14,13 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { JobPostComponent } from './components/job-post/job-post.component';
 import { WorkerProfileComponent } from './components/worker-profile/worker-profile.component';
+import { HomeComponent } from './components/home/home.component';
+import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AuthComponent } from './components/auth/auth.component';
 
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
-import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     JobPostComponent,
     WorkerProfileComponent,
     AuthComponent,
+    HomeComponent
     EmployerMypostsComponent
   ],
   imports: [
