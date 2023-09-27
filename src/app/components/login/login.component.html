@@ -2,7 +2,7 @@
     <img src="https://media.discordapp.net/attachments/1088250517282640072/1156290209311379466/ChambeaPe.png" alt="ChambeaPe">
     <div class="email-container">
         <mat-form-field class="email-field">
-            <mat-label>Ingresa tu email</mat-label>
+            <mat-label aria-label="Espacio para Ingresar tu email">Ingresa tu email</mat-label>
             <input matInput placeholder="pat@example.com" [formControl]="email" required>
             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -10,22 +10,22 @@
 
     <div class="password-container">
         <mat-form-field>
-            <mat-label>Ingresa tu Contraseña</mat-label>
+            <mat-label aria-label="Espacio para ingresar tu contraseña">Ingresa tu Contraseña</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
+                [attr.aria-pressed]="hide" >
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" class="button" style="color: #fff;" (click)="home()">Ingresa</button>
+    <button mat-raised-button color="primary" class="button" style="color: #fff;" (click)="home()"  aria-label="Boton para ingresar">Ingresa</button>
     <div>
         <div id="googleLoginButton" class="googleButton"></div>
     </div>
     <div class="forgot-password">
-        <a color="primary" class="button-forgot" (click)="auth()">¿Olvidaste tu contraseña?</a>
+        <a color="primary" class="button-forgot" (click)="auth()" aria-label="Botón para empezar a cambiar tu contraseña">¿Olvidaste tu contraseña?</a>
     </div>
     <div class="register-container">
-        <p>¿No tienes una cuenta? <a  (click)="home()">Registrate</a></p>
+        <p aria-label="¿No tienes una cuenta?">¿No tienes una cuenta? <a  (click)="home()">Registrate</a></p>
     </div>
 </div>
