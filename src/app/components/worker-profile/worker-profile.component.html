@@ -1,12 +1,12 @@
 <div class="profile-container">
     <br>
     <img class="circular-image" [src]="worker.image" />
-    <h1>{{worker.name}}</h1>
+    <h1  aria-label="Nombre del trabajador">{{worker.name}}</h1>
     <p>{{worker.status}}</p>
     <br>
-    <button mat-raised-button color="primary" class="button" style="color: #fff;">Conectar</button>
+    <button mat-raised-button color="primary" class="button" style="color: #fff;" aria-label="Conecta y chatea con el trabajador">Conectar</button>
     <br>
-    <h6 style="font-weight: bold;">Descripción:</h6>
+    <h6 style="font-weight: bold;" aria-label="Nombre de la descripción">Descripción:</h6>
     <p>{{worker.description}}</p>
 </div>
 

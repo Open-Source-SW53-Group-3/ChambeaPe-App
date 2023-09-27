@@ -28,6 +28,9 @@ import {NgIf} from '@angular/common';
   declarations: [],
   imports: [
     CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
   ],
   exports: [
     MatToolbarModule,

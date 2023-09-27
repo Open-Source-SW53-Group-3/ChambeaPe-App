@@ -6,18 +6,18 @@
         <div class="fullname">
             <h4>Datos Personales</h4>
             <mat-form-field required>
-                <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="formData.name" name="name" [placeholder]="'Juan'">
+                <mat-label aria-label="Nombre">Nombre</mat-label>
+                <input aria-label="Ingresa tu nombre" matInput [(ngModel)]="formData.name" name="name" [placeholder]="'Juan'">
             </mat-form-field>
             <mat-form-field required>
-                <mat-label>Apellido</mat-label>
-                <input matInput [(ngModel)]="formData.lastName" name="lastName" [placeholder]="'Perez'">
+                <mat-label aria-label="Apellido">Apellido</mat-label>
+                <input aria-label="Ingresa tu apellido" matInput [(ngModel)]="formData.lastName" name="lastName" [placeholder]="'Perez'">
             </mat-form-field>
         </div>
         <div class="birthday">
             <mat-form-field required>
-                <mat-label>Fecha de nacimiento</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="formData.birthday" name="birthday">
+                <mat-label aria-label="Fecha de nacimiento">Fecha de nacimiento</mat-label>
+                <input aria-label="Ingresa tu fecha de nacimiento" matInput [matDatepicker]="picker" [(ngModel)]="formData.birthday" name="birthday">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -25,52 +25,52 @@
         </div>
         <div class="content-document">
             <mat-form-field required>
-                <mat-label>Documento</mat-label>
+                <mat-label aria-label="Documento">Documento</mat-label>
                 <mat-select [(ngModel)]="formData.identificationType" name="identificationType">
-                    <mat-option value="dni" selected >DNI</mat-option>
-                    <mat-option value="pasaporte">Pasaporte</mat-option>
+                    <mat-option aria-label="dni" value="dni" selected >DNI</mat-option>
+                    <mat-option aria-label="Pasaporte"  value="pasaporte">Pasaporte</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field required>
-                <mat-label>Número</mat-label>
+                <mat-label aria-label="Numero de documento" >Número</mat-label>
                 <input matInput type="number" [(ngModel)]="formData.identificationNumber" name="identificationNumber"
                     [placeholder]="['Número de ', formData.identificationType].join('')">
             </mat-form-field>            
         </div>
         <div class="full-line">
             <mat-form-field required>
-                <mat-label>Número</mat-label>
+                <mat-label aria-label="Numero de celular" >Número</mat-label>
                 <span matPrefix>+51 &nbsp;</span>
                 <input matInput type="tel" [(ngModel)]="formData.phoneNumber" name="phoneNumber"
-                    [placeholder]="'Ingresa tu celular'">
+                    [placeholder]="'Ingresa tu celular'" aria-label="Ingresa tu celular" >
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
             <mat-form-field required>
-                <mat-label>Correo</mat-label>
+                <mat-label aria-label="Correo">Correo</mat-label>
                 <input matInput type="email" [(ngModel)]="formData.email" name="email"
                     [placeholder]="'juan.perez@ejemplo.com'">
             </mat-form-field>
             <mat-form-field required>
-                <mat-label>Contraseña</mat-label>
+                <mat-label aria-label="Contraseña">Contraseña</mat-label>
                 <input matInput type="password" [(ngModel)]="formData.password" name="password"
-                    [placeholder]="'Ingresa una contraseña'">
+                    [placeholder]="'Ingresa una contraseña'" aria-label="Ingresa una contraseña">
             </mat-form-field>
         </div>
-        <h4>Género</h4>
+        <h4 aria-label="Género">Género</h4>
         <div class="gender">
-            <mat-radio-group [(ngModel)]="formData.gender" name="gender">
-                <mat-radio-button value="female">Mujer</mat-radio-button>
-                <mat-radio-button value="male">Hombre</mat-radio-button>
+            <mat-radio-group [(ngModel)]="formData.gender" name="gender" >
+                <mat-radio-button value="female" aria-label="Mujer">Mujer</mat-radio-button>
+                <mat-radio-button value="male" aria-label="Hombre">Hombre</mat-radio-button>
             </mat-radio-group>
         </div>
-        <h4>Tipo de Cuenta</h4>
+        <h4  aria-label="Tipo de cuenta">Tipo de Cuenta</h4>
         <div class="role-account">
             <mat-radio-group [(ngModel)]="formData.role" name="role">
-                <mat-radio-button value="isCandidate">Chambeador</mat-radio-button>
-                <mat-radio-button value="isEmployer">Empleador</mat-radio-button>
+                <mat-radio-button value="isCandidate" aria-label="Chambeador">Chambeador</mat-radio-button>
+                <mat-radio-button value="isEmployer"  aria-label="Empleador">Empleador</mat-radio-button>
             </mat-radio-group>
         </div>
-        <button mat-raised-button type="submit" color="primary" (click)="home()">Registrarse</button>
+        <button mat-raised-button type="submit" color="primary" (click)="home()"  aria-label="Botón para proceder al registro completo">Registrarse</button>
 
     </form>
 </div>

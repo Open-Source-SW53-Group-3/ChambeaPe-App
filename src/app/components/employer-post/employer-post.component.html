@@ -1,46 +1,46 @@
 <div class="container-post">
-    <h2 class="title"> Post de Trabajo </h2>
+    <h2 class="title" aria-label="Post de Trabajo"> Post de Trabajo </h2>
     <mat-card class="post-card">
         <div class="row" *ngIf="!editMode; else editForm">
             <mat-card-title class="title">{{post.postTitle}}</mat-card-title>
-            <mat-card-subtitle>{{post.postSubtitle}}</mat-card-subtitle>
+            <mat-card-subtitle >{{post.postSubtitle}}</mat-card-subtitle>
             <p style="margin: 0;">{{post.postDescription}}</p>
         </div>
         <ng-template #editForm>
             <div class="row">
                 <mat-form-field appearance="outline">
-                    <mat-label>Título</mat-label>
+                    <mat-label aria-label="Título">Título</mat-label>
                     <input matInput [(ngModel)]="post.postTitle">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Subtítulo</mat-label>
+                    <mat-label aria-label="Subtítulo">Subtítulo</mat-label>
                     <input matInput [(ngModel)]="post.postSubtitle">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Descripción</mat-label>
+                    <mat-label aria-label="Descripción">Descripción</mat-label>
                     <textarea matInput [(ngModel)]="post.postDescription"></textarea>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>URL de la imagen</mat-label>
+                    <mat-label aria-label="URL de la imagen">URL de la imagen</mat-label>
                     <input matInput [(ngModel)]="post.postImgUrl">
                 </mat-form-field>
             </div>
         </ng-template>
         <img [src]=post.postImgUrl alt="{{post.postTitle}}">
         <div class="button" *ngIf="!editMode; else editButtons">
-            <a color="primary" mat-raised-button (click)="toggleEditMode()">Editar</a>
-            <a  mat-raised-button (click)="deletePost()">Eliminar</a>
+            <a color="primary" mat-raised-button (click)="toggleEditMode()" aria-label="Editar">Editar</a>
+            <a  mat-raised-button (click)="deletePost()" aria-label="Eliminar Post de trabajo">Eliminar</a>
         </div>
         <ng-template #editButtons>
             <div class="button">
-                <a color="primary" mat-raised-button (click)="editPost(); toggleEditMode()">Guardar</a>
-                <a mat-raised-button (click)="toggleEditMode()">Cancelar</a>
+                <a color="primary" mat-raised-button (click)="editPost(); toggleEditMode()" aria-label="Guardar Post de trabajo">Guardar</a>
+                <a mat-raised-button (click)="toggleEditMode()" aria-label="Cancelar">Cancelar</a>
             </div>
         </ng-template>
     </mat-card>
 </div>
 
-<h1 class="title">Chambeadores</h1>
+<h1 class="title" aria-label="Chambeadores">Chambeadores</h1>
 
 <div class="workers-container">
     <div class="container-jobs" *ngFor="let worker of post.workers">
@@ -53,8 +53,8 @@
                 </p>
             <mat-card-actions>
                 <button mat-raised-button (click)="viewProfile(worker.id)" color="primary" style="color: #fff;">Ver Perfil</button>
-                <button mat-raised-button >Chatear</button>
-                <button (click)="deleteWorker(worker.id)" mat-raised-button >Eliminar</button>
+                <button mat-raised-button aria-label="Empieza a Chatear con el Empleador">Chatear</button>
+                <button (click)="deleteWorker(worker.id)" mat-raised-button aria-label="Elimina un post">Eliminar</button>
             </mat-card-actions>
         </mat-card>
     </div>
