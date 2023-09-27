@@ -1,0 +1,196 @@
+
+.area-container{
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-container{
+    width: 80%;
+}
+
+.search-container{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.profile-full-width{  
+    width: 50%;
+}
+
+.profile-form{
+    width: 100%;
+    height: 92%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.searches-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.chambeador-profile{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-card{
+    width: 70%;
+}
+
+.card-header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.card-header .card-state{
+    margin-right: 15px;
+    font-size: 25px;
+}
+
+.card-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.user-img{
+    width: 30%;
+    clip-path: circle(40%);
+}
+
+.user-img img{
+    padding-left: 20px;
+    width: 100%;
+    height: auto;
+    
+}
+
+.user-description{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-left: 40px;
+    height: 210px;
+    justify-content: center;
+    gap: 20px;
+}
+
+.user-information{
+    height: 40%;
+}
+
+.user-information span{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.container-buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 45%;
+}
+
+.container-buttons button{
+    margin: 10px 0px;
+    padding: 10px;
+    width: 40%;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ffffff;
+    height: 60%;
+    background-color: #f1a636;
+}
+
+.container-buttons button:hover{
+    cursor: pointer;
+    background-color: rgb(56, 58, 50);
+    animation: 0.2s ease-out 0s 1 slideInFromLeft;
+
+}
+
+.line-spacer{
+    width: 100%;
+    height: 6px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.line-spacer .line{
+    width: 88%;
+    height: 100%;
+    background-color: #f1a636;
+}
+
+.top-empleadores-container{
+    width: 100%;
+    height: 30%;
+}
+
+
+.top-empleadores-container .title-container{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.top-chambeadores-container{
+    margin-top: 20px;
+    width: 100%;
+    height: 30%;
+}
+
+.top-chambeadores-container .title-container{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.employer-image {
+    width: 60%;
+    height: auto;
+}
+
+.worker-image {
+    width: 60%;
+    height: auto;
+  }
+  
+
+
+.with-margin-bottom {
+    padding-bottom: 1rem;
+}     
