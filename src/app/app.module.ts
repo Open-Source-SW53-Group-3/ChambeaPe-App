@@ -33,7 +33,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     JobPostComponent,
     WorkerProfileComponent,
     AuthComponent,
-    HomeComponent
+    HomeComponent,
     EmployerMypostsComponent
   ],
   imports: [
