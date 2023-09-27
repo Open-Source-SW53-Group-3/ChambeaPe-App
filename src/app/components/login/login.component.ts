@@ -75,6 +75,7 @@ export class LoginComponent implements AfterViewInit {
         }
       }
     );
+    this.router.navigateByUrl('/home');
   }
 
   getErrorMessage() {
