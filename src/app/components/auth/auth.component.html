@@ -1,46 +1,43 @@
 <mat-stepper [linear]="true" #stepper>
     <!-- Forgot-Password -->
     <mat-step label="Escribe tu correo" state="email">
-        <form>
-            <div class="forgotP-section">
-                <div class="container-fp">
-                    <div class="titles">
-                        <h1>¿Has olvidado tu contraseña?</h1>
-                        <p>Restablecer la contraseña en dos pasos rápidos</p>
-                    </div>
+        <div class="forgotP-section">
+            <div class="container-fp">
+                <div class="titles">
+                    <h1>¿Has olvidado tu contraseña?</h1>
+                    <p>Restablecer la contraseña en dos pasos rápidos</p>
+                </div>
 
-                    <div class="input-fp">
-                        <form class="email-phone-form">
-                            <mat-form-field class="em-ph-full-width">
-                                <mat-label>Email o teléfono</mat-label>
-                                <input type="email" matInput [formControl]="emailFormControl"
-                                    placeholder="Ex. pat@example.com">
-                                <mat-error
-                                    *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                                    Porfavor ingrese un email valido
-                                </mat-error>
-                                <mat-error *ngIf="emailFormControl.hasError('required')">
-                                    <svg aria-hidden="true" class="stUf5b qpSchb" fill="currentColor" focusable="false"
-                                        width="16px" height="16px" viewBox="0 0 24 24"
-                                        xmlns="https://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
-                                        </path>
-                                    </svg>
-                                    Ingresa una dirección de <strong>Correo</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </form>
-                    </div>
+                <div class="input-fp">
+                    <form class="email-phone-form">
+                        <mat-form-field class="em-ph-full-width">
+                            <mat-label>Email o teléfono</mat-label>
+                            <input type="email" matInput [formControl]="emailFormControl"
+                                placeholder="Ex. pat@example.com">
+                            <mat-error
+                                *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                Porfavor ingrese un email valido
+                            </mat-error>
+                            <mat-error *ngIf="emailFormControl.hasError('required')">
+                                <svg aria-hidden="true" class="stUf5b qpSchb" fill="currentColor" focusable="false"
+                                    width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z">
+                                    </path>
+                                </svg>
+                                Ingresa una dirección de <strong>Correo</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </form>
+                </div>
 
-                    <div class="container-buttons">
-                        <button (click)="validarStep_One()">Restablecer la
-                            contraseña</button>
-                        <button routerLink="/login">Volver</button>
-                    </div>
+                <div class="container-buttons">
+                    <button (click)="validarStep_One()">Restablecer la
+                        contraseña</button>
+                    <button routerLink="/login">Volver</button>
                 </div>
             </div>
-        </form>
+        </div>
     </mat-step>
 
     <!-- Verification Code -->
@@ -49,13 +46,16 @@
 
             <div class="vCode-section2">
                 <div class="vCode-container2">
-
                     <div class="title-container2">
                         <h1>Te hemos enviado un código <br> por email</h1>
-
-                        <div class="description2">
-                            <p>Introduce el código de verificación de 6 dígitos que te hemos enviado a
-                                {{showEmail()}}.<a (click)="previousStep()" class="link-button">Cambiar</a></p>
+                        <div>
+                            <p>
+                                Introduce el código de verificación de 6 dígitos que te hemos enviado a
+                                {{showEmail()}}.
+                                <a (click)="previousStep()" class="link-button">
+                                    Cambiar
+                                </a>
+                            </p>
                         </div>
                     </div>
 
@@ -77,79 +77,70 @@
 
                     <div class="container-buttons2">
                         <button (click)="validarStep_Two()">Enviar</button>
-                    </div>
-
-                    <div class="extra-information2">
                         <p>Si no ves el email en tu buzón, mira en la carpeta de spam</p>
                         <a href="https://www.google.com">¿No puedes acceder a este email?</a>
                     </div>
                 </div>
             </div>
-
-
         </form>
     </mat-step>
 
     <!-- Change Password -->
     <mat-step label="Crea una nueva contraseña" state="lock">
-        <form>
+        <div class="vCode-section3">
+            <div class="vCode-container3">
 
-            <div class="vCode-section3">
-                <div class="vCode-container3">
-
-                    <div class="title-container3">
-                        <h1>Escoge otra contraseña</h1>
-                        <p>Para proteger tu cuebta elige una contraseña segura que no hayas usado antes
-                            y que tenga al menos 8 caracteres.
-                        </p>
-                        <a href="https://www.google.com"> ¿Cómo debe ser una contraseña segura?</a>
-                    </div>
-
-                    <div class="password-container3">
-                        <div class="first-password-container3">
-                            <mat-form-field>
-                                <mat-label>Nueva contraseña</mat-label>
-                                <input [formControl]="passwordFormControl" matInput [type]="hide ? 'password' : 'text'">
-                                <button mat-icon-button matSuffix (click)="hide = !hide"
-                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
-                                <mat-error *ngIf="passwordFormControl.hasError('required')">
-                                    Este campo es obligatorio.
-                                </mat-error>
-                                <mat-error *ngIf="passwordFormControl.hasError('passwordMismatch')">
-                                    Las contraseñas no coinciden.
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="second-password-container3">
-                            <mat-form-field>
-                                <mat-label>Vuelve a escribir tu contraseña</mat-label>
-                                <input [formControl]="passwordConfirmationFormControl" matInput [type]="'password'">
-                                <mat-error *ngIf="passwordConfirmationFormControl.hasError('required')">
-                                    Este campo es obligatorio.
-                                </mat-error>
-                                <mat-error *ngIf="passwordConfirmationFormControl.hasError('passwordMismatch')">
-                                    Las contraseñas no coinciden.
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="check-container3">
-                        <mat-checkbox [color]="task.color" class="custom-checkbox3"></mat-checkbox>
-                        <p>Solicitar que todos los dispositivos inicien sesión con la nueva contraseña</p>
-                    </div>
-
-                    <div class="container-buttons3">
-                        <button (click)="validarStep_Three()">Restablecer la contraseña</button>
-                    </div>
-
+                <div class="title-container3">
+                    <h1>Escoge otra Contraseña</h1>
+                    <p>Para proteger tu cuenta elige una contraseña segura que no hayas usado antes
+                        y que tenga al menos 8 caracteres.
+                    </p>
+                    <a href="https://www.google.com"> ¿Cómo debe ser una contraseña segura?</a>
                 </div>
-            </div>
 
-        </form>
+                <div class="password-container3">
+                    <div class="first-password-container3">
+                        <mat-form-field>
+                            <mat-label>Nueva contraseña</mat-label>
+                            <input [formControl]="passwordFormControl" matInput [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                                Este campo es obligatorio.
+                            </mat-error>
+                            <mat-error *ngIf="passwordFormControl.hasError('passwordMismatch')">
+                                Las contraseñas no coinciden.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="second-password-container3">
+                        <mat-form-field>
+                            <mat-label>Vuelve a escribir tu contraseña</mat-label>
+                            <input [formControl]="passwordConfirmationFormControl" matInput [type]="'password'">
+                            <mat-error *ngIf="passwordConfirmationFormControl.hasError('required')">
+                                Este campo es obligatorio.
+                            </mat-error>
+                            <mat-error *ngIf="passwordConfirmationFormControl.hasError('passwordMismatch')">
+                                Las contraseñas no coinciden.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="check-container3">
+                    <mat-checkbox [color]="task.color" class="custom-checkbox3"></mat-checkbox>
+                    <p>Solicitar que todos los dispositivos inicien sesión con la nueva contraseña</p>
+                </div>
+
+                <div class="container-buttons3">
+                    <button (click)="validarStep_Three()">Restablecer la contraseña</button>
+                </div>
+
+            </div>
+        </div>
     </mat-step>
 
     <!-- Password Changed -->
@@ -175,12 +166,10 @@
                     <div class="lastInfo-container4">
                         <div class="last-box4">
                             <a href="www.google.com">
-
-                                <div class="text-container4">
-                                    <p>Activar el proceso de verificación en dos pasos</p>
-                                    <mat-icon>open_in_new</mat-icon>
-                                </div>
-
+                                <p>
+                                    Activar el proceso de verificación en dos pasos
+                                </p>
+                                <mat-icon>open_in_new</mat-icon>
                             </a>
                             <p class="text-des4">La verificación en dos pasos es un nivel añadido de seguridad, ya que
                                 solicita un código cada vez que incias sesión en un nuevo dispositivo.</p>

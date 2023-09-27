@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { EmployerPostService } from 'src/app/services/employer-post.service';
 @Component({
   selector: 'app-job-post',
   templateUrl: './job-post.component.html',
@@ -34,7 +35,8 @@ export class JobPostComponent {
   isLinear = false;
   selectedFile: File | null = null;
 
-  constructor(private _formBuilder: FormBuilder,  private _snackBar: MatSnackBar, private router:Router) {
+  constructor(private _formBuilder: FormBuilder,  private _snackBar: MatSnackBar, 
+    private router:Router, private employerPostService: EmployerPostService) {
     this.firstFormGroup = this._formBuilder.group({
       title: ['', Validators.required], 
       area: ['', Validators.required], 
@@ -128,6 +130,19 @@ export class JobPostComponent {
       });
     }
 
-    // this.router.navigateByUrl('/profile');
+    const post={
+      postTitle:this.firstFormGroup.value.title,
+      postDescription:this.firstFormGroup.value.description,
+      postSubtitle:this.firstFormGroup.value.area,
+      postImgUrl:this.formData.location,
+      id: 0,
+      workers:[]
+    }
+
+    this.employerPostService.createPost(post).subscribe((data:any)=>{
+      console.log(data);
+    })
+
+    this.router.navigateByUrl('/posts');
   }
 }
