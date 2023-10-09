@@ -129,6 +129,21 @@
     margin-top: 2rem;
   }
   
+  i {
+    position: relative;
+    display: inline-block;
+    font-size: 2rem;
+    padding-right: 0.1rem;
+    color: #d3d3d3;
+  }
+
+  .filled {
+    color: rgb(249, 216, 5);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   
   
   

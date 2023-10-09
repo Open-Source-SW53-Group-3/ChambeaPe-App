@@ -42,7 +42,7 @@ export class WorkerProfileComponent {
     );
   }
 
-  ratingToInt(reviewRating: string) {
-    this.rating = parseInt(reviewRating);
+  ratingToInt(reviewRating: string): number {
+    return parseInt(reviewRating);
   }
 }
