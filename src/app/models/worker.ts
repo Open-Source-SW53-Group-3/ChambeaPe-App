@@ -1,8 +1,16 @@
+import { Certificate } from "./certificate";
+import { Review } from "./review";
+
 export interface Worker {
-    image: any;
-    status: any;
-    name: any;
-    description: any;
-    id: any;
-    postId: any;
+    id: string;
+    postId: string;
+    image: string;
+    status: boolean;
+    name: string;
+    description: string;
+    speciality: string;
+    skills: string[];
+    portfolio: string[];
+    certificates: Certificate[];
+    reviews:Review[];
 }

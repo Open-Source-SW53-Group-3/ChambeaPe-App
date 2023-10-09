@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { WorkerProfileService } from 'src/app/services/worker-profile.service';
 import { Worker } from 'src/app/models/worker';
 
+
 @Component({
   selector: 'app-worker-profile',
   templateUrl: './worker-profile.component.html',
@@ -12,14 +13,8 @@ export class WorkerProfileComponent {
   id:any;
   postId:any;
 
-  worker:Worker={
-    image: '',
-    status: '',
-    name: '',
-    description: '',
-    id: '',
-    postId: ''
-  };
+  worker!:Worker;
+  rating!:number;
 
   constructor(private route:ActivatedRoute, private workerProfile:WorkerProfileService) {} 
   
@@ -45,5 +40,9 @@ export class WorkerProfileComponent {
         }
       }
     );
+  }
+
+  ratingToInt(reviewRating: string) {
+    this.rating = parseInt(reviewRating);
   }
 }
