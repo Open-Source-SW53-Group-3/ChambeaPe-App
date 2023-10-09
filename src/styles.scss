@@ -19,3 +19,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
     --shadow-orange: 0px 0px 16px 0px rgba(241, 166, 54, 0.35);
 }
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

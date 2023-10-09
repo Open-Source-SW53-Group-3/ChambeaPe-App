@@ -1,13 +1,90 @@
 <div class="profile-container">
-    <br>
     <img class="circular-image" [src]="worker.image" />
     <h1  aria-label="Nombre del trabajador">{{worker.name}}</h1>
-    <p>{{worker.status}}</p>
-    <br>
-    <button mat-raised-button color="primary" class="button" style="color: #fff;" aria-label="Conecta y chatea con el trabajador">Conectar</button>
-    <br>
-    <h6 style="font-weight: bold;" aria-label="Nombre de la descripción">Descripción:</h6>
-    <p>{{worker.description}}</p>
+
+    <div>
+        <h6 *ngIf="worker.status">Disponible <mat-icon fontIcon="check_circle" style="font-size: 20px;"></mat-icon></h6>
+        <h6 *ngIf="!worker.status">No Disponible <mat-icon fontIcon="cancel" style="font-size: 20px;" color="warn"></mat-icon></h6>
+        
+    </div>
+    
+
+    <button mat-raised-button color="primary" class="connect-button" style="color: #fff;" aria-label="Conecta y chatea con el trabajador">Conectar</button>
+
+    <h6 style="font-weight: bold;" aria-label="Descripción">Descripción</h6>
+    <div class="description-container">
+        
+        <p class="worker-description" aria-label="Descripción del chambeador">
+            {{worker.description}}
+        </p>
+    </div>
+   
+    <div class="worker-skills">
+        <h6 style="font-weight: bold;" aria-label="Habilidades">Habilidades</h6>
+        <button class="skill-button" color="primary" mat-button *ngFor="let skill of worker.skills">
+            {{ skill | titlecase }}
+        </button>
+    </div>
+
+    <div class="portfolio">
+        <h6 style="font-weight: bold;" aria-label="Portafolio">Mis trabajos</h6>
+        <div class="carousel-container">
+            <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" class="carousel">
+                <ng-template ngbSlide ngbSlide *ngFor="let image of worker.portfolio">
+                  <img [src]="image" alt="Portfolio Image" class="carousel-image">
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+    
+    <div class="certificates">
+        <h6 style="font-weight: bold;" aria-label="Certificados">Certificados</h6>
+        <div class="certificate-card-container">
+          <mat-card class="certificate-card" *ngFor="let certificate of worker.certificates">
+            <mat-card-content class="card-content">
+              <div class="img-container">
+                <img class="certificate-image" [src]="certificate.imgUrl" alt="">
+              </div>
+              <div class="certificate-description">
+                <p class="certificate-name">{{certificate.certificateName}}</p>
+                <p>{{certificate.institutionName}}</p>
+                <button class="certificate-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver certificado"> Ver Certificado</button>
+              </div>
+              
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas"> Ver Más</button>
+      </div>
+      
+      <div class="reviews">
+        <h6 style="font-weight: bold;" aria-label="Comentarios">Comentarios</h6>
+        <div class="review-card-container">
+          <mat-card class="review-card" *ngFor="let review of worker.reviews">
+            <mat-card-content class="card-content">
+              <div class="img-container">
+                <img class="employer-image" [src]="review.employerPhoto" alt="">
+              </div>
+              <div class="review-description">
+                <p class="certificate-name">{{review.employerName}}</p>
+                <p>{{review.description}}</p>
+                <ng-template #t let-fill="fill">
+                    <i class="bi-star-fill">
+                        <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
+                    </i>
+                </ng-template>
+                <ngb-rating
+                    [(rate)]="rating"
+                    [starTemplate]="t"
+                    [readonly]="true"
+                    [max]="5"
+                ></ngb-rating>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas"> Ver Más</button>
+      </div>
 </div>
 
 

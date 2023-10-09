@@ -17,6 +17,7 @@ import { WorkerProfileComponent } from './components/worker-profile/worker-profi
 import { HomeComponent } from './components/home/home.component';
 import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthComponent } from './components/auth/auth.component';
 
@@ -42,7 +43,8 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbModule
   ],
   providers: [
     {
