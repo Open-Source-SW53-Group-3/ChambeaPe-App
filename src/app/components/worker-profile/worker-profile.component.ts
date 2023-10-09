@@ -14,7 +14,7 @@ export class WorkerProfileComponent {
   postId:any;
 
   worker!:Worker;
-  rating!:number;
+  isWorker:boolean = true;
 
   constructor(private route:ActivatedRoute, private workerProfile:WorkerProfileService) {} 
   
@@ -42,7 +42,7 @@ export class WorkerProfileComponent {
     );
   }
 
-  ratingToInt(reviewRating: string) {
-    this.rating = parseInt(reviewRating);
+  ratingToInt(reviewRating: string): number {
+    return parseInt(reviewRating);
   }
 }

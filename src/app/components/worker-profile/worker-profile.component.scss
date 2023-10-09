@@ -2,6 +2,18 @@
     text-align: center;
 }
 
+.settings-icon{
+    position: absolute;
+    right: 0;
+    top: 5rem;
+}
+
+.gear-icon{
+  margin-top: 1rem;
+  margin-right: 1rem;
+  color: #f1a636;
+  cursor: pointer;
+}
 
 .circular-image {
     border-radius: 50%;
@@ -71,7 +83,7 @@
     display: flex; 
     flex-direction: column;
     align-items: center;
-    max-width: 800px; 
+    max-width: 500px; 
     margin: 0 auto; 
   }
   
@@ -127,6 +139,27 @@
   .reviews{
     margin-bottom: 2rem;
     margin-top: 2rem;
+  }
+  
+  i {
+    position: relative;
+    display: inline-block;
+    font-size: 2rem;
+    padding-right: 0.1rem;
+    color: #d3d3d3;
+  }
+
+  .filled {
+    color: rgb(249, 216, 5);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .add-icon{
+    color: #f1a636;
+    cursor: pointer;
   }
   
   
