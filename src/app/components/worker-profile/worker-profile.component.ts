@@ -14,7 +14,7 @@ export class WorkerProfileComponent {
   postId:any;
 
   worker!:Worker;
-  rating!:number;
+  isWorker:boolean = true;
 
   constructor(private route:ActivatedRoute, private workerProfile:WorkerProfileService) {} 
   

@@ -1,5 +1,9 @@
 <div class="profile-container">
     <img class="circular-image" [src]="worker.image" />
+    <div *ngIf="isWorker" class="settings-icon">
+      <i class="bi bi-gear gear-icon"></i>
+    </div>
+    
     <h1  aria-label="Nombre del trabajador">{{worker.name}}</h1>
 
     <div>
@@ -39,6 +43,7 @@
     
     <div class="certificates">
         <h6 style="font-weight: bold;" aria-label="Certificados">Certificados</h6>
+        <i *ngIf="isWorker" class="bi bi-plus-circle-fill add-icon"></i>
         <div class="certificate-card-container">
           <mat-card class="certificate-card" *ngFor="let certificate of worker.certificates">
             <mat-card-content class="card-content">
