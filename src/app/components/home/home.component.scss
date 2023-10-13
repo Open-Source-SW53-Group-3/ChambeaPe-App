@@ -79,7 +79,6 @@
 }
 
 .user-img img{
-    padding-left: 20px;
     width: 100%;
     height: auto;
     
@@ -90,10 +89,22 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    padding-left: 40px;
-    height: 210px;
+
     justify-content: center;
     gap: 20px;
+}
+
+.user-information{
+    padding-left:  3rem;
+    padding-right: 4rem;
+}
+.user-information span{
+    text-align: center;
+}
+
+.user-information p{
+    text-align: justify;
+    margin-top: 1rem;
 }
 
 .user-information{
@@ -164,6 +175,17 @@
     align-items: center;
 }
 
+.employer-image {
+    width: 60%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px orange;
+    transition: .3s;
+}
+
+.employer-image:hover {
+    transform: scale(1.2);
+}
 
 .top-chambeadores-container{
     margin-top: 20px;
@@ -179,17 +201,17 @@
     align-items: center;
 }
 
-.employer-image {
-    width: 60%;
-    height: auto;
-}
-
 .worker-image {
     width: 60%;
     height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px orange;
+    transition: .3s;
   }
-  
 
+.worker-image:hover {
+    transform: scale(1.2);
+}
 
 .with-margin-bottom {
     padding-bottom: 1rem;
@@ -198,3 +220,33 @@
 a:hover {
     cursor: pointer;
 }
+
+  /* Estilos para pantallas pequeñas */
+  @media (max-width: 768px) {
+  
+    .card-content {
+      flex-direction: column;
+    }
+    
+    .profile-card{
+        width: 80%;
+    }
+
+    .user-img{
+        width: 50%;
+    }
+
+    .container-buttons{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .container-buttons button{
+        width: 80%;
+    }
+ 
+    
+    .profile-card {
+      width: 100%;
+    }
+  }

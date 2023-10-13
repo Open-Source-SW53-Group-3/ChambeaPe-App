@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, HostListener  } from '@angular/core';
 import { EmployerPostService } from 'src/app/services/employer-post.service';
 import { WorkerProfileService } from 'src/app/services/worker-profile.service';
 import { Worker } from 'src/app/models/worker';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -18,12 +19,45 @@ export class HomeComponent {
 
   posts : any;
 
+  /**/
+  cols: number = 4;
+
   constructor(private postService:EmployerPostService, private workerService:WorkerProfileService,private route:ActivatedRoute , private router:Router) {}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    // Cuando cambie el tamaño de la ventana, llama a la función para ajustar las columnas
+    this.checkScreenWidth();
+  }
+
+  private checkScreenWidth(): void {
+    const wideScreenWidth = 1200; // Umbral para pantallas anchas
+    const mediumScreenWidth = 800; // Umbral para pantallas medianas
+    const smallScreenWidth = 600; // Umbral para pantallas pequeñas
+
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth >= wideScreenWidth) {
+      // Pantallas anchas
+      this.cols = 4;
+    } else if (windowWidth >= mediumScreenWidth) {
+      // Pantallas medianas
+      this.cols = 2;
+    } else if (windowWidth >= smallScreenWidth) {
+      // Pantallas pequeñas
+      this.cols = 1;
+    } else {
+      this.cols = 1; 
+    }
+  }
+
+  /**/
 
   workerSelect: any;
 
   ngOnInit(): void {
     this.getWorkers();
+    this.checkScreenWidth();
   }
 
   getWorkers(){

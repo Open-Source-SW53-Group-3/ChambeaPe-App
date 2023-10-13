@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthComponent } from './components/auth/auth.component';
 
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     WorkerProfileComponent,
     AuthComponent,
     HomeComponent,
-    EmployerMypostsComponent
+    EmployerMypostsComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { WorkerProfileComponent } from './components/worker-profile/worker-profi
 import { AuthComponent } from './components/auth/auth.component';
 import { HomeComponent } from './components/home/home.component';
 import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {path:'posts', component: EmployerMypostsComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent},
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'chat', component: ChatComponent },
   { path: 'job/post', component: JobPostComponent },
   { path: 'worker', redirectTo: '/worker/1', pathMatch: 'full'},
   { path: 'worker/:id', component: WorkerProfileComponent},
