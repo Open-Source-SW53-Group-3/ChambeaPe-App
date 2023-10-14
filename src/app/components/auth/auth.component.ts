@@ -17,7 +17,6 @@ export class AuthComponent {
   }
   //////
 
-  isLinear = false;
   email = 'juansito@gmail.com';
 
   constructor(private _formBuilder: FormBuilder, private router:Router) {
@@ -32,18 +31,41 @@ export class AuthComponent {
     Validators.required,
     Validators.email,
   ]);
+
+
+  /*
+    constructor(private _formBuilder: FormBuilder, private router:Router) {
+    this.emailFormControl.valueChanges.subscribe((newValue) => {
+      // Actualizar la variable email cuando se produzcan cambios
+      this.email = newValue.emailControl || '';
+    });
+  }
+
+  emailFormControl = this._formBuilder.group({
+    emailControl:['', 
+    Validators.required,
+    Validators.email,
+  ]});
+  
+  
+  */
   codeFormControl = new FormControl('', [
     Validators.required,
     Validators.pattern(/^\d{6}$/),
   ]);
   //////////////////////////
+  stepEmailCompleted = false;
   validarStep_One() {
     // Realiza aquí tu lógica de validación, por ejemplo:
     if (this.emailFormControl.valid) {
       //Avanzar al siguiente paso solo si el campo de correo electrónico es válido
-      this.stepper.next();
+      this.stepEmailCompleted = true;
+      setTimeout(() => {
+        this.stepper.next();
+      }, 100); // Wait for 1 second (1000 milliseconds) before executing the next line of code
     }
   }
+
 
   /*Verification-code*/
 
@@ -62,11 +84,16 @@ export class AuthComponent {
     return email;
   }
 
+  stepCodeCompleted = false;
+
   validarStep_Two() {
     // Realiza aquí tu lógica de validación, por ejemplo:
     if (this.codeFormControl.valid) {
       //Avanzar al siguiente paso solo si el campo de correo electrónico es válido
-      this.stepper.next();
+      this.stepCodeCompleted = true;
+      setTimeout(() => {
+        this.stepper.next();
+      }, 100); // Wait for 1 second (1000 milliseconds) before executing the next line of code
     }
   }
 
@@ -84,6 +111,8 @@ export class AuthComponent {
   hide = true;
   task = { name: 'Primary', completed: false, color: 'primary' };
 
+  stepPasswordCompleted = false;
+
   validarStep_Three() {
     if (
       this.passwordFormControl.valid &&
@@ -93,7 +122,10 @@ export class AuthComponent {
       const confirmPassword = this.passwordConfirmationFormControl.value;
 
       if (password === confirmPassword) {
-        this.stepper.next();
+        this.stepPasswordCompleted = true;
+        setTimeout(() => {
+          this.stepper.next();
+        }, 100); // Wait for 1 second (1000 milliseconds) before executing the next line of code
       } else {
         this.passwordConfirmationFormControl.setErrors({
           passwordMismatch: true,
