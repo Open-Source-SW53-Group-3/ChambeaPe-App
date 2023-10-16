@@ -3,7 +3,7 @@
     <div class="email-container">
         <mat-form-field class="email-field">
             <mat-label aria-label="Espacio para Ingresar tu email">Ingresa tu email</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+            <input matInput placeholder="pat@example.com" [(ngModel)]="emailField" [formControl]="email" required>
             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
     </div>
@@ -18,7 +18,7 @@
             </button>
         </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" class="button" style="color: #fff;" (click)="home()"  aria-label="Boton para ingresar">Ingresa</button>
+    <button mat-raised-button color="primary" class="button" style="color: #fff;" (click)="login()"  aria-label="Boton para ingresar">Ingresa</button>
     <div>
         <div id="googleLoginButton" class="googleButton"></div>
     </div>
