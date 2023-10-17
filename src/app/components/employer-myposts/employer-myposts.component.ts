@@ -36,4 +36,8 @@ export class EmployerMypostsComponent {
   viewPost(postId:any){
     this.router.navigateByUrl('/posts/' + postId);
   }
+
+  createPost(){
+    this.router.navigateByUrl('/job/post');
+  }
 }
