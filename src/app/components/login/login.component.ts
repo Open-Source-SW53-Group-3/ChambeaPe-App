@@ -5,6 +5,9 @@ import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { UserService } from 'src/app/services/user.service';
+import { UserRoles } from 'src/app/enums/user-roles.enum';
+import { ToastrService } from 'ngx-toastr';
 declare var google:any
 
 @Component({
@@ -15,8 +18,10 @@ declare var google:any
 export class LoginComponent implements AfterViewInit {
   hide:boolean= true;
   email = new FormControl('', [Validators.required, Validators.email]);
+  emailField=''
 
-  constructor(private loginService:LoginService, private router:Router, private cookie:CookieService) {}
+  constructor(private loginService:LoginService, private userService:UserService,
+    private router:Router, private cookie:CookieService, private toastr:ToastrService) {}
 
   ngAfterViewInit(): void {
     google.accounts.id.initialize({
@@ -85,13 +90,30 @@ export class LoginComponent implements AfterViewInit {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  register(){
+  redirectToRegister(){
     this.router.navigateByUrl('/register');
   }
-  auth(){
+
+  redirectToAuth(){
     this.router.navigateByUrl('/auth');
   }
-  home(){
+
+  redirectToHome(){
     this.router.navigateByUrl('/home');
+  }
+
+  login(){
+    if(this.emailField=='empleador@gmail.com'){
+      this.userService.setUserRoles([UserRoles.Employer]);
+    }
+    else if(this.emailField=='chambeador@gmail.com'){
+      this.userService.setUserRoles([UserRoles.Worker]);
+    }
+    else{
+      this.toastr.error('Usuario o contraseña incorrectos','Error',
+      {progressAnimation: 'decreasing', progressBar: true, timeOut: 3000, closeButton: true, easeTime: 300});
+      return;
+    }
+    this.redirectToHome();
   }
 }

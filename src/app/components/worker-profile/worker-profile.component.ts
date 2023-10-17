@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WorkerProfileService } from 'src/app/services/worker-profile.service';
 import { Worker } from 'src/app/models/worker';
+import { UserService } from 'src/app/services/user.service';
+import { UserRoles } from 'src/app/enums/user-roles.enum';
 
 
 @Component({
@@ -14,11 +16,13 @@ export class WorkerProfileComponent {
   postId:any;
 
   worker!:Worker;
-  isWorker:boolean = true;
+  isWorker!:boolean;
 
-  constructor(private route:ActivatedRoute, private workerProfile:WorkerProfileService) {} 
+  constructor(private route:ActivatedRoute, private workerProfile:WorkerProfileService, private userService:UserService) {} 
   
   ngOnInit(): void {
+    this.isWorker = this.userService.hasRole(UserRoles.Worker);
+
     this.route.queryParams.subscribe(params => {
       this.postId = params['postId'];
     });
