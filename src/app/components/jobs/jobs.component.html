@@ -1,1 +1,18 @@
-<p>jobs works!</p>
+<div class="container-post">
+    <br>
+    <h1 aria-label="Empleos">Empleos</h1>
+    <div class="post-card" *ngFor="let job of jobs">
+        <mat-card class="post-card">
+            <img mat-card-image [src]=job.postImgUrl alt="Post Image" aria-label="Imagen">
+                <mat-card-title style="font-size: 1.2rem;">{{job.postTitle}}</mat-card-title>
+                <mat-card-subtitle>{{job.postSubtitle}}</mat-card-subtitle>
+            
+                <p style="margin: 0;" aria-label="Descripción de la publicación">
+                    {{job.postDescription}}
+                </p>
+            <mat-card-actions>
+                <button aria-label="Postular" mat-raised-button (click)="apply()" color="primary" style="color: #fff;">Postular</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
