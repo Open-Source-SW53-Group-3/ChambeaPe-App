@@ -8,6 +8,7 @@ import { WorkerProfileComponent } from './components/worker-profile/worker-profi
 import { AuthComponent } from './components/auth/auth.component';
 import { HomeComponent } from './components/home/home.component';
 import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
+import { JobsComponent } from './components/jobs/jobs.component';
 
 const routes: Routes = [
   {path:'posts', component: EmployerMypostsComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'job/post', component: JobPostComponent },
   { path: 'worker', redirectTo: '/worker/1', pathMatch: 'full'},
   { path: 'worker/:id', component: WorkerProfileComponent},
+  { path: 'jobs', component: JobsComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full'}  
 ];
 @NgModule({

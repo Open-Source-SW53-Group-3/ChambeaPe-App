@@ -8,11 +8,14 @@
             <span class="navbar-toggler-icon" aria-label="Ve a la sección de Empleos"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav ms-auto">
+            <div *ngIf="isLoggedIn" class="navbar-nav ms-auto">
                 <a class="nav-link color" routerLink="" routerLinkActive="active" (click)="home()">
                     Inicio
                 </a>
-                <a class="nav-link color" routerLink="" routerLinkActive="active" (click)="mypost()">
+                <a *ngIf="!isWorker" class="nav-link color" routerLink="" routerLinkActive="active" (click)="mypost()">
+                    Mis Anuncios
+                </a>
+                <a *ngIf="isWorker" class="nav-link color" routerLink="" routerLinkActive="active" (click)="redirectToJobs()">
                     Empleos
                 </a>
                 <a class="nav-link color" routerLink="" routerLinkActive="active" aria-label="Ve a la sección de Chambeadores">
@@ -23,6 +26,14 @@
                 </a>
                 <a class="nav-link color" routerLink="" routerLinkActive="active" aria-label="Ve a la sección de Perfil">
                     Perfil
+                </a>
+            </div>
+            <div *ngIf="!isLoggedIn" class="navbar-nav ms-auto">
+                <a class="nav-link color" routerLink="" routerLinkActive="active" (click)="login()">
+                    Iniciar Sesión
+                </a>
+                <a class="nav-link color" routerLink="" routerLinkActive="active" (click)="redirectToRegister()">
+                    Registrarse
                 </a>
             </div>
         </div>

@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthComponent } from './components/auth/auth.component';
 
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { JobsComponent } from './components/jobs/jobs.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     WorkerProfileComponent,
     AuthComponent,
     HomeComponent,
-    EmployerMypostsComponent
+    EmployerMypostsComponent,
+    JobsComponent
   ],
   imports: [
     BrowserModule,
