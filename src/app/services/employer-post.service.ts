@@ -47,6 +47,11 @@ export class EmployerPostService {
     .get<EmployerPost>(environment.baseUrl+'/post' + '/' + id).pipe(retry(2),catchError(this.handleError));
   }
 
+  getPostsByEmployerId(id: string): Observable<EmployerPost> {
+    return this.http
+    .get<EmployerPost>(environment.baseUrl+'/post' + '?employerId=' + id).pipe(retry(2),catchError(this.handleError));
+  }
+
   editPost(id: string, item: any): Observable<EmployerPost> {
     return this.http
       .put<EmployerPost>(environment.baseUrl+'/post' + '/' + id, item, this.httpOptions)
