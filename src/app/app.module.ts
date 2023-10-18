@@ -27,6 +27,7 @@ import { ListCertificatesComponent } from './components/profile/pages/list-certi
 import { AddEditCertificateComponent } from './components/profile/components/add-edit-certificate/add-edit-certificate.component';
 import { CertificateDialogComponent } from './components/profile/components/certificate-dialog/certificate-dialog.component';
 import { SettingComponent } from './components/settings/pages/setting/setting.component';
+import { AppearanceComponent } from './components/settings/pages/appearance/appearance.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SettingComponent } from './components/settings/pages/setting/setting.co
     AddEditCertificateComponent,
     CertificateDialogComponent,
     SettingComponent,
+    AppearanceComponent,
   ],
   imports: [
     BrowserModule,
