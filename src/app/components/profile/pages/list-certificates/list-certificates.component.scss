@@ -1,0 +1,87 @@
+.certificates {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.certificate-card-container,
+.review-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.certificate-card,
+.review-card {
+    width: 26em;
+    margin-bottom: 16px;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 50%;
+}
+
+.img-container {
+    flex: 0 0 auto;
+    margin-right: 16px;
+}
+
+.certificate-image {
+    width: 150px;
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.certificate-description {
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+.certificate-button {
+    width: 150px;
+}
+
+.certificate-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+
+i {
+    position: relative;
+    display: inline-block;
+    font-size: 2rem;
+    padding-right: 0.1rem;
+    color: #d3d3d3;
+}
+
+
+.add-icon {
+    color: #f1a636;
+    cursor: pointer;
+}
+
+.actions{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    
+}
+
+
+@media screen and (max-width: 768px) {
+    .certificate-card,
+    .review-card {
+        width: 25em;
+        margin-bottom: 16px;
+    }
+}
+
