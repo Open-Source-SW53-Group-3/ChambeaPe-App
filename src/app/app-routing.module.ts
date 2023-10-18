@@ -10,7 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { ListCertificatesComponent } from './components/profile/pages/list-certificates/list-certificates.component';
-
+import { SettingComponent } from './components/settings/pages/setting/setting.component';
+import { AppearanceComponent } from './components/settings/pages/appearance/appearance.component';
 const routes: Routes = [
   {path:'posts', component: EmployerMypostsComponent},
   { path: 'posts/:id', component: EmployerPostComponent },
@@ -23,6 +24,8 @@ const routes: Routes = [
   { path: 'worker/:id', component: WorkerProfileComponent},
   { path: 'jobs', component: JobsComponent},
   { path: 'worker/:id/certificates', component: ListCertificatesComponent},
+  { path: 'settings', component: SettingComponent},
+  { path: 'settings/appearance', component: AppearanceComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full'}  ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
