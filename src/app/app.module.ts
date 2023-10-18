@@ -23,6 +23,7 @@ import { AuthComponent } from './components/auth/auth.component';
 
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { JobsComponent } from './components/jobs/jobs.component';
+import { ListCertificatesComponent } from './components/profile/pages/list-certificates/list-certificates.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { JobsComponent } from './components/jobs/jobs.component';
     AuthComponent,
     HomeComponent,
     EmployerMypostsComponent,
-    JobsComponent
+    JobsComponent,
+    ListCertificatesComponent
   ],
   imports: [
     BrowserModule,
