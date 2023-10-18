@@ -53,13 +53,13 @@
             <div class="certificate-description">
               <p class="certificate-name">{{worker.certificates[0].certificateName}}</p>
               <p>{{worker.certificates[0].institutionName}}</p>
-              <button class="certificate-button" mat-raised-button mat-button color="primary" (click)="viewCertificate(worker.certificates[0].id)" aria-label="Ver certificado"> Ver Certificado</button>
+              <button class="certificate-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver certificado"> Ver Certificado</button>
             </div>
             
           </mat-card-content>
         </mat-card>
       </div>
-      <button class="more-button" mat-raised-button mat-button color="primary"  aria-label="Ver mas" (click)="certificates(worker.id)"> Ver Más</button>
+      <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas" (click)="certificates(worker.id)"> Ver Más</button>
     </div>
       
       <div class="reviews">
