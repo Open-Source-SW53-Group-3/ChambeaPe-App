@@ -1,0 +1,37 @@
+.example-card {
+    max-width: 400px;
+    padding: 1.8em;
+    display: flex;
+    flex-direction: column;
+    .edit{
+        .title{
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+    }
+    .container-inputs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .img-certificate{
+            width: 90%;
+            margin-bottom: 0.8rem;
+        }
+        .box{
+
+            .subtitle{
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+.edit{
+    margin-bottom: 1.2rem;
+}
+.btn-close{
+    color: #fff;
+}

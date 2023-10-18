@@ -7,7 +7,6 @@ import { CertificateService } from 'src/app/services/certificate.service';
 import { CertificateDialogComponent } from '../../components/certificate-dialog/certificate-dialog.component';
 import { AddEditCertificateComponent } from '../../components/add-edit-certificate/add-edit-certificate.component';
 
-
 @Component({
   selector: 'app-list-certificates',
   templateUrl: './list-certificates.component.html',

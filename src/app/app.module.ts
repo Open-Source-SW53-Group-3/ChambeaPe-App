@@ -25,6 +25,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { ListCertificatesComponent } from './components/profile/pages/list-certificates/list-certificates.component';
 import { AddEditCertificateComponent } from './components/profile/components/add-edit-certificate/add-edit-certificate.component';
+import { CertificateDialogComponent } from './components/profile/components/certificate-dialog/certificate-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AddEditCertificateComponent } from './components/profile/components/add
     EmployerMypostsComponent,
     JobsComponent,
     ListCertificatesComponent,
-    AddEditCertificateComponent
+    AddEditCertificateComponent,
+    CertificateDialogComponent
   ],
   imports: [
     BrowserModule,
