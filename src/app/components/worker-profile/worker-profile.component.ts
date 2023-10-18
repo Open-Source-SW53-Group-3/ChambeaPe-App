@@ -4,6 +4,7 @@ import { WorkerProfileService } from 'src/app/services/worker-profile.service';
 import { Worker } from 'src/app/models/worker';
 import { UserService } from 'src/app/services/user.service';
 import { UserRoles } from 'src/app/enums/user-roles.enum';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class WorkerProfileComponent {
   worker!:Worker;
   isWorker!:boolean;
 
-  constructor(private route:ActivatedRoute, private workerProfile:WorkerProfileService, private userService:UserService) {} 
+  constructor(private route:ActivatedRoute, private workerProfile:WorkerProfileService, private userService:UserService,  private router:Router) {} 
   
   ngOnInit(): void {
     this.isWorker = this.userService.hasRole(UserRoles.Worker);
@@ -48,5 +49,9 @@ export class WorkerProfileComponent {
 
   ratingToInt(reviewRating: string): number {
     return parseInt(reviewRating);
+  }
+
+  certificates(id : any) {
+    this.router.navigate(['/worker/'+ id+'/certificates'], { queryParams: { postId:this.postId } });
   }
 }

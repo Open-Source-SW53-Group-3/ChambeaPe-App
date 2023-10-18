@@ -42,25 +42,25 @@
     </div>
     
     <div class="certificates">
-        <h6 style="font-weight: bold;" aria-label="Certificados">Certificados</h6>
-        <i *ngIf="isWorker" class="bi bi-plus-circle-fill add-icon"></i>
-        <div class="certificate-card-container">
-          <mat-card class="certificate-card" *ngFor="let certificate of worker.certificates">
-            <mat-card-content class="card-content">
-              <div class="img-container">
-                <img class="certificate-image" [src]="certificate.imgUrl" alt="">
-              </div>
-              <div class="certificate-description">
-                <p class="certificate-name">{{certificate.certificateName}}</p>
-                <p>{{certificate.institutionName}}</p>
-                <button class="certificate-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver certificado"> Ver Certificado</button>
-              </div>
-              
-            </mat-card-content>
-          </mat-card>
-        </div>
-        <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas"> Ver Más</button>
+      <h6 style="font-weight: bold;" aria-label="Certificados">Certificados</h6>
+      <i *ngIf="isWorker" class="bi bi-plus-circle-fill add-icon"></i>
+      <div class="certificate-card-container">
+        <mat-card class="certificate-card" >
+          <mat-card-content class="card-content">
+            <div class="img-container">
+              <img class="certificate-image" [src]="worker.certificates[0].imgUrl" alt="">
+            </div>
+            <div class="certificate-description">
+              <p class="certificate-name">{{worker.certificates[0].certificateName}}</p>
+              <p>{{worker.certificates[0].institutionName}}</p>
+              <button class="certificate-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver certificado"> Ver Certificado</button>
+            </div>
+            
+          </mat-card-content>
+        </mat-card>
       </div>
+      <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas" (click)="certificates(worker.id)"> Ver Más</button>
+    </div>
       
       <div class="reviews">
         <h6 style="font-weight: bold;" aria-label="Comentarios">Comentarios</h6>
