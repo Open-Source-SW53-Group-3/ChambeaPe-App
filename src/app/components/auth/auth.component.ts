@@ -33,27 +33,11 @@ export class AuthComponent {
   ]);
 
 
-  /*
-    constructor(private _formBuilder: FormBuilder, private router:Router) {
-    this.emailFormControl.valueChanges.subscribe((newValue) => {
-      // Actualizar la variable email cuando se produzcan cambios
-      this.email = newValue.emailControl || '';
-    });
-  }
-
-  emailFormControl = this._formBuilder.group({
-    emailControl:['', 
-    Validators.required,
-    Validators.email,
-  ]});
-  
-  
-  */
   codeFormControl = new FormControl('', [
     Validators.required,
     Validators.pattern(/^\d{6}$/),
   ]);
-  //////////////////////////
+
   stepEmailCompleted = false;
   validarStep_One() {
     // Realiza aquí tu lógica de validación, por ejemplo:
@@ -62,7 +46,7 @@ export class AuthComponent {
       this.stepEmailCompleted = true;
       setTimeout(() => {
         this.stepper.next();
-      }, 100); // Wait for 1 second (1000 milliseconds) before executing the next line of code
+      }, 100); // Wait for 0.1 second (100 milliseconds) before executing the next line of code
     }
   }
 
@@ -93,7 +77,7 @@ export class AuthComponent {
       this.stepCodeCompleted = true;
       setTimeout(() => {
         this.stepper.next();
-      }, 100); // Wait for 1 second (1000 milliseconds) before executing the next line of code
+      }, 100);
     }
   }
 
@@ -125,7 +109,7 @@ export class AuthComponent {
         this.stepPasswordCompleted = true;
         setTimeout(() => {
           this.stepper.next();
-        }, 100); // Wait for 1 second (1000 milliseconds) before executing the next line of code
+        }, 100);
       } else {
         this.passwordConfirmationFormControl.setErrors({
           passwordMismatch: true,
