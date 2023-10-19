@@ -17,11 +17,18 @@ import { WorkerProfileComponent } from './components/worker-profile/worker-profi
 import { HomeComponent } from './components/home/home.component';
 import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthComponent } from './components/auth/auth.component';
 
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ChatComponent } from './components/chat/chat.component';
+import { JobsComponent } from './components/jobs/jobs.component';
+import { ListCertificatesComponent } from './components/profile/pages/list-certificates/list-certificates.component';
+import { AddEditCertificateComponent } from './components/profile/components/add-edit-certificate/add-edit-certificate.component';
+import { CertificateDialogComponent } from './components/profile/components/certificate-dialog/certificate-dialog.component';
+import { SettingComponent } from './components/settings/pages/setting/setting.component';
+import { AppearanceComponent } from './components/settings/pages/appearance/appearance.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +43,13 @@ import { ChatComponent } from './components/chat/chat.component';
     AuthComponent,
     HomeComponent,
     EmployerMypostsComponent,
-    ChatComponent
+    ChatComponent,
+    JobsComponent,
+    ListCertificatesComponent,
+    AddEditCertificateComponent,
+    CertificateDialogComponent,
+    SettingComponent,
+    AppearanceComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +57,8 @@ import { ChatComponent } from './components/chat/chat.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbModule
   ],
   providers: [
     {

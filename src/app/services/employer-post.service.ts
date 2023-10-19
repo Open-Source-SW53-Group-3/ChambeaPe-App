@@ -36,15 +36,20 @@ export class EmployerPostService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getPostList(): Observable<EmployerPost> {
+  getPostList(): Observable<EmployerPost[]> {
     return this.http
-      .get<EmployerPost>(environment.baseUrl+'/post')
+      .get<EmployerPost[]>(environment.baseUrl+'/post')
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getPostById(id: string): Observable<EmployerPost> {
     return this.http
     .get<EmployerPost>(environment.baseUrl+'/post' + '/' + id).pipe(retry(2),catchError(this.handleError));
+  }
+
+  getPostsByEmployerId(id: string): Observable<EmployerPost> {
+    return this.http
+    .get<EmployerPost>(environment.baseUrl+'/post' + '?employerId=' + id).pipe(retry(2),catchError(this.handleError));
   }
 
   editPost(id: string, item: any): Observable<EmployerPost> {

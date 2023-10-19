@@ -1,0 +1,46 @@
+.container-interface{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.5em;
+}
+.section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1.2rem;
+}
+.section-title{
+    width: 100%;
+    font-size:1.2rem;
+    font-weight: 600;
+    justify-content: left;
+    margin-bottom: 0.5rem;
+}
+.group{
+    display: flex;
+    gap: 7.5em;
+}
+.example-margin{
+    border-radius: 0.5rem;
+    border: 2px solid #f1a636; 
+    padding: 0px 50px 0px 20px ;
+}
+.button-save{
+    margin-top: 1.5rem;
+    button{
+        color: white;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .group{
+        flex-direction: column;
+        gap: 1em;
+    }
+    .example-margin{
+        padding: 0px 50px 0px 20px ;
+    }
+}

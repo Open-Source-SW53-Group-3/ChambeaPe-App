@@ -136,7 +136,7 @@ export class JobPostComponent {
       postSubtitle:this.firstFormGroup.value.area,
       postImgUrl:this.formData.location,
       id: 0,
-      workers:[]
+      employerId: '1'
     }
 
     this.employerPostService.createPost(post).subscribe((data:any)=>{

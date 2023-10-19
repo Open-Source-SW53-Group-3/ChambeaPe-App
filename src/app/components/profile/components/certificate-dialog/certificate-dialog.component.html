@@ -1,0 +1,27 @@
+
+<div class="container-certificates">
+    <mat-card class="example-card" *ngIf="certificate">
+        <div class="edit">
+            <mat-card-title class="title">{{certificate.certificateName}}</mat-card-title>
+        </div>
+        <div #editForm class="container-inputs">
+            
+            <img *ngIf="certificate.imgUrl" class="img-certificate" [src]="certificate.imgUrl" alt="Certificado" >
+            <div class="box">
+                <mat-label class="subtitle" aria-label="Título">Nombre de la Institución</mat-label>
+                <p>{{certificate.institutionName}}</p>
+            </div>
+            <div class="box">
+                <mat-label class="subtitle" aria-label="Título">Nombre del Docente a Cargo</mat-label>
+                <p>{{certificate.professor}}</p>
+            </div>
+            <div class="box">
+                <mat-label class="subtitle" aria-label="Título">Fecha de Expedición</mat-label>
+                <p>{{certificate.issueDate}}</p>
+            </div>
+
+            <button class="btn-close" mat-raised-button color="primary"  [mat-dialog-close]="false" >Cerrar</button>
+        </div>
+
+    </mat-card>
+</div>
