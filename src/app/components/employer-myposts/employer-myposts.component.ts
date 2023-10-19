@@ -11,6 +11,7 @@ import { EmployerPostService } from 'src/app/services/employer-post.service';
 })
 export class EmployerMypostsComponent {
   posts:any=[];
+  employerId:string = '1';
 
   constructor(private employerPostService:EmployerPostService, private router:Router, private toastr:ToastrService) { }
 
@@ -19,11 +20,10 @@ export class EmployerMypostsComponent {
   }
 
   getPosts(){
-    this.employerPostService.getPostList().subscribe(
+    this.employerPostService.getPostsByEmployerId(this.employerId).subscribe(
       {
         next: (data) => {
           this.posts = data;
-          console.log(this.posts);
         },
         error: (error) => {
           console.error('There was an error:', error);
@@ -35,5 +35,9 @@ export class EmployerMypostsComponent {
 
   viewPost(postId:any){
     this.router.navigateByUrl('/posts/' + postId);
+  }
+
+  createPost(){
+    this.router.navigateByUrl('/job/post');
   }
 }

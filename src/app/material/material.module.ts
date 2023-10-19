@@ -16,10 +16,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule} from '@angular/material/core';
 import { MatSelectModule} from '@angular/material/select';
-
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
+import {MatDialogModule} from '@angular/material/dialog';
 
 import {FormBuilder, Validators, FormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
@@ -53,6 +56,8 @@ import {NgIf} from '@angular/common';
     MatSnackBarModule,
     FormsModule,
     NgIf,
+    MatButtonToggleModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

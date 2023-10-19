@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WorkerProfileService } from 'src/app/services/worker-profile.service';
 import { Worker } from 'src/app/models/worker';
+import { UserService } from 'src/app/services/user.service';
+import { UserRoles } from 'src/app/enums/user-roles.enum';
+import { Router } from '@angular/router';
+import  { MatDialog } from '@angular/material/dialog';
+import { CertificateDialogComponent } from '../profile/components/certificate-dialog/certificate-dialog.component';
 
 @Component({
   selector: 'app-worker-profile',
@@ -12,18 +17,14 @@ export class WorkerProfileComponent {
   id:any;
   postId:any;
 
-  worker:Worker={
-    image: '',
-    status: '',
-    name: '',
-    description: '',
-    id: '',
-    postId: ''
-  };
+  worker!:Worker;
+  isWorker!:boolean;
 
-  constructor(private route:ActivatedRoute, private workerProfile:WorkerProfileService) {} 
+  constructor(private dialog:MatDialog, private route:ActivatedRoute, private workerProfile:WorkerProfileService, private userService:UserService,  private router:Router) {} 
   
   ngOnInit(): void {
+    this.isWorker = this.userService.hasRole(UserRoles.Worker);
+
     this.route.queryParams.subscribe(params => {
       this.postId = params['postId'];
     });
@@ -46,4 +47,23 @@ export class WorkerProfileComponent {
       }
     );
   }
+
+  ratingToInt(reviewRating: string): number {
+    return parseInt(reviewRating);
+  }
+
+  certificates(id : any) {
+    this.router.navigate(['/worker/'+ id+'/certificates'], { queryParams: { postId:this.postId } });
+  }
+
+  viewCertificate(idCertificate:any){
+    this.dialog.open(CertificateDialogComponent,{
+      data:{
+        idCertificate: idCertificate,
+        idWorker: this.worker.id,
+        idPost: this.postId
+      }
+    });
+  }
+
 }

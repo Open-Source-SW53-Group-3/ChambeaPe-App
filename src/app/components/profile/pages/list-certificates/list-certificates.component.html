@@ -1,0 +1,32 @@
+<div class="certificates">
+    <div class="subtittle">
+        <h6 style="font-weight: bold;" aria-label="Certificados">Certificados</h6>
+        <i *ngIf="isWorker" (click)="addCertificate()" class="bi bi-plus-circle-fill add-icon"></i>
+    </div>
+    <div class="certificate-card-container">
+        <div *ngFor="let certificate of worker?.certificates">
+            <mat-card class="certificate-card">
+                <mat-card-content class="card-content">
+                    <div class="img-container">
+                        <img class="certificate-image" [src]="certificate.imgUrl" alt="">
+                    </div>
+                    <div class="certificate-description">
+                        <p class="certificate-name">{{certificate.certificateName}}</p>
+                        <p>{{certificate.institutionName}}</p>
+                        <button class="certificate-button" mat-raised-button mat-button color="primary"
+                                (click)="viewCertificate(certificate.id)" aria-label="Ver certificado" > Ver Certificado</button>
+                    </div>
+                    <div class="actions">
+                        <button mat-icon-button color="primary" aria-label="Editar"  (click)="editCertificate(certificate)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="primary" aria-label="Eliminar"
+                                (click)="deleteCertificate(certificate.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

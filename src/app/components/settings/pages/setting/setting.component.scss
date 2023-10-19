@@ -1,0 +1,50 @@
+
+.container-settings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.5em;
+    .title{
+        margin: 1.2rem;
+    }
+    .box{
+        display: flex;
+        width: 40%;
+        justify-content: space-between;
+        background-color: rgb(230, 234, 234);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin: 0.4rem;
+        a{
+            color: #f1a636;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+}
+.delete-account {
+    margin-top: 2.2rem;
+    border-radius: 0.5rem;
+    border: 2px solid red; 
+    color: red;
+    padding: 0.5rem 3rem;
+    a{
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+a{
+    text-decoration: none;
+}
+
+.payment-methods{
+    background-color: #f1a6362b;
+}
+@media screen and (max-width: 768px){
+    .box{
+        width: 80%;
+    }
+}

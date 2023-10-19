@@ -1,0 +1,43 @@
+<div class="container-certificates">
+    <mat-card class="card-content">
+        <form #editForm class="container-inputs" [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+            <!-- <button mat-raised-button color="primary" >Subir Imagen</button> -->
+            <mat-form-field appearance="outline">
+                <mat-label aria-label="Link del Certificado">Link Certificado</mat-label>
+                <input matInput formControlName="imgUrl" aria-label="Link del Certificado">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label aria-label="Nombre del Certificado">Nombre del Certificado</mat-label>
+                <input matInput placeholder="Capacitación de Pintores" formControlName="certificateName" required="" aria-label="Nombre del Certificado">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label aria-label="Nombre de la Institución">Nombre de la Institución</mat-label>
+                <input matInput placeholder="Pintores S.A.C." formControlName="institutionName" required="" aria-label="Nombre de la Institución">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label aria-label="Nombre del Docente a Cargo">Nombre del Docente a Cargo</mat-label>
+                <input matInput placeholder="Juan Perez" formControlName="professor" required="" aria-label="Nombre del Docente a Cargo">
+            </mat-form-field>
+
+            <mat-form-field class="example-form-field" appearance="outline">
+                <mat-label aria-label="Selecciona un día">Selecciona un día</mat-label>
+                <input matInput [matDatepicker]="datepicker" formControlName="issueDate" aria-label="Selecciona un día">
+                <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker>
+                    <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                    </mat-datepicker-actions>
+                </mat-datepicker>
+            </mat-form-field>
+
+            <div class="actions">
+                <button mat-raised-button type="submit"  aria-label="Boton" >{{certificate ? 'Editar': 'Guardar'}}</button>
+                <button mat-raised-button [mat-dialog-close]="false" aria-label="Cancelar">Cancelar</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

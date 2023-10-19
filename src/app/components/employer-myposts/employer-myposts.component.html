@@ -1,6 +1,7 @@
 <div class="container-post">
     <br>
     <h1 aria-label="Mis anuncios">Mis anuncios</h1>
+    <button aria-label="Botón para publicar" mat-raised-button (click)="createPost()" color="primary" style="color: #fff;">Publicar nuevo empleo</button>
     <div class="post-card" *ngFor="let post of posts">
         <mat-card class="post-card">
             <img mat-card-image [src]=post.postImgUrl alt="Post Image" aria-label="Imagen">
@@ -11,7 +12,7 @@
                     {{post.postDescription}}
                 </p>
             <mat-card-actions>
-                <button aria-label="Botón para publicar" mat-raised-button (click)="viewPost(post.id)" color="primary" style="color: #fff;">Ver Publicación</button>
+                <button aria-label="Ver Publicación" mat-raised-button (click)="viewPost(post.id)" color="primary" style="color: #fff;">Ver Publicación</button>
             </mat-card-actions>
         </mat-card>
     </div>
