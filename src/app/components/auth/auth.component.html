@@ -1,6 +1,6 @@
-<mat-stepper [linear]="true" #stepper>
+<mat-stepper [linear]="true" #stepper animationDuration= 1000>
     <!-- Forgot-Password -->
-    <mat-step label="Escribe tu correo" state="email">
+    <mat-step label="Escribe tu correo" state="email" [completed]="stepEmailCompleted">
         <div class="forgotP-section">
             <div class="container-fp">
                 <div class="titles">
@@ -13,7 +13,7 @@
                         <mat-form-field class="em-ph-full-width">
                             <mat-label>Email o teléfono</mat-label>
                             <input type="email" matInput [formControl]="emailFormControl"
-                                placeholder="Ex. pat@example.com">
+                                placeholder="Ex. pat@example.com" required>
                             <mat-error
                                 *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                                 Porfavor ingrese un email valido
@@ -41,7 +41,7 @@
     </mat-step>
 
     <!-- Verification Code -->
-    <mat-step label="Ingresar codigo de Verificación" state="code">
+    <mat-step label="Ingresar codigo de Verificación" state="code" [completed]="stepCodeCompleted">
         <form>
 
             <div class="vCode-section2">
@@ -86,7 +86,7 @@
     </mat-step>
 
     <!-- Change Password -->
-    <mat-step label="Crea una nueva contraseña" state="lock">
+    <mat-step label="Crea una nueva contraseña" state="lock" [completed]="stepPasswordCompleted">
         <div class="vCode-section3">
             <div class="vCode-container3">
 

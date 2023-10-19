@@ -8,10 +8,12 @@ import { WorkerProfileComponent } from './components/worker-profile/worker-profi
 import { AuthComponent } from './components/auth/auth.component';
 import { HomeComponent } from './components/home/home.component';
 import { EmployerMypostsComponent } from './components/employer-myposts/employer-myposts.component';
+import { ChatComponent } from './components/chat/chat.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { ListCertificatesComponent } from './components/profile/pages/list-certificates/list-certificates.component';
 import { SettingComponent } from './components/settings/pages/setting/setting.component';
 import { AppearanceComponent } from './components/settings/pages/appearance/appearance.component';
+
 const routes: Routes = [
   {path:'posts', component: EmployerMypostsComponent},
   { path: 'posts/:id', component: EmployerPostComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent},
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'chat', component: ChatComponent },
   { path: 'job/post', component: JobPostComponent },
   { path: 'worker', redirectTo: '/worker/1', pathMatch: 'full'},
   { path: 'worker/:id', component: WorkerProfileComponent},

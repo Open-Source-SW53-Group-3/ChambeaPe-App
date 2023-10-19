@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthComponent } from './components/auth/auth.component';
 
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { ChatComponent } from './components/chat/chat.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { ListCertificatesComponent } from './components/profile/pages/list-certificates/list-certificates.component';
 import { AddEditCertificateComponent } from './components/profile/components/add-edit-certificate/add-edit-certificate.component';
@@ -42,6 +43,7 @@ import { AppearanceComponent } from './components/settings/pages/appearance/appe
     AuthComponent,
     HomeComponent,
     EmployerMypostsComponent,
+    ChatComponent,
     JobsComponent,
     ListCertificatesComponent,
     AddEditCertificateComponent,
