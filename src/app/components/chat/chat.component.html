@@ -1,0 +1,58 @@
+<div class="chat-container">
+    <div class="contacts-box">
+        <div *ngFor="let chat of chats" class="chat" (click)="cargarMensajes(chat)">
+            <div class="chats-box">
+                <img [src]="chat.picture" alt="Foto de perfil de {{ chat.nombre }}" aria-label="" class="picture" />
+                <div class="info">
+                  <div class="nombre" aria-label="{chat.nombre}">{{ chat.nombre }}</div>
+                  <div class="estado">{{ chat.estado }}</div>
+                </div>
+            </div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="message-container">
+        
+        <div class="header-box">
+            <ng-container *ngIf="chatSelected.nombre !== 'Soporte técnico'; else otherHeader">
+                <button mat-icon-button class="button-group">
+                    <mat-icon style="color: #abceff;">
+                        group
+                    </mat-icon>
+                </button>
+    
+                <button class="button-negociar">
+                    Negociar
+                </button>
+            </ng-container>
+
+            <ng-template #otherHeader class="header-support">
+                <h4>Soporte</h4>
+            </ng-template>
+        </div>
+
+        <div class="messages-box">
+            <div id="messages-area" class="messages-area">
+                <p *ngFor=" let mensaje of mensajes" class="msg" [ngClass]="classSeleted(mensaje)">
+                    <span [innerHTML]="convertLinksToHtml(mensaje.mensaje)"></span>
+                </p>
+            </div>
+        </div>
+
+        <form class="input-box" (ngSubmit)="enviarMensaje()">
+            <mat-form-field >
+                <textarea  style="resize: none;" matInput placeholder="Enviar" [(ngModel)]="nuevoMensaje" [ngModelOptions]="{standalone: true}" ></textarea> 
+                <button mat-icon-button matSuffix >
+                    <mat-icon style="color: #d4b177;">
+                        send
+                    </mat-icon>
+                </button>
+            </mat-form-field>
+
+            <img src="https://articles-img.sftcdn.net/f_auto,t_article_cover_xl/auto-mapping-folder/sites/2/2022/08/Minecraft-Steve-is-finally-sporting-his-iconic-beard-once-again-main.jpg" alt="asf">
+        </form>
+
+    </div>
+
+</div>
