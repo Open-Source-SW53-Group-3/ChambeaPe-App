@@ -98,22 +98,17 @@ export class AuthComponent {
   stepPasswordCompleted = false;
 
   validarStep_Three() {
-    if (
-      this.passwordFormControl.valid &&
-      this.passwordConfirmationFormControl.valid
-    ) {
+    if (this.passwordFormControl.valid && this.passwordConfirmationFormControl.valid) {
       const password = this.passwordFormControl.value;
       const confirmPassword = this.passwordConfirmationFormControl.value;
-
+  
       if (password === confirmPassword) {
         this.stepPasswordCompleted = true;
         setTimeout(() => {
           this.stepper.next();
         }, 100);
       } else {
-        this.passwordConfirmationFormControl.setErrors({
-          passwordMismatch: true,
-        });
+        this.passwordConfirmationFormControl.setErrors({ passwordMismatch: true });
       }
     }
   }

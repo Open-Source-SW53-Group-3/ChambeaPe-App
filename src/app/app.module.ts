@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core'; 
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +29,8 @@ import { AddEditCertificateComponent } from './components/profile/components/add
 import { CertificateDialogComponent } from './components/profile/components/certificate-dialog/certificate-dialog.component';
 import { SettingComponent } from './components/settings/pages/setting/setting.component';
 import { AppearanceComponent } from './components/settings/pages/appearance/appearance.component';
+import { ReviewWorkerComponent } from './components/review-worker/review-worker.component';
+import { ListReviewsComponent } from './components/profile/pages/list-reviews/list-reviews.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { AppearanceComponent } from './components/settings/pages/appearance/appe
     CertificateDialogComponent,
     SettingComponent,
     AppearanceComponent,
+    ReviewWorkerComponent,
+    ListReviewsComponent,
   ],
   imports: [
     BrowserModule,

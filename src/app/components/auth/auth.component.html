@@ -110,6 +110,9 @@
                             <mat-error *ngIf="passwordFormControl.hasError('required')">
                                 Este campo es obligatorio.
                             </mat-error>
+                            <mat-error *ngIf="passwordFormControl.hasError('pattern')">
+                                La constraseña debe contener al menos una letra, un número y una longitud minima de 8 caracteres.
+                            </mat-error>
                             <mat-error *ngIf="passwordFormControl.hasError('passwordMismatch')">
                                 Las contraseñas no coinciden.
                             </mat-error>

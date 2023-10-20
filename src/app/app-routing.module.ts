@@ -13,6 +13,8 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { ListCertificatesComponent } from './components/profile/pages/list-certificates/list-certificates.component';
 import { SettingComponent } from './components/settings/pages/setting/setting.component';
 import { AppearanceComponent } from './components/settings/pages/appearance/appearance.component';
+import { ReviewWorkerComponent } from './components/review-worker/review-worker.component';
+import { ListReviewsComponent } from './components/profile/pages/list-reviews/list-reviews.component';
 
 const routes: Routes = [
   {path:'posts', component: EmployerMypostsComponent},
@@ -27,6 +29,8 @@ const routes: Routes = [
   { path: 'worker/:id', component: WorkerProfileComponent},
   { path: 'jobs', component: JobsComponent},
   { path: 'worker/:id/certificates', component: ListCertificatesComponent},
+  { path: 'worker/:id/post-review', component: ReviewWorkerComponent},
+  { path: 'worker/:id/reviews', component: ListReviewsComponent},
   { path: 'settings', component: SettingComponent},
   { path: 'settings/appearance', component: AppearanceComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full'}  ];

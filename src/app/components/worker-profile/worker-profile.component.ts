@@ -14,56 +14,6 @@ import { CertificateDialogComponent } from '../profile/components/certificate-di
   styleUrls: ['./worker-profile.component.scss']
 })
 export class WorkerProfileComponent {
-  id:any;
-  postId:any;
 
-  worker!:Worker;
-  isWorker!:boolean;
-
-  constructor(private dialog:MatDialog, private route:ActivatedRoute, private workerProfile:WorkerProfileService, private userService:UserService,  private router:Router) {} 
-  
-  ngOnInit(): void {
-    this.isWorker = this.userService.hasRole(UserRoles.Worker);
-
-    this.route.queryParams.subscribe(params => {
-      this.postId = params['postId'];
-    });
-
-    this.id = this.route.snapshot.paramMap.get('id');
-    console.log('Worker ID:'+this.id);
-    this.getProfile();
-  }
-
-  getProfile(){
-    this.workerProfile.getWorkerById(this.id, this.postId).subscribe(
-      {
-        next: data => {
-          this.worker=data;
-          console.log('Worker profile data: '+data);
-        },
-        error: error => {
-          console.log('An error has occurred', error);
-        }
-      }
-    );
-  }
-
-  ratingToInt(reviewRating: string): number {
-    return parseInt(reviewRating);
-  }
-
-  certificates(id : any) {
-    this.router.navigate(['/worker/'+ id+'/certificates'], { queryParams: { postId:this.postId } });
-  }
-
-  viewCertificate(idCertificate:any){
-    this.dialog.open(CertificateDialogComponent,{
-      data:{
-        idCertificate: idCertificate,
-        idWorker: this.worker.id,
-        idPost: this.postId
-      }
-    });
-  }
 
 }
