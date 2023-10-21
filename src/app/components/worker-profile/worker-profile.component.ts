@@ -56,6 +56,10 @@ export class WorkerProfileComponent {
     this.router.navigate(['/worker/'+ id+'/certificates'], { queryParams: { postId:this.postId } });
   }
 
+  reviews(id : any) {
+    this.router.navigate(['/worker/'+ id+'/reviews'], { queryParams: { postId:this.postId } });
+  }
+
   viewCertificate(idCertificate:any){
     this.dialog.open(CertificateDialogComponent,{
       data:{

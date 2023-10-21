@@ -65,14 +65,14 @@
       <div class="reviews">
         <h6 style="font-weight: bold;" aria-label="Comentarios">Comentarios</h6>
         <div class="review-card-container">
-          <mat-card class="review-card" *ngFor="let review of worker.reviews">
+          <mat-card class="review-card">
             <mat-card-content class="card-content">
               <div class="img-container">
-                <img class="employer-image" [src]="review.employerPhoto" alt="">
+                <img class="employer-image" [src]="worker.reviews[0].employerPhoto" alt="">
               </div>
               <div class="review-description">
-                <p class="certificate-name">{{review.employerName}}</p>
-                <p>{{review.description}}</p>
+                <p class="certificate-name">{{worker.reviews[0].employerName}}</p>
+                <p>{{worker.reviews[0].description}}</p>
 
                 <ng-template #starRating let-fill="fill">
                 <i class="bi-star-fill">
@@ -83,7 +83,7 @@
                 <ngb-rating 
                 [readonly]="true"
                 [max]="5"
-                [rate]="ratingToInt(review.rating)"
+                [rate]="ratingToInt(worker.reviews[0].rating)"
                 [starTemplate]="starRating"
                 ></ngb-rating>
                 
@@ -91,7 +91,7 @@
             </mat-card-content>
           </mat-card>
         </div>
-        <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas"> Ver Más</button>
+        <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas" (click)="reviews(worker.id)"> Ver Más</button>
       </div>
 </div>
 
