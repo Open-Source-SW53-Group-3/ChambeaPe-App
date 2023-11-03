@@ -2,31 +2,31 @@
     <h2 class="title" aria-label="Post de Trabajo"> Post de Trabajo </h2>
     <mat-card class="post-card">
         <div class="row" *ngIf="!editMode; else editForm">
-            <mat-card-title class="title">{{post.postTitle}}</mat-card-title>
-            <mat-card-subtitle >{{post.postSubtitle}}</mat-card-subtitle>
-            <p style="margin: 0;">{{post.postDescription}}</p>
+            <mat-card-title class="title">{{post.title}}</mat-card-title>
+            <mat-card-subtitle >{{post.subtitle}}</mat-card-subtitle>
+            <p style="margin: 0;">{{post.description}}</p>
         </div>
         <ng-template #editForm>
             <div class="row">
                 <mat-form-field appearance="outline">
                     <mat-label aria-label="Título">Título</mat-label>
-                    <input matInput [(ngModel)]="post.postTitle">
+                    <input matInput [(ngModel)]="post.title">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label aria-label="Subtítulo">Subtítulo</mat-label>
-                    <input matInput [(ngModel)]="post.postSubtitle">
+                    <input matInput [(ngModel)]="post.subtitle">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label aria-label="Descripción">Descripción</mat-label>
-                    <textarea matInput [(ngModel)]="post.postDescription"></textarea>
+                    <textarea matInput [(ngModel)]="post.description"></textarea>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label aria-label="URL de la imagen">URL de la imagen</mat-label>
-                    <input matInput [(ngModel)]="post.postImgUrl">
+                    <input matInput [(ngModel)]="post.imgUrl">
                 </mat-form-field>
             </div>
         </ng-template>
-        <img [src]=post.postImgUrl alt="{{post.postTitle}}">
+        <img [src]=post.imgUrl alt="{{post.title}}">
         <div class="button" *ngIf="!editMode; else editButtons">
             <a color="primary" mat-raised-button (click)="toggleEditMode()" aria-label="Editar">Editar</a>
             <a  mat-raised-button (click)="deletePost()" aria-label="Eliminar Post de trabajo">Eliminar</a>
@@ -43,18 +43,19 @@
 <h1 class="title" aria-label="Chambeadores">Chambeadores</h1>
 
 <div class="workers-container">
-    <div class="container-jobs" *ngFor="let worker of post.workers">
+    <div class="container-jobs" *ngFor="let postulation of postulations">
         <mat-card class="jobs-card">
-                <mat-card-title style="font-size: 1.2rem;">{{worker.name}}</mat-card-title>
-                <mat-card-subtitle>{{worker.status}}</mat-card-subtitle>
-            <img mat-card-image [src]=worker.image alt="Worker Image">
+                <mat-card-title style="font-size: 1.2rem;">{{postulation.worker.firstName}} {{postulation.worker.lastName}}</mat-card-title>
+                <!--
+                <mat-card-subtitle>{{postulation.worker.isActive}}</mat-card-subtitle>-->
+            <img mat-card-image [src]=postulation.worker.profilePic alt="Worker Image">
                 <p style="margin: 0;">
-                    {{worker.description}}
+                    {{postulation.worker.description}}
                 </p>
             <mat-card-actions>
-                <button mat-raised-button (click)="viewProfile(worker.id)" color="primary" style="color: #fff;">Ver Perfil</button>
+                <button mat-raised-button (click)="viewProfile(postulation.worker.id)" color="primary" style="color: #fff;">Ver Perfil</button>
                 <button mat-raised-button aria-label="Empieza a Chatear con el Empleador">Chatear</button>
-                <button (click)="deleteWorker(worker.id)" mat-raised-button aria-label="Elimina un post">Eliminar</button>
+                <button (click)="deleteWorker(postulation.worker.id)" mat-raised-button aria-label="Elimina un post">Eliminar</button>
             </mat-card-actions>
         </mat-card>
     </div>

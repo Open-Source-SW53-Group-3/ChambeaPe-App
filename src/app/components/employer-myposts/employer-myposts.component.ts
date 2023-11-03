@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { EmployerPost } from 'src/app/models/employer-post';
-import { EmployerPostService } from 'src/app/services/employer-post.service';
+import { PostService } from 'src/app/services/post/post.service';
+import { LoginService } from 'src/app/services/user/login/login.service';
 
 @Component({
   selector: 'app-employer-myposts',
@@ -10,17 +10,21 @@ import { EmployerPostService } from 'src/app/services/employer-post.service';
   styleUrls: ['./employer-myposts.component.scss']
 })
 export class EmployerMypostsComponent {
-  posts:any=[];
-  employerId:string = '1';
+  posts:any;
+  employerId!:number;
 
-  constructor(private employerPostService:EmployerPostService, private router:Router, private toastr:ToastrService) { }
+  constructor(private loginService:LoginService,private postService:PostService, private router:Router, private toastr:ToastrService) { 
+    this.employerId = this.loginService.user.id;
+    console.log("employerId: ");
+    console.log(this.employerId);
+  }
 
   ngOnInit(): void {
     this.getPosts();
   }
 
   getPosts(){
-    this.employerPostService.getPostsByEmployerId(this.employerId).subscribe(
+    this.postService.getPostByEmployerId(this.employerId).subscribe(
       {
         next: (data) => {
           this.posts = data;
