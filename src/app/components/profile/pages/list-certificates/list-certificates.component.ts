@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { WorkerProfileService } from 'src/app/services/worker-profile.service';
-import { Worker } from 'src/app/models/worker';
+import { Worker } from 'src/app/models/worker-entity';
 import { CertificateService } from 'src/app/services/certificate.service';
 import { CertificateDialogComponent } from '../../components/certificate-dialog/certificate-dialog.component';
 import { AddEditCertificateComponent } from '../../components/add-edit-certificate/add-edit-certificate.component';

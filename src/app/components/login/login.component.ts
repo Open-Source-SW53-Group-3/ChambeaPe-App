@@ -2,12 +2,14 @@ import { AfterViewInit, Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import jwtDecode from 'jwt-decode';
 import { User } from 'src/app/models/user';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService as LoginServicev1} from 'src/app/services/login.service';
+import { LoginService } from 'src/app/services/user/login/login.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/services/user.service';
 import { UserRoles } from 'src/app/enums/user-roles.enum';
 import { ToastrService } from 'ngx-toastr';
+import { Login } from 'src/app/models/login';
 declare var google:any
 
 @Component({
@@ -18,11 +20,59 @@ declare var google:any
 export class LoginComponent implements AfterViewInit {
   hide:boolean= true;
   email = new FormControl('', [Validators.required, Validators.email]);
-  emailField=''
+  emailField = '';
+  passwordField = '';
+  loginData !: Login;
+  estado : String  = "s";
+  constructor(private loginService: LoginService,private loginServicev1:LoginServicev1, private userService:UserService,
+    private router:Router, private cookieService:CookieService, private toastr:ToastrService) {
+      //this.estado= 'logged';
+      //console.log("login Estado xdd:  ");
+      //console.log(this.estado);
+      //this.cookieService.set('login', JSON.stringify(this.estado));
+    }
 
-  constructor(private loginService:LoginService, private userService:UserService,
-    private router:Router, private cookie:CookieService, private toastr:ToastrService) {}
 
+  ngOnInit(): void {
+  }
+
+  login(){
+    this.toastr.clear();
+    if(!this.email.valid){
+      this.toastr.error('Ingrese un correo valido','Error',
+      {progressAnimation: 'decreasing', progressBar: true, timeOut: 3000, closeButton: true, easeTime: 300});
+      return;
+    }
+    else if(this.emailField == '' || this.passwordField == ''){
+      this.toastr.error('Usuario o contraseña incorrectos','Error',
+      {progressAnimation: 'decreasing', progressBar: true, timeOut: 3000, closeButton: true, easeTime: 300});
+      return;
+    }
+
+    this.loginData = {
+      email: this.emailField,
+      password: this.passwordField
+    }
+
+    this.loginService.loginUser(this.loginData).subscribe(
+      {
+        next: (res: any) => {
+          console.log("Login success:", res);
+          this.loginService.loadUser(res);
+          console.log(this.loginService.user);
+          this.router.navigateByUrl('/home');
+        },
+        error: (error: any) => {
+          console.error("Error logging in:", error);
+          console.log(error.error);
+          this.toastr.error('Usuario o contraseña incorrectos','Error',
+          {progressAnimation: 'decreasing', progressBar: true, timeOut: 3000, closeButton: true, easeTime: 300});
+        }
+      }
+    );
+  }
+
+  ///////////
   ngAfterViewInit(): void {
     google.accounts.id.initialize({
       client_id: "1011507135159-kl3lu14n4b4p85drsin8mjq6i7d1ro34.apps.googleusercontent.com",
@@ -42,9 +92,6 @@ export class LoginComponent implements AfterViewInit {
     google.accounts.id.prompt();
   }
 
-  ngOnInit(): void {
-  }
-
   handleCredentialResponse = (response: any) => {
     console.log("Encoded JWT ID token: " + response.credential);
     const decodedToken: any = jwtDecode(response.credential);
@@ -57,19 +104,19 @@ export class LoginComponent implements AfterViewInit {
       profilePic: decodedToken.picture
     };
   
-    this.loginService.getUser(user.id).subscribe(
+    this.loginServicev1.getUser(user.id).subscribe(
       {
         next: (existingUser: User) => {
           console.log(`User with ID ${existingUser.id} it's already registered, signing in...`);
-          this.cookie.set('userId', user.id);
+          this.cookieService.set('userId', user.id);
           this.router.navigateByUrl('/profile');
         },
         error: (error: any) => {
-          this.loginService.postUser(user).subscribe(
+          this.loginServicev1.postUser(user).subscribe(
             {
               next: (res: any) => {
                 console.log("Usuario creado satisfactoriamente:", res);
-                this.cookie.set('userId', user.id);
+                this.cookieService.set('userId', user.id);
                 this.router.navigateByUrl('/profile');
               },
               error: (postError: any) => {
@@ -102,7 +149,7 @@ export class LoginComponent implements AfterViewInit {
     this.router.navigateByUrl('/home');
   }
 
-  login(){
+  loginv1(){
     if(this.emailField=='empleador@gmail.com'){
       this.userService.setUserRoles([UserRoles.Employer]);
     }

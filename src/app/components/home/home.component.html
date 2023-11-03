@@ -17,17 +17,17 @@
         <div class="chambeador-profile">
             <mat-card class="profile-card">
                 <mat-card-header class="card-header">
-                    <mat-card-title class="card-state">{{ workers[workerSelect].status ? 'Disponible' : 'No disponible' }}</mat-card-title>
+                    <mat-card-title class="card-state">{{ workers[workerSelect].isActive ? 'Disponible' : 'No disponible' }}</mat-card-title>
                     <mat-icon>radio_button_checked</mat-icon>
                 </mat-card-header>
                 <mat-card-content class="card-content">
                     <div class="user-img">
-                        <img [src]=workers[workerSelect].image alt="">
+                        <img [src]=workers[workerSelect].profilePic alt="">
                     </div>
 
                     <div class="user-description">
                         <div class="user-information">
-                            <span>{{workers[workerSelect].name}}</span>
+                            <span>{{workers[workerSelect].firstName}} {{workers[workerSelect].lastName}}</span>
                             <p>{{workers[workerSelect].description}}</p>
                         </div>
 
@@ -52,7 +52,7 @@
             <div class="empleadores-cards">
                 <mat-grid-list [cols]="cols" rowHeight="400px" gutterSize="0px">
                     <mat-grid-tile *ngFor="let employer of employers">
-                        <img [src]="employer.image" alt="" class="employer-image">
+                        <img [src]="employer.profilePic" alt="" class="employer-image">
                     </mat-grid-tile>
                 </mat-grid-list>
             </div>             
@@ -66,7 +66,7 @@
             <div class="chambeadores-cards" [ngClass]="marginBottomClassWorker">
                 <mat-grid-list [cols]="cols" rowHeight="400px" gutterSize="0px">
                     <mat-grid-tile *ngFor="let worker of workers">
-                        <img [src]="worker.image" alt="Worker Image" class="worker-image">
+                        <img [src]="worker.profilePic" alt="Worker Image" class="worker-image">
                     </mat-grid-tile>
                 </mat-grid-list>
             </div>

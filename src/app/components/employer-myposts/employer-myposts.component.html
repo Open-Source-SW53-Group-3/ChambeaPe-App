@@ -4,12 +4,12 @@
     <button aria-label="Botón para publicar" mat-raised-button (click)="createPost()" color="primary" style="color: #fff;">Publicar nuevo empleo</button>
     <div class="post-card" *ngFor="let post of posts">
         <mat-card class="post-card">
-            <img mat-card-image [src]=post.postImgUrl alt="Post Image" aria-label="Imagen">
-                <mat-card-title style="font-size: 1.2rem;">{{post.postTitle}}</mat-card-title>
-                <mat-card-subtitle>{{post.postSubtitle}}</mat-card-subtitle>
+            <img mat-card-image [src]=post.imgUrl alt="Post Image" aria-label="Imagen">
+                <mat-card-title style="font-size: 1.2rem;">{{post.title}}</mat-card-title>
+                <mat-card-subtitle>{{post.subtitle}}</mat-card-subtitle>
             
                 <p style="margin: 0;" aria-label="Descripción de la publicación">
-                    {{post.postDescription}}
+                    {{post.description}}
                 </p>
             <mat-card-actions>
                 <button aria-label="Ver Publicación" mat-raised-button (click)="viewPost(post.id)" color="primary" style="color: #fff;">Ver Publicación</button>

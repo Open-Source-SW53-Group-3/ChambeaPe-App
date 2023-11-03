@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { UserRoles } from 'src/app/enums/user-roles.enum';
+import { CookieService } from 'ngx-cookie-service';
 import { UserService } from 'src/app/services/user.service';
+import { LoginService } from 'src/app/services/user/login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -9,26 +10,39 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isWorker!:boolean;
-  isLoggedIn:boolean = false;
+  userRol:any;
+  isLoggedIn: string = 'unlogged';
 
-  constructor(private router:Router, private userService:UserService){}
+  constructor(private router:Router, private loginService:LoginService, private cookieService:CookieService, private userService:UserService){
+    this.isLoggedIn = this.cookieService.get('login');
+    this.isLoggedIn = 'unlogged';
+    console.log("isLoggedIn:Gaaaaaa ");
+    console.log(this.isLoggedIn);
+  }
 
   ngOnInit(): void {
+    /*
     this.userService.userRolesChanged.subscribe(
       (roles: UserRoles[]) => {
         this.isWorker = roles.includes(UserRoles.Worker);
       }
     );
+    */
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentRoute = this.router.url;
-
-        this.isLoggedIn = (currentRoute.includes('/login') || currentRoute.includes('/register')) ? false : true;
+        if(!(currentRoute.includes('/login') || currentRoute.includes('/register'))){
+          this.userRol = this.loginService.user.userRole;//validar con cookie
+        }
       }
     });
+
+    //console.log("isLoggedInTwo: ");
+    //console.log(this.coockieService.get('login'));
+    console.log(this.isLoggedIn);
   }
+
   home(){
     this.router.navigateByUrl('/home');
   };

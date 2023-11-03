@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Worker } from '../models/worker';
+import { Worker } from '../models/worker-entity';
 
 @Injectable({
   providedIn: 'root'
