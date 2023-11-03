@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WorkerProfileService } from 'src/app/services/worker-profile.service';
-import { Worker } from 'src/app/models/worker';
+import { Worker } from 'src/app/models/worker-entity';
 import { UserService } from 'src/app/services/user.service';
 import { UserRoles } from 'src/app/enums/user-roles.enum';
 import { Router } from '@angular/router';

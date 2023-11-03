@@ -1,8 +1,11 @@
 import { Component, HostListener  } from '@angular/core';
-import { EmployerPostService } from 'src/app/services/employer-post.service';
-import { WorkerProfileService } from 'src/app/services/worker-profile.service';
-import { Worker } from 'src/app/models/worker';
+import { EmployerService } from 'src/app/services/user/employer/employer.service';
+//import { WorkerProfileService } from 'src/app/services/worker-profile.service';
+import { WorkerService } from 'src/app/services/user/worker/worker.service';
+import { Worker } from 'src/app/models/worker-entity';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/user/login/login.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -16,13 +19,18 @@ export class HomeComponent {
   employers :any;
   postPosition !: number;
   postPositionWorker !: number;
-
+  user : any;
   posts : any;
 
   /**/
   cols: number = 4;
 
-  constructor(private postService:EmployerPostService, private workerService:WorkerProfileService,private route:ActivatedRoute , private router:Router) {}
+  constructor(private loginService : LoginService,private cookieService: CookieService,private employerService:EmployerService, private workerService:WorkerService, private route:ActivatedRoute , private router:Router) {
+    this.user = this.cookieService.get('user');
+
+    console.log("user: ");
+    console.log(this.user);
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -57,33 +65,35 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.getWorkers();
+    this.getEmployers();
     this.checkScreenWidth();
   }
 
-  getWorkers(){
-    this.postService.getPostList().subscribe(
+ getWorkers(){
+    this.workerService.getAllWorkers().subscribe(
       (data) => {
         console.log(data);
-        this.posts = data;
-
-        this.startPosts(this.posts.length);
-        this.employers= this.posts[this.postPosition].workers;
-        this.workers= this.posts[this.postPositionWorker].workers;
-
-
-
+        this.workers = data;
         let size = this.workers.length;
         console.log("tamaño de trabajadores: " + size);
-        
         this.workerSelect =  Math.floor(Math.random() * (size));
         console.log("workerd selected: " + this.workerSelect);
-
-        console.log(this.workers[this.workerSelect].name);
       },
       (error) => {
         console.error('Ha ocurrido un error:', error);
       }
+    );
+  }
 
+  getEmployers(){
+    this.employerService.getAllWorkers().subscribe(
+      (data) => {
+        console.log(data);
+        this.employers = data;
+      },
+      (error) => {
+        console.error('Ha ocurrido un error:', error);
+      }
     );
   }
 
