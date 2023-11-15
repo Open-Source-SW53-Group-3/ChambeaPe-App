@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WorkerProfileService } from 'src/app/services/worker-profile.service';
-import { Worker } from 'src/app/models/worker-entity';
+import { Worker } from 'src/app/models/user/worker';
 import { UserService } from 'src/app/services/user.service';
 import { UserRoles } from 'src/app/enums/user-roles.enum';
 import { Router } from '@angular/router';
 import  { MatDialog } from '@angular/material/dialog';
 import { CertificateDialogComponent } from '../profile/components/certificate-dialog/certificate-dialog.component';
+import { LoginService } from 'src/app/services/user/login/login.service';
+import { WorkerService } from 'src/app/services/user/worker/worker.service';
+import { EmployerService } from 'src/app/services/user/employer/employer.service';
 
 @Component({
   selector: 'app-worker-profile',
@@ -17,13 +20,35 @@ export class WorkerProfileComponent {
   id:any;
   postId:any;
 
-  worker!:Worker;
+  user: any;
   isWorker!:boolean;
 
-  constructor(private dialog:MatDialog, private route:ActivatedRoute, private workerProfile:WorkerProfileService, private userService:UserService,  private router:Router) {} 
-  
+  constructor(private loginService:LoginService, private workerService: WorkerService, private employerService: EmployerService,private dialog:MatDialog, private route:ActivatedRoute, private workerProfile:WorkerProfileService, private userService:UserService,  private router:Router) { 
+    var user= this.loginService.getUser();
+    console.log("user dentro del profile: ");
+    console.log(user);
+
+    if(user.userRole == "W"){
+      this.workerService.getWorkerById(user.id).subscribe(
+        (worker: any) => {
+          this.user = worker;
+          console.log(worker);
+        }
+      );
+    }
+
+      if(user.userRole == "E"){
+        this.employerService.getEmployerById(user.id).subscribe(
+          (employer: any) => {
+            this.user = employer;
+            console.log(employer);
+          }
+        );
+      }
+  }
+
   ngOnInit(): void {
-    this.isWorker = this.userService.hasRole(UserRoles.Worker);
+    this.isWorker = this.user.userRole;
 
     this.route.queryParams.subscribe(params => {
       this.postId = params['postId'];
@@ -35,17 +60,6 @@ export class WorkerProfileComponent {
   }
 
   getProfile(){
-    this.workerProfile.getWorkerById(this.id, this.postId).subscribe(
-      {
-        next: data => {
-          this.worker=data;
-          console.log('Worker profile data: '+data);
-        },
-        error: error => {
-          console.log('An error has occurred', error);
-        }
-      }
-    );
   }
 
   ratingToInt(reviewRating: string): number {
@@ -64,7 +78,7 @@ export class WorkerProfileComponent {
     this.dialog.open(CertificateDialogComponent,{
       data:{
         idCertificate: idCertificate,
-        idWorker: this.worker.id,
+        idWorker: this.user.id,
         idPost: this.postId
       }
     });

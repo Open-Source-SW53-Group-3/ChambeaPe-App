@@ -4,6 +4,7 @@ import { catchError, retry, throwError } from 'rxjs';
 import { Login } from 'src/app/models/login';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -11,7 +12,28 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginService {
 
-  constructor( private http: HttpClient, private cookieService: CookieService) { }
+  constructor( private http: HttpClient, private cookieService: CookieService, private router:Router) {
+        // Verificar si la cookie existe
+        const cookieExists = this.cookieService.check('login');
+        const cookieUserExists = this.cookieService.check('user');
+
+        console.log("Cookie exists: ", cookieExists);
+        console.log(cookieService.get('login'));
+        console.log("Cookie user exists: ", cookieUserExists);
+        console.log(cookieService.get('user'));
+
+        if (!cookieExists || !cookieUserExists) {
+          this.cookieService.set('login', 'unlogged');
+        }
+
+        //If we are in login or register page and the user is logged, we redirect to home
+        const currentRoute = this.router.url; 
+        if(currentRoute.includes('/login') || currentRoute.includes('/register')){
+            if(cookieService.get('login') == 'logged'){
+              this.router.navigateByUrl('/home');
+            }
+        }
+   }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -42,11 +64,35 @@ export class LoginService {
 
   loadUser(user : any){
     this.user = user;
-    let loginAccept = "logged";
     this.cookieService.set('user', JSON.stringify(user));
-    this.cookieService.set('login', JSON.stringify(loginAccept));
 
     console.log("user Cookiee: ");
     console.log(this.cookieService.get('user'));
+    this.userLogged();
+
+    this.cookieService.set('login', 'logged');
+  }
+
+  cookiesExist(){
+    return this.cookieService.check('login') && this.cookieService.check('user');
+  }
+
+
+  getUser(){
+    return JSON.parse(this.cookieService.get('user'));
+  }
+
+  userLogged(){
+    this.cookieService.set('login', 'logged');
+  }
+
+  userUnlogged(){
+    this.cookieService.set('login', 'unlogged');
+    console.log("User state:", this.cookieService.get('login'));
+    this.cookieService.delete('user');
+  }
+
+  isUserLogged(){
+    return this.cookieService.get('login');
   }
 }

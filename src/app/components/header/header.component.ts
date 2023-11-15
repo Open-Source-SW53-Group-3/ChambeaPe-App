@@ -10,14 +10,25 @@ import { LoginService } from 'src/app/services/user/login/login.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  user:any;
   userRol:any;
-  isLoggedIn: string = 'unlogged';
+  isLoggedIn: string;
 
-  constructor(private router:Router, private loginService:LoginService, private cookieService:CookieService, private userService:UserService){
-    this.isLoggedIn = this.cookieService.get('login');
-    this.isLoggedIn = 'unlogged';
-    console.log("isLoggedIn:Gaaaaaa ");
-    console.log(this.isLoggedIn);
+  constructor(private router:Router, private loginService:LoginService, private userService:UserService, private cookieService:CookieService){
+    console.log("Primera "+this.loginService.isUserLogged());
+
+    if(this.loginService.isUserLogged() == 'unlogged'){
+      this.router.navigateByUrl('/login');
+    }
+
+    console.log("hola "+this.loginService.isUserLogged());
+    this.isLoggedIn = this.loginService.isUserLogged();
+
+    //When you refresh the page, the user is reload if it is logged
+    if(this.isLoggedIn == 'logged'){
+      this.user = this.loginService.getUser();
+      this.userRol = this.user.userRole;
+    }
   }
 
   ngOnInit(): void {
@@ -31,23 +42,40 @@ export class HeaderComponent implements OnInit {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        const currentRoute = this.router.url;
+        const currentRoute = this.router.url; 
+        this.isLoggedIn = this.loginService.isUserLogged();
+
         if(!(currentRoute.includes('/login') || currentRoute.includes('/register'))){
-          this.userRol = this.loginService.user.userRole;//validar con cookie
+          this.user = this.loginService.getUser();
+          this.userRol = this.user.userRole;
+          
+          //Test
+          console.log("Estoy en el if");
+          console.log(this.user);  
+          console.log(this.userRol);
+          console.log(this.loginService.isUserLogged());
+        }
+        else{
+          console.log("Estoy en el else");
+          console.log(this.loginService.user);
+          console.log(this.loginService.isUserLogged());
+          //this.isLoggedIn= "unlogged";
         }
       }
     });
-
-    //console.log("isLoggedInTwo: ");
-    //console.log(this.coockieService.get('login'));
-    console.log(this.isLoggedIn);
   }
+
 
   home(){
     this.router.navigateByUrl('/home');
   };
   login(){
+    this.loginService.userUnlogged();
     this.router.navigateByUrl('/login');
+    //200 ms delay
+    /*setTimeout(() => {
+      window.location.reload();
+    }, 50);*/
   };
   mypost(){
     this.router.navigateByUrl('/posts');
@@ -57,5 +85,16 @@ export class HeaderComponent implements OnInit {
   }
   redirectToRegister(){
     this.router.navigateByUrl('/register');
+  }
+  redirectToMyChats(){
+    this.router.navigateByUrl('/chat');
+  }
+  logOut(){
+    this.loginService.userUnlogged();
+    this.router.navigateByUrl('/login');
+  }
+
+  viewProfile(){
+    this.router.navigate(['/profile/'+ this.user.id]);
   }
 }

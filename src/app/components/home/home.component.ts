@@ -1,4 +1,4 @@
-import { Component, HostListener  } from '@angular/core';
+import { Component, HostListener,OnInit } from '@angular/core';
 import { EmployerService } from 'src/app/services/user/employer/employer.service';
 //import { WorkerProfileService } from 'src/app/services/worker-profile.service';
 import { WorkerService } from 'src/app/services/user/worker/worker.service';
@@ -13,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   search : String ="";
   workers : any;
   employers :any;
@@ -86,7 +86,7 @@ export class HomeComponent {
   }
 
   getEmployers(){
-    this.employerService.getAllWorkers().subscribe(
+    this.employerService.getAllEmployers().subscribe(
       (data) => {
         console.log(data);
         this.employers = data;

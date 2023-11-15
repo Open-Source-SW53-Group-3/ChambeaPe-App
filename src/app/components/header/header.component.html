@@ -18,14 +18,23 @@
                 <a *ngIf="userRol=='W'" class="nav-link color" routerLink="" routerLinkActive="active" (click)="redirectToJobs()">
                     Empleos
                 </a>
-                <a class="nav-link color" routerLink="" routerLinkActive="active" aria-label="Ve a la sección de Chambeadores">
+
+                <a class="nav-link color" routerLink="" routerLinkActive="active" (click)="redirectToMyChats()">
+                    Chats
+                </a>
+
+                <a class="nav-link color" routerLink="" routerLinkActive="active" aria-label="Ve a la sección de Chambeadores" (click)="home()">
                     Chambeadores
                 </a>
-                <a class="nav-link color" routerLink="" routerLinkActive="active" aria-label="Ve a la sección de Notificaciones">
+                <a class="nav-link color" routerLink="" routerLinkActive="active" aria-label="Ve a la sección de Notificaciones" (click)="home()">
                     Notificaciones
                 </a>
-                <a class="nav-link color" routerLink="" routerLinkActive="active" aria-label="Ve a la sección de Perfil">
+                <a class="nav-link color" routerLink="" routerLinkActive="active" aria-label="Ve a la sección de Perfil" (click)="viewProfile()">
                     Perfil
+                </a>
+
+                <a id="logOut" class="nav-link color" routerLink="" routerLinkActive="active" (click)="logOut()">
+                    Cerrar Sesión
                 </a>
             </div>
             <div *ngIf="isLoggedIn=='unlogged'" class="navbar-nav ms-auto">

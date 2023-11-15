@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { LoginService } from 'src/app/services/user/login/login.service';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +29,11 @@ export class RegisterComponent {
   registrationSuccess: boolean = false;
   registrationError: boolean = false;
 
-  constructor( private router:Router) {}
+  constructor( private router:Router, private loginService : LoginService) { 
+    if(this.loginService.isUserLogged() == 'logged'){
+      this.router.navigateByUrl('/home');
+    }
+  }
 
   onSubmit() {
     console.log(this.formData);

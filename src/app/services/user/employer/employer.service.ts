@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, retry, throwError } from 'rxjs';
-import { Worker } from 'src/app/models/user/worker';
+import { Employer } from 'src/app/models/user/employer';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -31,27 +31,27 @@ export class EmployerService {
   }
 
 
-  getAllWorkers(): Observable<Worker> {
+  getAllEmployers(): Observable<Employer> {
     return this.http
-      .get<Worker>(environment.baseUrl + '/employers')
+      .get<Employer>(environment.baseUrl + '/employers')
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getWorkerById(workerId: number): Observable<Worker> {
+  getEmployerById(employerId: number): Observable<Employer> {
     return this.http
-      .get<Worker>(environment.baseUrl + '/employers/'+workerId)
+      .get<Employer>(environment.baseUrl + '/employers/'+employerId)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  updateWorker(worker: Worker): Observable<Worker> {
+  updateEmployer(employerId: Employer): Observable<Employer> {
     return this.http
-      .put<Worker>(environment.baseUrl + '/employers/'+worker.id, worker)
+      .put<Employer>(environment.baseUrl + '/employers/'+employerId.id, employerId)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  deleteWorker(workerId:any): Observable<Worker> {
+  deleteEmployer(employerId:any): Observable<Employer> {
     return this.http
-      .delete<Worker>(environment.baseUrl + '/employers/'+workerId)
+      .delete<Employer>(environment.baseUrl + '/employers/'+employerId)
       .pipe(retry(2), catchError(this.handleError));
   }
 }
