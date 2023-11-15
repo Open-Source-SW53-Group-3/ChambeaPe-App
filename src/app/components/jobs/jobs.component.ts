@@ -18,16 +18,31 @@ export class JobsComponent implements OnInit{
   }
 
   getJobs():void{
-    this.postService.getAllPosts().subscribe((data)=>{
-      next: this.posts = data;
-      error:{
-        console.log('An error has occurred');
+    this.postService.getAllPosts().subscribe(
+      (data) => {
+        this.posts = data;
+      },
+      (error) => {
+        console.log('An error has occurred', error);
         this.toastr.error('Ocurrió un error al cargar los trabajos. Por favor, inténtalo de nuevo más tarde');
       }
-    });
+    );
   }
 
   apply(){
-    this.toastr.success('Aplicaste al trabajo exitosamente');
+    this.toastr.success(
+      'Postulación enviada con éxito',
+      'Postulación enviada',
+      {
+        progressAnimation: 'decreasing',
+        progressBar: true,
+        timeOut: 3000,  // Tiempo estándar
+        closeButton: true,
+        easeTime: 300,
+        positionClass: 'toast-top-right',
+        tapToDismiss: true,
+        extendedTimeOut: 1000,
+      }
+    );
   }
 }

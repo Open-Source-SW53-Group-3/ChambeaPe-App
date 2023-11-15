@@ -38,24 +38,32 @@ export class EmployerPostComponent {
 
   //****************/
 
-  getPost(){
-    this.postService.getPostById(this.id).subscribe((data)=>{
-      next: this.post = data;
-      error:{
-        console.log('An error has occurred');
-        //this.toastr.error('Ocurrió un error al cargar los posts. Por favor, inténtalo de nuevo más tarde');
+  getPost() {
+    this.postService.getPostById(this.id).subscribe(
+      (data) => {
+        // Código para manejar los datos exitosos
+        this.post = data;
+      },
+      (error) => {
+        // Código para manejar los errores
+        console.error('An error has occurred', error);
+        // También puedes mostrar un mensaje de error al usuario si es necesario
+        this.toastr.error('Ocurrió un error al cargar el post. Por favor, inténtalo de nuevo más tarde');
       }
-    });
+    );
   }
 
 
-  getPostulations(){
-    this.pustulation.getAllWorkersByPost(this.id).subscribe((data)=>{
-      next: this.postulations = data;
-      error:{
-        console.log('An error has occurred');
+  getPostulations() {
+    this.pustulation.getAllWorkersByPost(this.id).subscribe(
+      (data) => {
+        this.postulations = data;
+      },
+      (error) => {
+        console.error('An error has occurred', error);
+        this.toastr.error('Ocurrió un error al cargar los postulantes. Por favor, inténtalo de nuevo más tarde');
       }
-    });
+    );
   }
 
   //************/

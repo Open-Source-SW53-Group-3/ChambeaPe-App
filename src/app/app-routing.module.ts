@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'job/post', component: JobPostComponent },
   { path: 'worker', redirectTo: '/worker/1', pathMatch: 'full'},
-  { path: 'worker/:id', component: WorkerProfileComponent},
+  { path: 'profile/:id', component: WorkerProfileComponent},
   { path: 'jobs', component: JobsComponent},
   { path: 'worker/:id/certificates', component: ListCertificatesComponent},
   { path: 'worker/:id/post-review', component: ReviewWorkerComponent},

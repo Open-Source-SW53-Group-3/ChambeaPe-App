@@ -23,17 +23,23 @@ export class LoginComponent implements AfterViewInit {
   emailField = '';
   passwordField = '';
   loginData !: Login;
-  estado : String  = "s";
   constructor(private loginService: LoginService,private loginServicev1:LoginServicev1, private userService:UserService,
     private router:Router, private cookieService:CookieService, private toastr:ToastrService) {
-      //this.estado= 'logged';
-      //console.log("login Estado xdd:  ");
-      //console.log(this.estado);
-      //this.cookieService.set('login', JSON.stringify(this.estado));
+      if(this.loginService.isUserLogged() == 'logged'){
+        this.router.navigateByUrl('/home');
+      }
     }
 
 
   ngOnInit(): void {
+    /*
+    setTimeout(() => {
+      var isLogged = this.loginService.isUserLogged();
+      var existUser = this.cookieService.check('user');
+      if(isLogged == 'logged' && existUser){
+        this.router.navigateByUrl('/home');
+      }
+    }, 100);*/
   }
 
   login(){
@@ -55,19 +61,24 @@ export class LoginComponent implements AfterViewInit {
     }
 
     this.loginService.loginUser(this.loginData).subscribe(
-      {
-        next: (res: any) => {
-          console.log("Login success:", res);
-          this.loginService.loadUser(res);
-          console.log(this.loginService.user);
-          this.router.navigateByUrl('/home');
-        },
-        error: (error: any) => {
-          console.error("Error logging in:", error);
-          console.log(error.error);
-          this.toastr.error('Usuario o contraseña incorrectos','Error',
-          {progressAnimation: 'decreasing', progressBar: true, timeOut: 3000, closeButton: true, easeTime: 300});
-        }
+      (res: any) => {
+        console.log("Login success:", res);
+        this.loginService.loadUser(res);
+    
+        console.log("User Cookie:");
+        console.log(this.loginService.user);
+        this.router.navigateByUrl('/home');
+      },
+      (error: any) => {
+        console.error("Error logging in:", error);
+        console.log(error.error);
+        this.toastr.error('Usuario o contraseña incorrectos', 'Error', {
+          progressAnimation: 'decreasing',
+          progressBar: true,
+          timeOut: 3000,
+          closeButton: true,
+          easeTime: 300
+        });
       }
     );
   }

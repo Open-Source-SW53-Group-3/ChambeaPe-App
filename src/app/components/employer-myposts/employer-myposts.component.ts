@@ -14,7 +14,8 @@ export class EmployerMypostsComponent {
   employerId!:number;
 
   constructor(private loginService:LoginService,private postService:PostService, private router:Router, private toastr:ToastrService) { 
-    this.employerId = this.loginService.user.id;
+    var user = this.loginService.getUser();
+    this.employerId = user.id;
     console.log("employerId: ");
     console.log(this.employerId);
   }
