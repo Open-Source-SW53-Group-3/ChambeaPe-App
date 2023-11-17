@@ -1,11 +1,10 @@
 <div class="chat-container">
     <div class="contacts-box">
-        <div *ngFor="let chat of chats" class="chat" (click)="cargarMensajes(chat)">
+        <div *ngFor="let chat of chats" class="chat" (click)="cargarMensajes(chat.messages)">
             <div class="chats-box">
-                <img [src]="chat.picture" alt="Foto de perfil de {{ chat.nombre }}" aria-label="" class="picture" />
+                <img [src]="chat.user.profilePic" alt="Foto de perfil de {{ chat.user.firstName }}" aria-label="" class="picture" />
                 <div class="info">
-                  <div class="nombre" aria-label="{chat.nombre}">{{ chat.nombre }}</div>
-                  <div class="estado">{{ chat.estado }}</div>
+                  <div class="nombre" aria-label="{chat.user.firstName}">{{ chat.user.firstName}} {{ chat.user.lastName }}</div>
                 </div>
             </div>
             <div class="line"></div>
@@ -35,7 +34,8 @@
         <div class="messages-box">
             <div id="messages-area" class="messages-area">
                 <p *ngFor=" let mensaje of mensajes" class="msg" [ngClass]="classSeleted(mensaje)">
-                    <span [innerHTML]="convertLinksToHtml(mensaje.mensaje)"></span>
+                    <span class="name">{{ mensaje.content}}</span>
+                    <span [innerHTML]="convertLinksToHtml(mensaje.content)"></span>
                 </p>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 </button>
             </mat-form-field>
 
-            <img src="https://articles-img.sftcdn.net/f_auto,t_article_cover_xl/auto-mapping-folder/sites/2/2022/08/Minecraft-Steve-is-finally-sporting-his-iconic-beard-once-again-main.jpg" alt="asf">
+            <img [src]="user.profilePic" alt="asf">
         </form>
 
     </div>

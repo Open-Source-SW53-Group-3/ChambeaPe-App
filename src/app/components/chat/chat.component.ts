@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ChatService } from 'src/app/services/chat/chat.service';
+import { LoginService } from 'src/app/services/user/login/login.service';
 
 @Component({
   selector: 'app-chat',
@@ -8,107 +10,57 @@ import { Component } from '@angular/core';
 export class ChatComponent {
   /* */
 
-  chatSelected: any = null;
-
-  chats: any = [
-    {
-      nombre: 'Soporte técnico',
-      estado: 'En línea',
-      picture:
-        'https://cdn.discordapp.com/attachments/1151660063606448158/1161573307108315229/image-removebg-preview.png?ex=6538ca71&is=65265571&hm=840da4fb7c1ac010fe48e6449d6d1a64b362f489a782683c30f43401fcc5781d&',
-      mensajes: [
-        {
-          emisor: 'soporte_tecnico',
-          mensaje:
-            'Buenos días, se encuentra en contacto con nuestro equipo de sopore técnico. ¿En qué podemos asistirle hoy?',
-        },
-        {
-          emisor: 'ray_punkeki123',
-          mensaje:
-            'Hola, quisiera reportar al chambeador Steve por enviarme contenido inapropiado',
-        },
-        {
-          emisor: 'soporte_tecnico',
-          mensaje:
-            'Esta bien, le enviaremos un mensaje a Steve para que deje de hacerlo y de paso lo enviaremos a Israel :D.',
-        },
-      ],
-    },
-    {
-      nombre: 'Steve',
-      estado: 'En línea',
-      picture:
-        'https://rcdn.rolloid.net/uploads/2016/08/Las-21-Fotografias-mas-adorables-de-Perros-salchicha-que-hayas-visto-nunca-banner.jpg',
-      mensajes: [
-        {
-          emisor: 'ray_punkeki123',
-          mensaje: 'Hola, ¿cómo estás?',
-        },
-        {
-          emisor: 'steve_marvel',
-          mensaje: 'Estoy bien y tu?',
-        },
-        {
-          emisor: 'ray_punkeki123',
-          mensaje: 'Tambien estoy bien, mañana sale su minecraft',
-        },
-        {
-          emisor: 'steve_marvel',
-          mensaje: 'Mirate esto: https://www.youtube.com/watch?v=QH2-TGUlwu4 \n https://peru21.pe/resizer/nsJDbTwZSHlPdLjGTG5AVUVAIVA=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/EJJYL2WSFBGYRITOJ7ASRSGAYI.jpg',
-        },
-      ],
-    },
-    {
-      nombre: 'Jennifer',
-      estado: 'Desconectado',
-      picture:
-        'https://articles-img.sftcdn.net/f_auto,t_article_cover_xl/auto-mapping-folder/sites/2/2023/05/kitty-the-killer-trailer.jpg',
-      mensajes: [],
-    },
-    {
-      nombre: 'Diego Castro',
-      estado: 'En línea',
-      picture: 'https://i.ytimg.com/vi/lQ9VOgC59yM/maxresdefault.jpg',
-      mensajes: [],
-    },
-  ];
-
-  classSeleted(mensaje: any): any {
-    if (this.chatSelected.nombre === 'Soporte técnico') {
-      if (this.userId == mensaje.emisor) {
-        return 'support-enviado';
-      } 
-      else {
-        return 'support-recibido';
-      }
-    } 
-    else {
-      if (this.userId == mensaje.emisor) {
-        return 'enviado';
-      } 
-      else {
-        return 'recibido';
-      }
-    }
-  }
-
-  cargarMensajes(chat: any) {
-    this.chatSelected = chat;
-    console.log(`Cargando mensajes de ${this.chatSelected.nombre}`);
-    this.mensajes = this.chatSelected.mensajes;
-  }
-
-  /**/
+  chatSelected: any;
   nuevoMensaje: string = '';
-  userId = 'ray_punkeki123';
-  mensajes: Message[] = [];
+  userId !: number;
+  mensajes: any[] = [];
+  chats: any;
+  user: any;
 
-  constructor() {
-    this.cargarMensajes(this.chats[0]);
+  constructor(loginService: LoginService, private chatService: ChatService) {
+    this.user = loginService.getUser();
+    this.userId = this.user.id;
+
+    chatService.getChatsByUserId(this.userId).subscribe(
+      (data) => {
+        console.log(data);
+        this.chats = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    //this.cargarMensajes(this.chatsv1[0].messages);
+
+
+    console.log("Estoy en el chat");
+    console.log(this.user);
+    console.log(this.userId);
+    console.log(this.chats);
   }
 
   ngOnInit() {
     this.scrollToTheLastMessage();
+  }
+
+  classSeleted(mensaje: any): any {
+    if (this.userId == mensaje.sendById) {
+      console.log('enviado');
+      console.log(mensaje.sendById);
+      return 'enviado';
+    } 
+    else {
+      return 'recibido';
+    }
+  }
+
+  cargarMensajes(mensajes: any) {
+    console.log(`Cargando mensajes`);
+    console.log(mensajes);
+    this.mensajes = mensajes;
+
+    console.log(this.mensajes[0].content);
   }
 
   enviarMensaje() {
@@ -164,6 +116,6 @@ export class ChatComponent {
 }
 
 interface Message {
-  emisor: string;
+  emisor: number;
   mensaje: string;
 }
