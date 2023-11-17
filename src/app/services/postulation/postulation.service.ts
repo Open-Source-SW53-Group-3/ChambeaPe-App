@@ -34,4 +34,12 @@ export class PostulationService {
       .get<Postulation>(environment.baseUrl + '/posts/'+postId+'/postulations')
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  //postular a trabajo
+  createPostulation(postId : number, workerId:number): Observable<Postulation> {
+    return this.http
+      .post<Postulation>(environment.baseUrl + '/posts/'+postId+'/postulations/'+ workerId, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
 }

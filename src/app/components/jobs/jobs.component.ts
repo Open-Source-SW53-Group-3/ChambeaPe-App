@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { EmployerPostService } from 'src/app/services/employer-post.service';
 import { PostService } from 'src/app/services/post/post.service';
+import { PostulationService } from 'src/app/services/postulation/postulation.service';
+import { LoginService } from 'src/app/services/user/login/login.service';
 
 @Component({
   selector: 'app-jobs',
@@ -10,9 +11,11 @@ import { PostService } from 'src/app/services/post/post.service';
 })
 export class JobsComponent implements OnInit{
   posts:any;
+  user:any;
+  constructor(private loginService:LoginService, private postService:PostService, private toastr:ToastrService, private postulationService: PostulationService){
+    this.user = this.loginService.getUser();
 
-  constructor(private postService:PostService, private toastr:ToastrService){}
-
+  }
   ngOnInit(): void {
     this.getJobs();
   }
@@ -29,7 +32,7 @@ export class JobsComponent implements OnInit{
     );
   }
 
-  apply(){
+  apply( postId:number){
     this.toastr.success(
       'Postulación enviada con éxito',
       'Postulación enviada',
@@ -44,5 +47,17 @@ export class JobsComponent implements OnInit{
         extendedTimeOut: 1000,
       }
     );
+    console.log("rara");
+    console.log(this.user);
+      this.postulationService.createPostulation(postId, this.user.id).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.log('An error has occurred', error);
+          this.toastr.error('Ocurrió un error al cargar los trabajos. Por favor, inténtalo de nuevo más tarde');
+        }
+      );
   }
+
 }
