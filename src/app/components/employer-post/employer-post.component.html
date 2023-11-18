@@ -1,4 +1,4 @@
-<div class="container-post">
+<div class="container-post"  *ngIf="post">
     <h2 class="title" aria-label="Post de Trabajo"> Post de Trabajo </h2>
     <mat-card class="post-card">
         <div class="row" *ngIf="!editMode; else editForm">
@@ -55,7 +55,7 @@
             <mat-card-actions>
                 <button mat-raised-button (click)="viewProfile(postulation.worker.id)" color="primary" style="color: #fff;">Ver Perfil</button>
                 <button mat-raised-button aria-label="Empieza a Chatear con el Empleador">Chatear</button>
-                <button (click)="deleteWorker(postulation.worker.id)" mat-raised-button aria-label="Elimina un post">Eliminar</button>
+                <button  mat-raised-button aria-label="Elimina un post" (click)="deletePostulation(postulation.worker.id)">Eliminar</button>
             </mat-card-actions>
         </mat-card>
     </div>

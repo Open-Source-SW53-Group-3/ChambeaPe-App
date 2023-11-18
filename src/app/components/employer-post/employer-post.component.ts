@@ -5,8 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EmployerPostService } from 'src/app/services/employer-post.service';
 import { WorkerProfileService } from 'src/app/services/worker-profile.service';
 import {ToastrService } from 'ngx-toastr';
-import { PostulationService } from 'src/app/services/postulation/postulation.service';
+
 import { PostService } from 'src/app/services/post/post.service';
+import { Observable, Subject } from 'rxjs';
+import { PostulationService } from 'src/app/services/postulation/postulation.service';
 
 @Component({
   selector: 'app-employer-post',
@@ -14,6 +16,7 @@ import { PostService } from 'src/app/services/post/post.service';
   styleUrls: ['./employer-post.component.scss']
 })
 export class EmployerPostComponent {
+  private _refresh$ = new Subject<void>();
   post:any;
   postulations:any;
 
@@ -25,7 +28,7 @@ export class EmployerPostComponent {
   
   id:any;
   
-  constructor(private pustulation:PostulationService,private postService:PostService,private postServicev1:EmployerPostService, private workerService:WorkerProfileService,
+  constructor(private postulation:PostulationService,private postService:PostService,private postServicev1:EmployerPostService, private workerService:WorkerProfileService,
     private route:ActivatedRoute, private router:Router, private toastr:ToastrService) {}
 
   ngOnInit(): void {
@@ -35,6 +38,9 @@ export class EmployerPostComponent {
     this.getPostulations();
   }
 
+  get refresh$(): Observable<void> {
+    return this._refresh$;
+  }
 
   //****************/
 
@@ -55,7 +61,7 @@ export class EmployerPostComponent {
 
 
   getPostulations() {
-    this.pustulation.getAllWorkersByPost(this.id).subscribe(
+    this.postulation.getAllWorkersByPost(this.id).subscribe(
       (data) => {
         this.postulations = data;
       },
@@ -117,19 +123,22 @@ export class EmployerPostComponent {
     );
   }
 
-  deleteWorker(workerId:any){
-    this.workerService.deleteWorker(workerId, this.id).subscribe(
-      {
-        next: data => {
-          console.log('Worker profile deleted: '+data);
-          this.toastr.success('El chambeador fue eliminado satisfactoriamente.');
-          this.getPost()
-        },
-        error: error => {
-          console.log('An error has occurred', error);
-          this.toastr.error('Ocurrió un error al eliminar el chambeador. Por favor, inténtalo de nuevo más tarde.');
-        }
+
+
+  deletePostulation(workerId:number){
+    console.log(workerId);
+    this.postulation.deletePostulationWorker(this.id, workerId).subscribe( 
+      () => {
+          console.log('Postulation deleted');
+          location.reload();
+          this.toastr.success('La postulación fue eliminada satisfactoriamente.');
+      },      
+      error => {
+        console.log('An error has occurred', error);
+        
+        this.toastr.error('Ocurrió un error al eliminar la postulación. Por favor, inténtalo de nuevo más tarde.');
       }
     );
   }
+
 }
