@@ -43,7 +43,7 @@ export class JobPostComponent {
       {
         next: (data) => {
           this.toastr.success('Post creado con éxito');
-          this.router.navigateByUrl('/jobs');
+          this.router.navigateByUrl('/posts');
         },
         error: (error) => {
           console.error('There was an error:', error);

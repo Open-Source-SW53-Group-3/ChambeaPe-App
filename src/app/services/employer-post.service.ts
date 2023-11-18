@@ -3,7 +3,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { EmployerPost } from '../models/employer-post';
 import { environment } from 'src/environments/environment';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -58,9 +58,18 @@ export class EmployerPostService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  deletePost(id:any): Observable<EmployerPost> {
+  deletePost(id: any): Observable<any> {
     return this.http
-      .delete<EmployerPost>(environment.baseUrl+'/post' + '/' + id, this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
+      .delete(environment.baseUrl + '/posts/' + id, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(error => {
+          return throwError(error);
+        }),
+        map((response: any) => {
+          return response;
+        })
+      );
   }
+  
 }
