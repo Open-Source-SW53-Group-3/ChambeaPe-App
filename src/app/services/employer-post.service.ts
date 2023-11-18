@@ -3,7 +3,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { EmployerPost } from '../models/employer-post';
 import { environment } from 'src/environments/environment';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,9 +30,9 @@ export class EmployerPostService {
     return throwError(()=>new Error('Something bad happened; please try again later.'));
   }
 
-  createPost(item: any): Observable<EmployerPost> {
+  createPost(item: any, employerId: number): Observable<EmployerPost> {
     return this.http
-      .post<EmployerPost>(environment.baseUrl+'/post', item, this.httpOptions)
+      .post<EmployerPost>(environment.baseUrl+'/employers/'+employerId+'/posts', item, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -54,13 +54,22 @@ export class EmployerPostService {
 
   editPost(id: string, item: any): Observable<EmployerPost> {
     return this.http
-      .put<EmployerPost>(environment.baseUrl+'/post' + '/' + id, item, this.httpOptions)
+      .put<EmployerPost>(environment.baseUrl+'/posts' + '/' + id, item, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  deletePost(id:any): Observable<EmployerPost> {
+  deletePost(id: any): Observable<any> {
     return this.http
-      .delete<EmployerPost>(environment.baseUrl+'/post' + '/' + id, this.httpOptions)
-      .pipe(retry(2), catchError(this.handleError));
+      .delete(environment.baseUrl + '/posts/' + id, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(error => {
+          return throwError(error);
+        }),
+        map((response: any) => {
+          return response;
+        })
+      );
   }
+  
 }
