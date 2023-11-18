@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { EmployerPostService } from 'src/app/services/employer-post.service';
@@ -10,60 +10,26 @@ import { EmployerPostService } from 'src/app/services/employer-post.service';
 })
 export class JobPostComponent {
 
-  formData: any = {
-    title: '',
-    area: '',
-    description: '',
-    amount: null,
-    address: '',
-    department: '',
-    district: '',
-    references: '', // Agregamos 'references' aquí
-    location: '',
-    space: '',
-    isMessages: false,
-    isTownChambeador: false,
-    isPremium: false,
-  };
+  formData = new FormGroup({
+    'title': new FormControl('', Validators.required),
+    'description': new FormControl('', Validators.required),
+    'subtitle': new FormControl('', Validators.required),
+    'img_url': new FormControl('', Validators.required),
+  });
 
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  premiumGroup: FormGroup;
-  settingGroup: FormGroup;
-  notificationGroup: FormGroup;
 
   isLinear = false;
   selectedFile: File | null = null;
 
   constructor(private _formBuilder: FormBuilder,  private _snackBar: MatSnackBar, 
     private router:Router, private employerPostService: EmployerPostService) {
-    this.firstFormGroup = this._formBuilder.group({
-      title: ['', Validators.required], 
-      area: ['', Validators.required], 
-      description: ['', Validators.required], 
-      amount: [null, [Validators.required, Validators.min(1)]] 
-    });
 
-    this.secondFormGroup = this._formBuilder.group({
-      address: ['', Validators.required], 
-      department: ['', Validators.required], 
-      district: ['', Validators.required],      
-      references: ['', Validators.required],
-      space: ['', Validators.required]
-    });
 
-    this.premiumGroup = this._formBuilder.group({
-      isPremium: [false],
-    });
-
-    this.settingGroup = this._formBuilder.group({
-      isTownChambeador: [false],
-    });
-
-    this.notificationGroup = this._formBuilder.group({
-      isMessages: [false],
-    });
   }
+  onSubmit() {
+    console.log(this.formData);
+  }
+  
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0] || null;
   }
@@ -96,53 +62,53 @@ export class JobPostComponent {
     }
   }
 
-  enviarDatos() {
-    // Verifica si el formulario es válido
-    if (
-      this.firstFormGroup.valid &&
-      this.secondFormGroup.valid
-      // Agrega otras condiciones si es necesario
-    ) {
-      const datos = {
-        title: this.firstFormGroup.value.title,
-        area: this.firstFormGroup.value.area,
-        description: this.firstFormGroup.value.description,
-        amount: this.firstFormGroup.value.amount,
-        address: this.secondFormGroup.value.address,
-        department: this.secondFormGroup.value.department,
-        district: this.secondFormGroup.value.district,
-        location: this.formData.location,
-        references: this.secondFormGroup.value.references,
-        space: this.secondFormGroup.value.space,
-        isMessages: this.notificationGroup.value.isMessages,
-        isTownChambeador: this.settingGroup.value.isTownChambeador,
-        isPremium: this.premiumGroup.value.isPremium,
-      };
+  // enviarDatos() {
+  //   // Verifica si el formulario es válido
+  //   if (
+  //     // this.firstFormGroup.valid &&
+  //     // this.secondFormGroup.valid
+  //     // Agrega otras condiciones si es necesario
+  //   ) {
+  //     const datos = {
+  //       // title: this.firstFormGroup.value.title,
+  //       // area: this.firstFormGroup.value.area,
+  //       // description: this.firstFormGroup.value.description,
+  //       // amount: this.firstFormGroup.value.amount,
+  //       // address: this.secondFormGroup.value.address,
+  //       // department: this.secondFormGroup.value.department,
+  //       // district: this.secondFormGroup.value.district,
+  //       // location: this.formData.location,
+  //       // references: this.secondFormGroup.value.references,
+  //       // space: this.secondFormGroup.value.space,
+  //       // isMessages: this.notificationGroup.value.isMessages,
+  //       // isTownChambeador: this.settingGroup.value.isTownChambeador,
+  //       // isPremium: this.premiumGroup.value.isPremium,
+  //     };
   
-      console.log('Datos a enviar:', datos);
-      this._snackBar.open('Datos enviados con éxito', 'Cerrar', {
-        duration: 3000, // Duración en milisegundos del mensaje
-      });
-    } else {
-      // El formulario no es válido, muestra un mensaje de error
-      this._snackBar.open('Por favor, complete todos los campos requeridos', 'Cerrar', {
-        duration: 3000,
-      });
-    }
+  //     console.log('Datos a enviar:', datos);
+  //     this._snackBar.open('Datos enviados con éxito', 'Cerrar', {
+  //       duration: 3000, // Duración en milisegundos del mensaje
+  //     });
+  //   } else {
+  //     // El formulario no es válido, muestra un mensaje de error
+  //     this._snackBar.open('Por favor, complete todos los campos requeridos', 'Cerrar', {
+  //       duration: 3000,
+  //     });
+  //   }
 
-    const post={
-      postTitle:this.firstFormGroup.value.title,
-      postDescription:this.firstFormGroup.value.description,
-      postSubtitle:this.firstFormGroup.value.area,
-      postImgUrl:this.formData.location,
-      id: 0,
-      employerId: '1'
-    }
+  //   const post={
+  //     // postTitle:this.firstFormGroup.value.title,
+  //     // postDescription:this.firstFormGroup.value.description,
+  //     // postSubtitle:this.firstFormGroup.value.area,
+  //     // postImgUrl:this.formData.location,
+  //     // id: 0,
+  //     // employerId: '1'
+  //   }
 
-    this.employerPostService.createPost(post).subscribe((data:any)=>{
-      console.log(data);
-    })
+  //   this.employerPostService.createPost(post).subscribe((data:any)=>{
+  //     console.log(data);
+  //   })
 
-    this.router.navigateByUrl('/posts');
-  }
+  //   this.router.navigateByUrl('/posts');
+  // }
 }
