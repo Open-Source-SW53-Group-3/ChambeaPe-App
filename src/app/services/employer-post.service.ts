@@ -54,7 +54,7 @@ export class EmployerPostService {
 
   editPost(id: string, item: any): Observable<EmployerPost> {
     return this.http
-      .put<EmployerPost>(environment.baseUrl+'/post' + '/' + id, item, this.httpOptions)
+      .put<EmployerPost>(environment.baseUrl+'/posts' + '/' + id, item, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
