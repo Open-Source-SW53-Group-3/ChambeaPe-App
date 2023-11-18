@@ -42,4 +42,10 @@ export class PostulationService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  deletePostulationWorker(postId : number, workerId:number): Observable<Postulation> {
+        return this.http
+      .delete<Postulation>(environment.baseUrl + '/posts/'+postId+'/postulations/'+ workerId, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
 }
