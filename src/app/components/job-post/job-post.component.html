@@ -5,7 +5,7 @@
     <form [formGroup]="formData" class="form">
         <mat-form-field appearance="outline" class="mat-form">
             <mat-label aria-label="Título">Título</mat-label>
-            <input matInput  formControlName="title" name="title"  >
+            <input matInput  formControlName="title" name="title" >
         </mat-form-field>
         <mat-form-field appearance="outline" class="mat-form">
             <mat-label aria-label="Subtítulo">Subtítulo</mat-label>
@@ -17,10 +17,10 @@
         </mat-form-field>
         <mat-form-field appearance="outline" class="mat-form">
             <mat-label aria-label="URL de la imagen">URL de la imagen</mat-label>
-            <input matInput  formControlName="img_url" name="img_url" >
+            <input matInput  formControlName="imgUrl" name="imgUrl" >
         </mat-form-field>     
         <div class="btn-publicar">
-            <button  mat-raised-button [disabled]="formData.invalid" type="submit" color="primary" aria-label="Botón para proceder al registro completo">Publicar</button>
+            <button (click)="createPost()"  mat-raised-button [disabled]="formData.invalid" type="submit" color="primary" aria-label="Botón para proceder al registro completo">Publicar</button>
         </div>
     </form>
 </div>

@@ -30,9 +30,9 @@ export class EmployerPostService {
     return throwError(()=>new Error('Something bad happened; please try again later.'));
   }
 
-  createPost(item: any): Observable<EmployerPost> {
+  createPost(item: any, employerId: number): Observable<EmployerPost> {
     return this.http
-      .post<EmployerPost>(environment.baseUrl+'/post', item, this.httpOptions)
+      .post<EmployerPost>(environment.baseUrl+'/employers/'+employerId+'/posts', item, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
