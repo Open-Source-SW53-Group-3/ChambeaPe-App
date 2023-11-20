@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, retry, throwError } from 'rxjs';
 import { Worker } from 'src/app/models/user/worker';
 import { environment } from 'src/environments/environment';
-
+import { Skill } from 'src/app/models/skill.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -53,4 +53,17 @@ export class WorkerService {
       .delete<Worker>(environment.baseUrl + '/workers/'+workerId)
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  getWorkerSkills(workerId:any): Observable<Skill> {
+    return this.http
+      .get<Skill>(environment.baseUrl + '/workers/'+workerId+'/skills')
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getPortfolios(workerId:any): Observable<any> {
+    return this.http
+      .get<any>(environment.baseUrl + '/workers/'+workerId+'/portfolios')
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
 }

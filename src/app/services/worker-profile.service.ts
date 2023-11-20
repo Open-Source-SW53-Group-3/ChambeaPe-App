@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Worker } from '../models/worker-entity';
+import { Skill } from '../models/skill.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,4 +36,8 @@ export class WorkerProfileService {
     return this.http
       .delete<Worker>(environment.baseUrl + '/post/' + postId + '/workers/'+workerId)
   }
+
+
+
+
 }
