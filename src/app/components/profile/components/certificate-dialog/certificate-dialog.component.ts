@@ -19,11 +19,12 @@ export class CertificateDialogComponent {
   }
   
   getCertificateById() {
-    this.certificateService.getCertificateById(this.dataDialog.idCertificate, this.dataDialog.idWorker, this.dataDialog.idPost).subscribe(
+    console.log(this.dataDialog.idCertificate, this.dataDialog.idWorker);
+    this.certificateService.getCertificateById(this.dataDialog.idCertificate, this.dataDialog.idWorker).subscribe(
       {
         next: data => {
           this.certificate = data;
-          console.log('Certificate data: ' + data);
+          console.log('Certificate data: ' , data);
         },
         error: error => {
           console.log('An error has occurred', error);
