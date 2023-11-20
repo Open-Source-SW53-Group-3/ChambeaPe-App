@@ -17,9 +17,9 @@ export class WorkerProfileService {
       .get<Worker>(environment.baseUrl + '/post/' + postId + '/workers/')
   }
 
-  getWorkerById(workerId: number, postId:any): Observable<Worker> {
+  getWorkerById(workerId:any): Observable<Worker> {
     return this.http
-      .get<Worker>(environment.baseUrl + '/post/' + postId + '/workers/'+workerId)
+      .get<Worker>(environment.baseUrl + '/workers/'+workerId)
   }
 
   addWorker(worker: Worker, postId:any): Observable<Worker> {

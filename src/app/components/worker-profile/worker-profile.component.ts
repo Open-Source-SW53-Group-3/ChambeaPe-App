@@ -10,6 +10,7 @@ import { CertificateDialogComponent } from '../profile/components/certificate-di
 import { LoginService } from 'src/app/services/user/login/login.service';
 import { WorkerService } from 'src/app/services/user/worker/worker.service';
 import { EmployerService } from 'src/app/services/user/employer/employer.service';
+import { CertificateService } from '../../services/certificate.service';
 
 @Component({
   selector: 'app-worker-profile',
@@ -23,8 +24,8 @@ export class WorkerProfileComponent {
   portfolios: any;
   user: any;
   isWorker!:boolean;
-
-  constructor(private loginService: LoginService, private workerService: WorkerService, private employerService: EmployerService, private dialog: MatDialog, private route: ActivatedRoute,  private userService: UserService, private router: Router) {
+  firstCertificate: any;
+  constructor(private certificateService: CertificateService, private loginService: LoginService, private workerService: WorkerService, private employerService: EmployerService, private dialog: MatDialog, private route: ActivatedRoute,  private userService: UserService, private router: Router) {
     const user = this.loginService.getUser();
     console.log("user dentro del profile: ");
     console.log(user);
@@ -47,6 +48,14 @@ export class WorkerProfileComponent {
             (portfolios: any) => {
               this.portfolios = portfolios;
               console.log(this.portfolios);
+            }
+          );
+
+          this.certificateService.getFirstCertificate(worker.id).subscribe(
+            (certificate: any) => {
+              this.firstCertificate = certificate[0];
+              console.log(certificate[0])
+              console.log(this.firstCertificate);
             }
           );
 
@@ -87,11 +96,11 @@ export class WorkerProfileComponent {
   }
 
   certificates(id : any) {
-    this.router.navigate(['/worker/'+ id+'/certificates'], { queryParams: { postId:this.postId } });
+    this.router.navigate(['/worker/'+ id+'/certificates']);
   }
 
   reviews(id : any) {
-    this.router.navigate(['/worker/'+ id+'/reviews'], { queryParams: { postId:this.postId } });
+    this.router.navigate(['/worker/'+ id+'/reviews']);
   }
 
   viewCertificate(idCertificate:any){
@@ -99,8 +108,8 @@ export class WorkerProfileComponent {
       data:{
         idCertificate: idCertificate,
         idWorker: this.user.id,
-        idPost: this.postId
       }
+      
     });
   }
 

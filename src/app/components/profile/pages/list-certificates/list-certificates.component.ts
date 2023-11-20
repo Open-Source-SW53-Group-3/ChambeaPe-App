@@ -19,7 +19,7 @@ export class ListCertificatesComponent {
   worker!:Worker;
   isWorker:boolean = true;
 
-  constructor(private dialog:MatDialog,private route:ActivatedRoute, private workerProfile:WorkerProfileService, private certificateService: CertificateService) {} 
+  constructor(private dialog:MatDialog,private route:ActivatedRoute, private workerProfile:WorkerProfileService, private certificateServices: CertificateService) {} 
   
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -29,13 +29,14 @@ export class ListCertificatesComponent {
     this.id = this.route.snapshot.paramMap.get('id');
     console.log('Worker ID:'+this.id);
     this.getProfile();
+    this.getAllCertificates();
   }
 
   getProfile(){
-    this.workerProfile.getWorkerById(this.id, this.postId).subscribe(
+    this.workerProfile.getWorkerById(this.id).subscribe(
       {
         next: data => {
-          this.worker=data;
+          this.worker= data;
           console.log('Worker profile data: '+data);
         },
         error: error => {
@@ -45,8 +46,21 @@ export class ListCertificatesComponent {
     );
   }
 
+  getAllCertificates(){
+    this.certificateServices.getAllCertificatesByWorkerId(this.id).subscribe({
+      next: (data: any) => {
+        this.worker.certificates = data;
+        console.log('Certificates data: ', data);
+      },
+      error: (error: any) => {
+        console.log('An error has occurred', error);
+      }
+    });
+    
+  }
+
   deleteCertificate(id:any){
-    this.certificateService.deleteCertificate(id, this.worker.id, this.postId).subscribe(
+    this.certificateServices.deleteCertificate(id, this.worker.id, this.postId).subscribe(
       {
         next: data => {
           console.log('Certificate deleted');
