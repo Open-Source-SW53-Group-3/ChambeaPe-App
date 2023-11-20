@@ -54,4 +54,5 @@ export class EmployerService {
       .delete<Employer>(environment.baseUrl + '/employers/'+employerId)
       .pipe(retry(2), catchError(this.handleError));
   }
+
 }

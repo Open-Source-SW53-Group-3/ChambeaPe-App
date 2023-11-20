@@ -30,6 +30,7 @@
           {{ skill.content | titlecase }}
         </button>
       </div>
+
       <div class="portfolio" >
         <h6 style="font-weight: bold;" aria-label="Portafolio">Mis trabajos</h6>
         <div class="carousel-container">
@@ -61,44 +62,73 @@
         </div>
         <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas" (click)="certificates(user.id)"> Ver Más</button>
       </div>
-    </div>
-    
-        <!--
-
-    
       
-      <div class="reviews">
-        <h6 style="font-weight: bold;" aria-label="Comentarios">Comentarios</h6>
-        <div class="review-card-container">
+
+    </div>
+
+
+    <div class="reviews" *ngIf="listReviews && listReviews.length > 0">
+      <h6 style="font-weight: bold;" aria-label="Comentarios">Comentarios</h6>
+      <div class="review-card-container">
           <mat-card class="review-card">
-            <mat-card-content class="card-content">
-              <div class="img-container">
-                <img class="employer-image" [src]="worker.reviews[0].employerPhoto" alt="">
-              </div>
-              <div class="review-description">
-                <p class="certificate-name">{{worker.reviews[0].employerName}}</p>
-                <p>{{worker.reviews[0].description}}</p>
-
-                <ng-template #starRating let-fill="fill">
-                <i class="bi-star-fill">
-                  <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
-                </i>
-                </ng-template>
-
-                <ngb-rating 
-                [readonly]="true"
-                [max]="5"
-                [rate]="ratingToInt(worker.reviews[0].rating)"
-                [starTemplate]="starRating"
-                ></ngb-rating>
-                
-              </div>
-            </mat-card-content>
+              <mat-card-content class="card-content">
+                  <div class="img-container">
+                      <img class="employer-image" [src]="listReviews[0].employerPhoto" alt="">
+                  </div>
+                  <div class="review-description">
+                      <p class="certificate-name">{{listReviews[0].employerName}}</p>
+                      <p>{{listReviews[0].description}}</p>
+                      <ng-template #starRating let-fill="fill">
+                          <i class="bi-star-fill">
+                              <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
+                          </i>
+                      </ng-template>
+  
+                      <ngb-rating 
+                          [readonly]="true"
+                          [max]="5"
+                          [rate]="ratingToInt(listReviews[0].rating)" 
+                          [starTemplate]="starRating"
+                      ></ngb-rating> 
+                  </div>
+              </mat-card-content>
           </mat-card>
-        </div>
-        <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas" (click)="reviews(worker.id)"> Ver Más</button>
       </div>
-      -->
+      <button class="more-button" mat-raised-button mat-button color="primary" (click)="reviews()" aria-label="Ver mas">Ver Más</button>
+  </div>
+  
+
 </div>
 
 
+<!-- <div class="reviews">
+  <h6 style="font-weight: bold;" aria-label="Comentarios">Comentarios</h6>
+  <div class="review-card-container">
+    <mat-card class="review-card">
+      <mat-card-content class="card-content">
+        <div class="img-container">
+          <img class="employer-image" [src]="listReviews[0].employerPhoto" alt="">
+        </div>
+        <div class="review-description">
+          <p class="certificate-name">{{listReviews.reviews[0].employerName}}</p>
+          <p>{{listReviews.reviews[0].description}}</p>
+
+          <ng-template #starRating let-fill="fill">
+          <i class="bi-star-fill">
+            <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
+          </i>
+          </ng-template>
+
+          <ngb-rating 
+          [readonly]="true"
+          [max]="5"
+          [rate]="ratingToInt(listReviews[0].rating)"
+          [starTemplate]="starRating"
+          ></ngb-rating>
+          
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas" > Ver Más</button>
+</div> -->

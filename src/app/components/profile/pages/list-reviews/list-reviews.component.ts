@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReviewService } from 'src/app/services/review.service';
 import { WorkerProfileService } from 'src/app/services/worker-profile.service';
+import { Review } from '../../../../models/review';
+import { EmployerService } from 'src/app/services/user/employer/employer.service';
 
 @Component({
   selector: 'app-list-reviews',
@@ -15,7 +17,7 @@ export class ListReviewsComponent {
    reviews : any;
   isWorker:boolean = true;
 
-  constructor(private route:ActivatedRoute, private workerProfile:WorkerProfileService, private reviewService: ReviewService, private router:Router) {} 
+  constructor(private employerService: EmployerService,  private route:ActivatedRoute, private workerProfile:WorkerProfileService, private reviewService: ReviewService, private router:Router) {} 
   
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -29,15 +31,23 @@ export class ListReviewsComponent {
   }
 
   getReviews(){
-    this.reviewService.getReviews(this.id, this.postId).subscribe(
-      {
-        next: data => {
-          this.reviews=data;
-          console.log('Worker profile data: '+data);
-        },
-        error: error => {
-          console.log('An error has occurred', error);
+    this.reviewService.getReviewsByWorkerId(this.id).subscribe(
+      (reviews: any) => {
+        this.reviews = reviews;
+        console.log(this.reviews);
+        //cambiar employer name por cada review
+        for (let i = 0; i < this.reviews.length; i++) {
+          this.employerService.getEmployerById(this.reviews[i].sentById).subscribe(
+            (employer: any) => {
+              console.log(employer);
+              this.reviews[i].employerName = employer.firstName + " " + employer.lastName;
+              this.reviews[i].employerPhoto = employer.profilePic;
+              console.log(this.reviews[i].employerName);
+            }
+          );
         }
+
+        console.log(this.reviews);
       }
     );
   }
