@@ -1,14 +1,14 @@
-<div class="profile-container">
-    <img class="circular-image" [src]="user.profilePic" />
+<div class="profile-container" >
+    <img  class="image" [src]="user?.profilePic" />
     <div *ngIf="isWorker" class="settings-icon">
       <i class="bi bi-gear gear-icon"></i>
     </div>
     
-    <h1  aria-label="Nombre del trabajador">{{user.firstName}} {{user.lastName}}</h1>
+    <h1  aria-label="Nombre del trabajador">{{user?.firstName}} {{user?.lastName}}</h1>
 
     <div>
-        <h6 *ngIf="user.isActive">Disponible <mat-icon fontIcon="check_circle" style="font-size: 20px;"></mat-icon></h6>
-        <h6 *ngIf="!user.isActive">No Disponible <mat-icon fontIcon="cancel" style="font-size: 20px;" color="warn"></mat-icon></h6>
+        <h6 *ngIf="user?.isActive">Disponible <mat-icon fontIcon="check_circle" style="font-size: 20px;"></mat-icon></h6>
+        <h6 *ngIf="!user?.isActive">No Disponible <mat-icon fontIcon="cancel" style="font-size: 20px;" color="warn"></mat-icon></h6>
         
     </div>
     
@@ -19,28 +19,33 @@
     <div class="description-container">
         
         <p class="worker-description" aria-label="Descripción del chambeador">
-            {{user.description}}
+            {{user?.description}}
         </p>
     </div>
-   <!--
-    <div class="worker-skills">
+    <div class="posts" *ngIf="isWorker">
+      <div class="worker-skills" *ngIf="!skills">
         <h6 style="font-weight: bold;" aria-label="Habilidades">Habilidades</h6>
-        <button class="skill-button" color="primary" mat-button *ngFor="let skill of worker.skills">
-            {{ skill | titlecase }}
+        <button class="skill-button" color="primary" *ngFor="let skill of skills ">
+          {{ skill.content | titlecase }}
         </button>
-    </div>
-
-    <div class="portfolio">
+      </div>
+      <div class="portfolio" >
         <h6 style="font-weight: bold;" aria-label="Portafolio">Mis trabajos</h6>
         <div class="carousel-container">
             <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" class="carousel">
-                <ng-template ngbSlide ngbSlide *ngFor="let image of worker.portfolio">
-                  <img [src]="image" alt="Portfolio Image" class="carousel-image">
-                </ng-template>
+                <ng-template ngbSlide ngbSlide *ngFor="let portfolio of portfolios">
+                  <img [src]="portfolio.imageUrl" alt="Portfolio Image" class="carousel-image">
+                </ng-template>              
             </ngb-carousel>
         </div>
+      </div>
     </div>
     
+
+    
+
+        <!--
+
     <div class="certificates">
       <h6 style="font-weight: bold;" aria-label="Certificados">Certificados</h6>
       <i *ngIf="isWorker" class="bi bi-plus-circle-fill add-icon"></i>

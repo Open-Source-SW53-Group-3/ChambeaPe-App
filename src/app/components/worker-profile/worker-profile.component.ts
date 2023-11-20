@@ -19,45 +19,65 @@ import { EmployerService } from 'src/app/services/user/employer/employer.service
 export class WorkerProfileComponent {
   id:any;
   postId:any;
-
+  skills: any;
+  portfolios: any;
   user: any;
   isWorker!:boolean;
 
-  constructor(private loginService:LoginService, private workerService: WorkerService, private employerService: EmployerService,private dialog:MatDialog, private route:ActivatedRoute, private workerProfile:WorkerProfileService, private userService:UserService,  private router:Router) { 
-    var user= this.loginService.getUser();
+  constructor(private loginService: LoginService, private workerService: WorkerService, private employerService: EmployerService, private dialog: MatDialog, private route: ActivatedRoute,  private userService: UserService, private router: Router) {
+    const user = this.loginService.getUser();
     console.log("user dentro del profile: ");
     console.log(user);
-
-    if(user.userRole == "W"){
+  
+    if (user && user.userRole == "W") {
       this.workerService.getWorkerById(user.id).subscribe(
         (worker: any) => {
           this.user = worker;
           console.log(worker);
+          this.isWorker = true;
+  
+          this.workerService.getWorkerSkills(worker.id).subscribe(
+            (skills: any) => {
+              this.skills = skills;
+              console.log(skills);
+            }
+          );
+
+          this.workerService.getPortfolios(worker.id).subscribe(
+            (portfolios: any) => {
+              this.portfolios = portfolios;
+              console.log(this.portfolios);
+            }
+          );
+
+
         }
       );
     }
-
-      if(user.userRole == "E"){
-        this.employerService.getEmployerById(user.id).subscribe(
-          (employer: any) => {
-            this.user = employer;
-            console.log(employer);
-          }
-        );
-      }
+  
+    if (user && user.userRole == "E") {
+      this.employerService.getEmployerById(user.id).subscribe(
+        (employer: any) => {
+          this.user = employer;
+          console.log(employer);
+          // Any logic for employer can go here if needed
+        }
+      );
+    }
   }
-
+  
   ngOnInit(): void {
-    this.isWorker = this.user.userRole;
-
+    // Move logic depending on user role inside the subscription blocks above to ensure it executes after user data retrieval.
     this.route.queryParams.subscribe(params => {
       this.postId = params['postId'];
     });
-
+  
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log('Worker ID:'+this.id);
+    console.log('Worker ID:' + this.id);
     this.getProfile();
   }
+  
+  
 
   getProfile(){
   }

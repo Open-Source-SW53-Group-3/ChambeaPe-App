@@ -35,10 +35,9 @@
                 <a class="nav-link color" routerLink="" routerLinkActive="active" aria-label="Ve a la sección de Perfil" (click)="viewProfile()">
                     Perfil
                 </a>
-
                 <a id="logOut" class="nav-link color" routerLink="" routerLinkActive="active" (click)="logOut()">
                     Cerrar Sesión
-                </a>
+                </a> 
             </div>
             <div *ngIf="isLoggedIn=='unlogged'" class="navbar-nav ms-auto">
                 <a class="nav-link color" routerLink="" routerLinkActive="active" (click)="login()">

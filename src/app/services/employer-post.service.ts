@@ -58,7 +58,7 @@ export class EmployerPostService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  deletePost(id: any): Observable<any> {
+  deletePost(id: any): Observable<EmployerPost> {
     return this.http
       .delete(environment.baseUrl + '/posts/' + id, this.httpOptions)
       .pipe(

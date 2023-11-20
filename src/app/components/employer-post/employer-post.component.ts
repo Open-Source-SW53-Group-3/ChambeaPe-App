@@ -127,15 +127,15 @@ export class EmployerPostComponent {
 
   deletePostulation(workerId:number){
     console.log(workerId);
+    
     this.postulation.deletePostulationWorker(this.id, workerId).subscribe( 
-      () => {
+      (res: any) => {
           console.log('Postulation deleted');
           location.reload();
           this.toastr.success('La postulación fue eliminada satisfactoriamente.');
       },      
-      error => {
+      (error: any) => {
         console.log('An error has occurred', error);
-        
         this.toastr.error('Ocurrió un error al eliminar la postulación. Por favor, inténtalo de nuevo más tarde.');
       }
     );
