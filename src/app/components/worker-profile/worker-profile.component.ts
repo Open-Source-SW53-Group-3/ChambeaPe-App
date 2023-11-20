@@ -11,6 +11,8 @@ import { LoginService } from 'src/app/services/user/login/login.service';
 import { WorkerService } from 'src/app/services/user/worker/worker.service';
 import { EmployerService } from 'src/app/services/user/employer/employer.service';
 import { CertificateService } from '../../services/certificate.service';
+import { Review } from '../../models/review';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-worker-profile',
@@ -22,16 +24,68 @@ export class WorkerProfileComponent {
   postId:any;
   skills: any;
   portfolios: any;
+  listReviews : any;
+  userId: any;
   user: any;
   isWorker!:boolean;
   firstCertificate: any;
-  constructor(private certificateService: CertificateService, private loginService: LoginService, private workerService: WorkerService, private employerService: EmployerService, private dialog: MatDialog, private route: ActivatedRoute,  private userService: UserService, private router: Router) {
-    const user = this.loginService.getUser();
-    console.log("user dentro del profile: ");
-    console.log(user);
+  constructor( private reviewService:ReviewService, private certificateService: CertificateService, private loginService: LoginService, private workerService: WorkerService, private employerService: EmployerService, private dialog: MatDialog, private route: ActivatedRoute,  private userService: UserService, private router: Router) {
+    //const user = this.loginService.getUser();
+
+
+    const user_id = this.loginService.getUser().id;
+    console.log("-------------------------------------------------------");
+    console.log(this.id);
+    // const user = this.userService.getUserById(user_id);
+    // console.log("user dentro del profile: ");
+    // console.log(user);
+    console.log('dgfffffffffffffffffffff',this.userId);
+
+
+  }
+    
   
-    if (user && user.userRole == "W") {
-      this.workerService.getWorkerById(user.id).subscribe(
+  ngOnInit(): void {
+    // Move logic depending on user role inside the subscription blocks above to ensure it executes after user data retrieval.
+    this.route.queryParams.subscribe(params => {
+      this.userId = params['id'];
+    });
+  
+    this.userId = this.route.snapshot.paramMap.get('id');
+    console.log('Worker ID:' + this.userId);
+    this.validateProfile();
+  }
+  
+  
+
+  ratingToInt(reviewRating: string): number {
+    return parseInt(reviewRating);
+  }
+
+  certificates(id : any) {
+    this.router.navigate(['/worker/'+ id+'/certificates']);
+  }
+
+  reviews() {
+    this.router.navigate(['/worker/'+ this.id+'/reviews']);
+  }
+
+  viewCertificate(idCertificate:any){
+    this.dialog.open(CertificateDialogComponent,{
+      data:{
+        idCertificate: idCertificate,
+        idWorker: this.user.id,
+      }
+      
+    });
+  }
+
+  validateProfile(){
+    if( this.workerService.getWorkerById(this.userId) != null){
+      // this.user = workerService.getWorkerById(this.userId);
+      console.log("worker: ");
+      console.log(this.user);
+      this.workerService.getWorkerById(this.userId).subscribe(
         (worker: any) => {
           this.user = worker;
           console.log(worker);
@@ -59,13 +113,34 @@ export class WorkerProfileComponent {
             }
           );
 
+          this.reviewService.getReviewsByWorkerId(worker.id).subscribe(
+            (reviews: any) => {
+              this.listReviews = reviews;
+              console.log(this.listReviews);
+              //cambiar employer name por cada review
+              for (let i = 0; i < this.listReviews.length; i++) {
+                this.employerService.getEmployerById(this.listReviews[i].sentById).subscribe(
+                  (employer: any) => {
+                    console.log(employer);
+                    this.listReviews[i].employerName = employer.firstName + " " + employer.lastName;
+                    this.listReviews[i].employerPhoto = employer.profilePic;
+                    console.log(this.listReviews[i].employerName);
+                  }
+                );
+              }
+
+              console.log(this.listReviews);
+            }
+          );
+
 
         }
       );
-    }
-  
-    if (user && user.userRole == "E") {
-      this.employerService.getEmployerById(user.id).subscribe(
+    }else if(this.workerService.getWorkerById(this.userId) != null){
+      this.user = this.workerService.getWorkerById(this.id);
+      console.log("worker: ");
+      console.log(this.user);
+      this.employerService.getEmployerById(this.userId).subscribe(
         (employer: any) => {
           this.user = employer;
           console.log(employer);
@@ -73,44 +148,6 @@ export class WorkerProfileComponent {
         }
       );
     }
-  }
-  
-  ngOnInit(): void {
-    // Move logic depending on user role inside the subscription blocks above to ensure it executes after user data retrieval.
-    this.route.queryParams.subscribe(params => {
-      this.postId = params['postId'];
-    });
-  
-    this.id = this.route.snapshot.paramMap.get('id');
-    console.log('Worker ID:' + this.id);
-    this.getProfile();
-  }
-  
-  
-
-  getProfile(){
-  }
-
-  ratingToInt(reviewRating: string): number {
-    return parseInt(reviewRating);
-  }
-
-  certificates(id : any) {
-    this.router.navigate(['/worker/'+ id+'/certificates']);
-  }
-
-  reviews(id : any) {
-    this.router.navigate(['/worker/'+ id+'/reviews']);
-  }
-
-  viewCertificate(idCertificate:any){
-    this.dialog.open(CertificateDialogComponent,{
-      data:{
-        idCertificate: idCertificate,
-        idWorker: this.user.id,
-      }
-      
-    });
   }
 
 }

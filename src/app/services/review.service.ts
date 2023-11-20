@@ -11,8 +11,23 @@ export class ReviewService {
 
   constructor(private http: HttpClient) { }
 
-  getReviews(workerId: any, postId: any): Observable<Review> {
-    return this.http.get<Review>(environment.baseUrl + '/post/' + postId + '/workers/' + workerId + '/reviews')
+  
+  getReviews(workerId: any): Observable<Review> {
+    return this.http.get<Review>(environment.baseUrl + '/workers/' + workerId + '/reviews')
+      .pipe(
+        retry(1),
+        catchError(error => {
+          console.error('Error getting reviews:', error);
+          throw error;
+        })
+    );
+  }
+
+
+
+  //get all reviews for a worker
+  getReviewsByWorkerId(workerId: any): Observable<Review> {
+    return this.http.get<Review>(environment.baseUrl + '/workers/' + workerId + '/reviews')
       .pipe(
         retry(1),
         catchError(error => {

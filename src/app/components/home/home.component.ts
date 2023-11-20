@@ -105,8 +105,8 @@ export class HomeComponent implements OnInit{
   }
 
 
-  viewProfile(){ 
-    this.router.navigate(['/worker/'+ this.workers[this.workerSelect].id],{ queryParams: { postId:this.posts[this.postPositionWorker].id } });
+  viewProfile(id: any){
+    this.router.navigate(['/profile/'+ id]);
   }
 
   //Styles
