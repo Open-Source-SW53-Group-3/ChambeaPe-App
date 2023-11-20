@@ -7,17 +7,17 @@
             <h4>Datos Personales</h4>
             <mat-form-field required>
                 <mat-label aria-label="Nombre">Nombre</mat-label>
-                <input aria-label="Ingresa tu nombre" matInput formControlName="name" name="name" [placeholder]="'Juan'">
+                <input aria-label="Ingresa tu nombre" matInput [ngModel]="userRegister.firstName" formControlName="name" name="name" [placeholder]="'Juan'">
             </mat-form-field>
             <mat-form-field required>
                 <mat-label aria-label="Apellido">Apellido</mat-label>
-                <input aria-label="Ingresa tu apellido" matInput formControlName="lastName" name="lastName" [placeholder]="'Perez'">
+                <input aria-label="Ingresa tu apellido" matInput [ngModel]="userRegister.lastName" formControlName="lastName" name="lastName" [placeholder]="'Perez'">
             </mat-form-field>
         </div>
         <div class="birthday">
             <mat-form-field required>
                 <mat-label aria-label="Fecha de nacimiento">Fecha de nacimiento</mat-label>
-                <input aria-label="Ingresa tu fecha de nacimiento" matInput [matDatepicker]="picker" formControlName="birthday" name="birthday">
+                <input aria-label="Ingresa tu fecha de nacimiento" [ngModel]="userRegister.birthdate" matInput [matDatepicker]="picker" formControlName="birthday" name="birthday">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -40,36 +40,55 @@
             <mat-form-field required>
                 <mat-label aria-label="Numero de celular" >Número</mat-label>
                 <span matPrefix>+51 &nbsp;</span>
-                <input matInput type="tel" formControlName="phoneNumber" name="phoneNumber"
+                <input matInput type="tel" [ngModel]="userRegister.phoneNumber" formControlName="phoneNumber" name="phoneNumber"
                     [placeholder]="'Ingresa tu celular'" aria-label="Ingresa tu celular" >
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
             <mat-form-field required>
                 <mat-label aria-label="Correo">Correo</mat-label>
-                <input matInput type="email" formControlName="email" name="email"
+                <input matInput type="email" [ngModel]="userRegister.email" formControlName="email" name="email"
                     [placeholder]="'juan.perez@ejemplo.com'">
             </mat-form-field>
             <mat-form-field required>
                 <mat-label aria-label="Contraseña">Contraseña</mat-label>
-                <input matInput type="password" formControlName="password" name="password"
+                <input matInput type="password" [ngModel]="userRegister.password" formControlName="password" name="password"
                     [placeholder]="'Ingresa una contraseña'" aria-label="Ingresa una contraseña">
             </mat-form-field>
         </div>
+        <mat-form-field class="description">
+            <mat-label>Redacta una breve descripción sobre ti</mat-label>
+            <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" [cdkAutosizeMinRows]="3" [cdkAutosizeMaxRows]="5" formControlName="description" name="description" matInput placeholder="Ejemplo: Soy Ray Del Carmen y soy un apasionado de la ingeniería de software. ¡Estaré encantado
+            de ayudarte en las labores informáticas que requieras!"></textarea>
+          </mat-form-field>
+        <div class="profile-pic-container">
+                <mat-form-field required>
+                <mat-label aria-label="URL de foto de perfil">Foto de perfil (URL)</mat-label>
+                <input (change)="updateProfilePic($event)" matInput  type="text" [ngModel]="userRegister.profilePic" formControlName="profilePic" name="profilePic"
+                    [placeholder]="'https://www.images.com/image.png'">
+            </mat-form-field>
+            <div class="preview-container">
+                <img [src]="userRegister.profilePic" alt="Foto de perfil" class="preview-image" aria-label="Foto de perfil">
+            </div> 
+        </div>
+        
         <h4 aria-label="Género">Género</h4>
         <div class="gender">
-            <mat-radio-group formControlName="gender" name="gender" >
-                <mat-radio-button value="female" aria-label="Mujer">Mujer</mat-radio-button>
-                <mat-radio-button value="male" aria-label="Hombre">Hombre</mat-radio-button>
+            <mat-radio-group [ngModel]="userRegister.gender" formControlName="gender" name="gender" >
+                <mat-radio-button value="F" aria-label="Mujer">Mujer</mat-radio-button>
+                <mat-radio-button value="M" aria-label="Hombre">Hombre</mat-radio-button>
             </mat-radio-group>
         </div>
         <h4  aria-label="Tipo de cuenta">Tipo de Cuenta</h4>
         <div class="role-account">
-            <mat-radio-group formControlName="role" name="role">
-                <mat-radio-button value="isCandidate" aria-label="Chambeador">Chambeador</mat-radio-button>
-                <mat-radio-button value="isEmployer"  aria-label="Empleador">Empleador</mat-radio-button>
+            <mat-radio-group [ngModel]="userRegister.userRole" formControlName="role" name="role">
+                <mat-radio-button value="W" aria-label="Chambeador">Chambeador</mat-radio-button>
+                <mat-radio-button value="E"  aria-label="Empleador">Empleador</mat-radio-button>
             </mat-radio-group>
         </div>
-        <button mat-raised-button [disabled]="formData.invalid" type="submit" color="primary" (click)="home()"  aria-label="Botón para proceder al registro completo">Registrarse</button>
+
+        
+
+        <button mat-raised-button [disabled]="formData.invalid" type="submit" color="primary" (click)="onSubmit()"  aria-label="Botón para proceder al registro completo">Registrarse</button>
 
     </form>
 </div>
