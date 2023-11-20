@@ -1,10 +1,10 @@
 export interface Certificate {
-    "certificateId": string;
-    "imgUrl": string;
-    "certificateName": string;
-    "institutionName": string;
-    "professor": string;
-    "issueDate": string;
+    // "certificateId": string;
+    "imgUrl": any;
+    "certificateName": any;
+    "institutionName": any;
+    "teacherName": any;
+    "issueDate": any;
     "id": string;
     "workerId": string;
 }

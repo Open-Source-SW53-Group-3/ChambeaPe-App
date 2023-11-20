@@ -9,20 +9,48 @@ import { Certificate } from '../models/certificate';
 export class CertificateService {
 
   constructor(private http: HttpClient) { }
-  getCertificateById(id: any, workerId: any, postId: any): Observable<Certificate> {
-    return this.http.get<Certificate>(environment.baseUrl + '/post/' + postId + '/workers/' + workerId + '/certificate/' + id)
+
+  getFirstCertificate(workerId: any): Observable<Certificate> {
+    return this.http.get<Certificate>(environment.baseUrl + '/workers/' + workerId + '/certificates')
       .pipe(
         retry(1),
         catchError(error => {
-          console.error('Error getting certificate by id:', error);
+          console.error('Error getting first certificate:', error);
           throw error;
         })
     );
   }
-  
-  addCertificate(certificate: any, workerId:any, postId:any): Observable<Certificate> {
-    return this.http
-      .post<Certificate>(environment.baseUrl + '/post/' + postId + '/workers/'+workerId+'/certificate', certificate)
+
+  getCertificateById(certificateId: any, workerId: any): Observable<Certificate> {
+    return this.http.get<Certificate>(environment.baseUrl + '/workers/' + workerId + '/certificates/' + certificateId)
+      .pipe(
+        retry(1),
+        catchError(error => {
+          console.error('Error getting certificate:', error);
+          throw error;
+        })
+    );
+  }
+
+  getAllCertificatesByWorkerId(workerId: any): Observable<Certificate[]> {
+    return this.http.get<Certificate[]>(environment.baseUrl + '/workers/' + workerId + '/certificates')
+      .pipe(
+        retry(1),
+        catchError(error => {
+          console.error('Error getting certificates:', error);
+          throw error;
+        })
+    );
+  }
+  //workers/34/certificates
+  addCertificate(certificate: Certificate, workerId: any): Observable<Certificate> {
+    return this.http.post<Certificate>(environment.baseUrl + '/workers/' + workerId + '/certificates', certificate)
+      .pipe(
+        catchError(error => {
+          console.error('Error adding certificate:', error);
+          throw error;
+        })
+      );
   }
 
   editCertificate(id:any, certificate: Certificate, workerId:any, postId:any): Observable<Certificate> {
@@ -39,6 +67,7 @@ export class CertificateService {
         })
       );
   }
+
   
   
 }
