@@ -41,4 +41,18 @@
     button {
         color : #fff;
     }
+
+    .preview-container{
+        border: 2px solid #f1a636;
+        width: 200px;
+    }
+    .preview-image{
+        max-width: 200px;
+    }
+
+    .description{
+        min-height: 200px;
+        max-height: 200px;
+        min-width: 300px;
+    }
 }
