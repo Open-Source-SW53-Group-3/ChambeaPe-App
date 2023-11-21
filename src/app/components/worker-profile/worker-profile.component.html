@@ -1,6 +1,6 @@
 <div class="profile-container" >
     <img  class="image" [src]="user?.profilePic" />
-    <div *ngIf="isWorker" class="settings-icon">
+    <div *ngIf="sameUser" class="settings-icon">
       <i class="bi bi-gear gear-icon"></i>
     </div>
     
@@ -22,48 +22,49 @@
             {{user?.description}}
         </p>
     </div>
-
-    <div class="posts" *ngIf="isWorker">
-      <div class="worker-skills" *ngIf="!skills">
-        <h6 style="font-weight: bold;" aria-label="Habilidades">Habilidades</h6>
-        <button class="skill-button" color="primary" *ngFor="let skill of skills ">
-          {{ skill.content | titlecase }}
-        </button>
-      </div>
-
-      <div class="portfolio" >
-        <h6 style="font-weight: bold;" aria-label="Portafolio">Mis trabajos</h6>
-        <div class="carousel-container">
-            <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" class="carousel">
-                <ng-template ngbSlide ngbSlide *ngFor="let portfolio of portfolios">
-                  <img [src]="portfolio.imageUrl" alt="Portfolio Image" class="carousel-image">
-                </ng-template>              
-            </ngb-carousel>
+    <div class=""  *ngIf="isWorker">
+      <div class="posts" *ngIf="isWorker">
+        <div class="worker-skills" *ngIf="!skills">
+          <h6 style="font-weight: bold;" aria-label="Habilidades">Habilidades</h6>
+          <button class="skill-button" color="primary" *ngFor="let skill of skills ">
+            {{ skill.content | titlecase }}
+          </button>
         </div>
-      </div>
-
-      <div class="certificates">
-        <h6 style="font-weight: bold;" aria-label="Certificados">Certificados</h6>
-        <i *ngIf="isWorker" class="bi bi-plus-circle-fill add-icon"></i>
-        <div class="certificate-card-container">
-          <mat-card class="certificate-card" >
-            <mat-card-content class="card-content">
-              <div class="img-container">
-                <img class="certificate-image" [src]="firstCertificate?.imgUrl" alt="">
-              </div>
-              <div class="certificate-description">
-                <p class="certificate-name">{{firstCertificate?.certificateName}}</p>
-                <p>{{firstCertificate?.institutionName}}</p>
-                <button class="certificate-button" mat-raised-button mat-button color="primary" (click)="viewCertificate(firstCertificate.id)" aria-label="Ver certificado"> Ver Certificado</button>
-              </div>
-              
-            </mat-card-content>
-          </mat-card>
+  
+        <div class="portfolio" >
+          <h6 style="font-weight: bold;" aria-label="Portafolio">Mis trabajos</h6>
+          <div class="carousel-container">
+              <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators]="true" class="carousel">
+                  <ng-template ngbSlide ngbSlide *ngFor="let portfolio of portfolios">
+                    <img [src]="portfolio.imageUrl" alt="Portfolio Image" class="carousel-image">
+                  </ng-template>              
+              </ngb-carousel>
+          </div>
         </div>
-        <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas" (click)="certificates(user.id)"> Ver Más</button>
+  
+        <div class="certificates">
+          <h6 style="font-weight: bold;" aria-label="Certificados">Certificados</h6>
+          <i *ngIf="sameUser" class="bi bi-plus-circle-fill add-icon"></i>
+          <div class="certificate-card-container">
+            <mat-card class="certificate-card" >
+              <mat-card-content class="card-content">
+                <div class="img-container">
+                  <img class="certificate-image" [src]="firstCertificate?.imgUrl" alt="">
+                </div>
+                <div class="certificate-description">
+                  <p class="certificate-name">{{firstCertificate?.certificateName}}</p>
+                  <p>{{firstCertificate?.institutionName}}</p>
+                  <button class="certificate-button" mat-raised-button mat-button color="primary" (click)="viewCertificate(firstCertificate.id)" aria-label="Ver certificado"> Ver Certificado</button>
+                </div>
+                
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <button class="more-button" mat-raised-button mat-button color="primary" (click)="true" aria-label="Ver mas" (click)="certificates(user.id)"> Ver Más</button>
+        </div>
+        
+  
       </div>
-      
-
     </div>
 
 

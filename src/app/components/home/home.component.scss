@@ -9,6 +9,9 @@
 
 .home-container{
     width: 80%;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 }
 
 .search-container{
@@ -82,6 +85,10 @@
     width: 100%;
     height: auto;
     
+    @media (max-width: 768px) {
+        width: 100%;
+        
+    }
 }
 
 .user-description{
@@ -177,7 +184,8 @@
 
 .employer-image {
     width: 60%;
-    height: auto;
+    height: 200px;
+    object-fit: cover;
     border-radius: 8px;
     box-shadow: 0px 0px 10px orange;
     transition: .3s;
@@ -222,31 +230,58 @@ a:hover {
 }
 
   /* Estilos para pantallas pequeñas */
-  @media (max-width: 768px) {
-  
-    .card-content {
-      flex-direction: column;
-    }
-    
-    .profile-card{
-        width: 80%;
-    }
+@media (max-width: 768px) {
+.home-container {
+    width: 100%;
+}
 
-    .user-img{
-        width: 50%;
-    }
+.profile-card {
+    width: 100%;
+}
 
-    .container-buttons{
-        flex-direction: column;
+.user-img {
+    width: 40%;
+}
+
+.card-content {
+    flex-direction: column;
+}
+
+.container-buttons {
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-buttons button {
+    width: 80%;
+}
+
+.employer-image, .worker-image {
+    width: 70%;
+    height: 300px;
+    object-fit: cover;
+}
+}
+
+@media (max-width: 576px) {
+    .profile-full-width {
         width: 100%;
     }
 
-    .container-buttons button{
-        width: 80%;
+    .searches-container {
+        flex-direction: column;
     }
- 
-    
-    .profile-card {
-      width: 100%;
+
+    .user-description {
+        gap: 10px;
     }
-  }
+
+    .user-information {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .container-buttons button {
+        width: 100%;
+    }
+}

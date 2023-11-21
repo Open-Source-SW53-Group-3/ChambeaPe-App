@@ -14,7 +14,7 @@ export class ListReviewsComponent {
   id:any;
   postId:any;
 
-   reviews : any;
+  reviews : any;
   isWorker:boolean = true;
 
   constructor(private employerService: EmployerService,  private route:ActivatedRoute, private workerProfile:WorkerProfileService, private reviewService: ReviewService, private router:Router) {} 
