@@ -29,10 +29,14 @@ export class WorkerProfileComponent {
   user: any;
   isWorker!:boolean;
   firstCertificate: any;
+
+  userEmployer:any;
+  userWorker:any;
+  userLogin:any;
+  sameUser: boolean = false;
   constructor( private reviewService:ReviewService, private certificateService: CertificateService, private loginService: LoginService, private workerService: WorkerService, private employerService: EmployerService, private dialog: MatDialog, private route: ActivatedRoute,  private userService: UserService, private router: Router) {
-    //const user = this.loginService.getUser();
-
-
+    this.userLogin = this.loginService.getUser();
+   
     const user_id = this.loginService.getUser().id;
     console.log("-------------------------------------------------------");
     console.log(this.id);
@@ -52,7 +56,14 @@ export class WorkerProfileComponent {
     });
   
     this.userId = this.route.snapshot.paramMap.get('id');
+    
     console.log('Worker ID:' + this.userId);
+    this.sameUser = this.userLogin.id == this.userId;
+    if(this.userLogin.id == this.userId){
+      this.sameUser = true;
+    }
+    console.log("ndfjkdbgbkjdbkjddddddddddddddgb-----------", this.userLogin.id, "dgbjkdgbd", this.userId);
+
     this.validateProfile();
   }
   
@@ -81,7 +92,33 @@ export class WorkerProfileComponent {
   }
 
   validateProfile(){
-    if( this.workerService.getWorkerById(this.userId) != null){
+
+    this.userEmployer = this.employerService.getEmployerById(this.userId).subscribe({
+      next: (employer: any) => {
+        this.user = employer;
+        console.log(employer);
+        // Any logic for employer can go here if needed
+      },
+      error: (err: any) => {
+        // console.log(err);
+      }
+    });
+    
+
+    this.userWorker = this.workerService.getWorkerById(this.userId).subscribe({
+      next: (worker: any) => {
+        this.user = worker;
+        console.log(worker);
+        // Any logic for employer can go here if needed
+      },
+      error: (err: any) => {
+        // console.log(err);
+      }
+    });
+    console.log("dsfgfgdfgd",this.userEmployer);
+    console.log("dfggggg",this.userWorker);
+
+    if( this.userWorker != null){
       // this.user = workerService.getWorkerById(this.userId);
       console.log("worker: ");
       console.log(this.user);
@@ -136,8 +173,8 @@ export class WorkerProfileComponent {
 
         }
       );
-    }else if(this.workerService.getWorkerById(this.userId) != null){
-      this.user = this.workerService.getWorkerById(this.id);
+    }else if(this.userEmployer != null){
+      this.user = this.employerService.getEmployerById(this.id);
       console.log("worker: ");
       console.log(this.user);
       this.employerService.getEmployerById(this.userId).subscribe(
